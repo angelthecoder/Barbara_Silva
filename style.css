@@ -1,0 +1,130 @@
+/*
+Theme Name: Barbara Silva
+Author: Alumin / Developed by Alberto Hartzet
+Author URI: https://alumin.agency
+Description: Hecho sobre WPKit framework v3.
+Version: 1.0
+License: © Copyright Alumin.Agency All rights reserved
+@Developer: Alberto Hartzet
+*/
+
+
+/* 
+
+	Colores
+
+	Gris claro #f3efef
+	Gris obscuro #444
+	Gris rosado #928282
+	Rosa #DB8C8C
+
+*/
+
+@import url('css/elements.css');
+
+/*-----------------------------------------------------------------------------------------------------
+
+	Header
+
+------------------------------------------------------------------------------------------------------*/
+
+	
+
+	/* Logo Bar */
+		#bs_logo_bar {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 40px 0;
+		}
+
+	/* Nav bar */
+
+		#nav-main {
+		height: 50px;
+		display: flex;
+		/* justify-content: space-around; */
+		align-items: center;
+		}
+			
+			#nav-main .menu {
+			text-align: center;
+			width: 100%;
+			height: 100%;
+			}
+
+				#nav-main .menu a {
+				height: 100%;
+				padding: 0 14px;
+				display: inline-block;
+				display: flex;
+				align-items: center;
+				}
+			
+				#nav-main .menu > .menu-item {
+				display: inline-block;
+				position: relative;
+				height: 100%;
+				}
+
+				/*#nav-main .menu > .menu-item:not(:last-child) {
+				margin-right: 4%;
+				}*/
+
+	/* Sub menu */
+
+	
+			.sub-menu {
+			text-transform: initial;
+			letter-spacing: initial;
+			background-color: #fff;
+			position: absolute;
+			top: 100%;
+			width: 100%;
+			list-style: none;
+			z-index: 10;
+			text-align: left;
+			padding: 6px 18px;
+			visibility: hidden;
+			opacity: 0;
+			transition: all .25s linear;
+			}
+
+			.menu > .menu-item:hover .sub-menu {
+			visibility: visible;
+			opacity: 1;
+			}
+
+			.sub-menu > .menu-item {
+			margin: 16px 0;
+			}
+
+
+/*-----------------------------------------------------------------------------------------------------
+
+	Footer
+
+------------------------------------------------------------------------------------------------------*/
+
+	/* Instagram Footer feed */
+
+		.bs_instagram-headers {
+		text-align: center;
+		height: 50%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		}
+
+			.bs_instagram-headers span {
+			display: block;
+			}
+
+
+	/* Main footer */
+
+	#main-footer {
+	background-color: #444;
+	color: #fff;
+	padding: 60px;
+	}

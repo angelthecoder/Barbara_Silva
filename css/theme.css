@@ -1,0 +1,126 @@
+
+/*-----------------------------------------------------------------------------------------------------
+
+	UI
+
+------------------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: Montserrat;	
+	font-size: 13px;
+	line-height: 17px;
+	background-color: #f3efef;
+}
+
+.bs_text_pink {
+color: #DB8C8C;
+}
+
+.bs_text_uppercase {
+text-transform: uppercase;
+}
+
+.bs_text_italic {
+font-style: italic;
+}
+
+.bs_text_excerpt {
+font-family: "Adobe Garamond Pro", serif;	
+font-size: 18px;	
+font-style: italic;	
+line-height: 22px;
+}
+
+/* Title Menu */
+
+
+/* Títulos principales */
+
+	.bs_title_big,
+	.bs_title_mid,
+	.bs_title_small,
+	.bs_post_title {
+	font-family: 'Pistilli', 'Playfair Display', 'Open sans', sans-serif;
+	font-weight: 700;	
+	line-height: 1;	
+	}
+
+	.bs_title_big,
+	.bs_post_title {
+	font-size: 48px;
+	}
+
+	.bs_title_mid {
+	font-size: 36px;
+	}
+
+	.bs_title_small {
+	font-size: 24px;
+	}
+
+/* Títulos de categoría */
+
+	/* Texto arriba del título principal del post en el feed */
+		.bs_title_montserrat, 
+		.bs_title_montserrat_lower,
+		.bs_title_menu,
+		.bs_post_cat {
+		font-family: 'Montserrat', 'Open sans', sans-serif;
+		font-weight: 100;	
+		letter-spacing: 2px;	
+		line-height: 13px;
+		font-size: 10px;
+		}
+
+		.bs_title_montserrat {
+		}
+
+		.bs_title_montserrat_upper,
+		.bs_post_cat {
+		text-transform: uppercase; 		
+		}
+
+		.bs_post_cat {
+			color: #DB8C8C;
+		}
+
+		.bs_title_menu {
+		font-size: 14px;
+		text-transform: uppercase;
+		}
+
+/* Títulos Garamond */
+
+	.bs_title_garamond, 
+	.bs_title_garamond_mid, 
+	.bs_title_garamond_bit,
+	.bs_post_meta,
+	.bs_post_excerpt,
+	.sub-menu {
+		font-family: 'Adobe Garamond Pro', 'Fanwood Text', serif;
+		font-style: italic;	
+	}
+
+	.bs_title_garamond,
+	.bs_post_meta {
+	font-size: 11px;	
+	}
+
+	.bs_title_garamond_mid,
+	.sub-menu {
+	font-size: 18px;
+	}
+
+	.bs_title_garamond_big {
+	font-size: 22px;
+	}
+
+	.bs_post_excerpt {
+		font-size: 18px;
+		font-style: italic;
+	}
+
+
+
+
+

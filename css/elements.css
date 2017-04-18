@@ -1,0 +1,313 @@
+
+
+
+/*-----------------------------------------------------------------------------------------------------
+
+	Menues
+
+------------------------------------------------------------------------------------------------------*/
+
+	.menu {
+		list-style: none;
+	}
+
+
+/*-----------------------------------------------------------------------------------------------------
+
+	UI - botónes, líneas etc
+
+------------------------------------------------------------------------------------------------------*/
+
+	.bs_divider {
+	width: 100%;
+	margin-top: 12px;
+	margin-bottom: 12px;
+	margin-left: auto;
+	margin-right: auto;
+    display: block;
+    border-bottom: 1px solid black;
+	}
+
+	/* Botónes 
+
+	3 Típos
+	1. .bs_button fondo blanco texto rosa
+	2. .bs_button_o sin fondo, borde negro texto rosa
+	3. .bs_button_o_light sin fondo, borde blanco texto rosa
+
+	*/
+
+		.bs_button,
+		.bs_button_o,
+		.bs_button_o_light {
+		padding: 12px 22px;
+		color: #DB8C8C;
+		text-transform: uppercase;
+		font-size: 10px;
+		letter-spacing: 2px;
+		display: inline-block;			
+		}
+
+		.bs_button {
+		background-color: white;
+		}
+
+		.bs_button_o {
+		border: 1px solid black;
+		}
+
+		.bs_button_o_light {
+		border: 1px solid white;
+		}
+
+
+
+
+
+/*-----------------------------------------------------------------------------------------------------
+
+	Posts
+
+------------------------------------------------------------------------------------------------------*/
+		
+		/* Post */
+
+			.bs_post,
+			.bs_post_full {
+			width: 100%;
+			max-width: 1080px;
+			margin: 60px auto;
+			}
+
+			.bs_post_white {
+			background-color: #fff;
+			}
+
+		/* Post header */
+
+			.bs_post_head {
+			padding: 20px 0;
+			}
+
+				.bs_post_header {
+				margin: 20px 0;
+				}
+
+				.bs_post_cat {
+				margin: 0 0;
+				}
+
+				.bs_post_title {
+				margin: 10px 0px 20px;
+				}
+				
+				.bs_post_meta.bs_post_meta_topline {
+				border-top: 1px solid black;
+				display: inline-block;
+				padding-top: 6px;
+				margin: 0;
+				}
+
+				.bs_post_excerpt {
+				margin: 40px 0;
+				}
+
+			/* Reverse post */
+
+				@media ( min-width: 771px ) {
+					.bs_post_reverse .wk-cols {
+					flex-direction: row-reverse;
+					}
+
+					.bs_post_reverse .bs_post_head {
+				   	text-align: right;					}
+					
+				}
+
+		/* Post full */
+
+			.bs_post_full {
+			color: #fff;
+			background-size: cover;
+		    background-position: center;
+		    background-repeat: no-repeat;
+		    height: 600px;
+		    display: flex;
+	       	flex-direction: column;
+		    align-items: center;
+		    justify-content: center;
+		    text-align: center;
+		    position: relative;
+			}
+
+			.bs_post_full .bs_post_head {
+		    width: 100%;
+		    max-width: 700px;
+			}
+
+			.bs_post_full .bs_post_read_more {
+		    position: absolute;
+		    top: calc(100% - 20px);
+			}
+
+
+
+/*-----------------------------------------------------------------------------------------------------
+
+	Slider
+
+------------------------------------------------------------------------------------------------------*/
+
+
+		.bs_slide {
+		position: relative;
+		}
+
+			.bs_slide .bs_slide_bg {
+			top: 0;
+			left: 0;
+			z-index: -1;
+			width: 100%;
+			height: 100%;
+			background: #343434;
+			}
+
+			.bs_slide .bs_slide_content {
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			margin: auto;
+			width: calc(100% - 70px);
+			height: calc(100% - 70px);
+			z-index: 1;
+			border: 2px solid white;
+			padding: 60px 14%;
+			color: white;
+			display: flex;
+			align-items: flex-end;
+			justify-content: flex-start;
+			}
+
+				.bs_slide .bs_slide_content .bs_slide_content_container {
+				width: 50%;
+				}
+
+			.bs_slide_readmore {
+		    position: absolute;
+		    left: 0;
+		    right: 0;
+		    bottom: 16px;
+		    z-index: 2;
+		    color: white;
+		    padding: 0px 14%;
+		    width: calc(100% - 70px);
+		    margin: auto;
+			}
+
+			/* Arrows */
+
+				.bs_arrow:before {
+			    color: white;
+			    width: 25px;
+			    height: 26px;
+			    background-color: #fff;
+			    display: flex;
+			    align-items: center;
+			    justify-content: center;
+			    padding: 12px;
+			    cursor: pointer;
+				}
+
+				.slick-prev .bs_arrow:before {
+				content: url(../img/arrow-left.png);
+				}
+
+				.slick-next .bs_arrow:before {
+				content: url(../img/arrow-right.png);
+				}
+
+				.slick-arrow {
+			    position: absolute;
+			    top: 0;
+			    bottom: 0;
+			    color: white;
+			    display: flex !important;
+			    z-index: 2;
+			    align-items: center;
+				}
+
+				.slick-prev {
+			    left: 10px;
+				}
+
+				.slick-next {
+			    right: 10px;
+				}
+
+/*-----------------------------------------------------------------------------------------------------
+
+	Icons bar
+
+------------------------------------------------------------------------------------------------------*/
+
+
+	.bs_icons {
+	padding: 12px;
+	display: flex;
+	align-items: center;
+	font-size: 22px;
+	}
+	
+	.bs_icon {
+	padding: 0 12px;
+	display: inline-block;
+	}
+
+	#main-header .bs_icons {
+	color: #928282;
+	}
+
+
+	#main-footer .bs_icons {
+	color: #fff;
+	}
+
+/*-----------------------------------------------------------------------------------------------------
+
+	Instagram Feed 
+
+------------------------------------------------------------------------------------------------------*/
+
+	#instagram-footer {
+	background-color: #fff;
+	}
+
+	@media ( min-width: 771px ) {
+		#instagram-footer {
+		height: 24vw;
+		}	
+
+		#instagram-footer .bs_instagram_feed_images {
+		height: 50%;
+		}
+	}
+
+
+
+	.bs_instagram_feed_image {
+	width: 100%;
+	height: 100%;
+	border: 1px solid rgb(54, 54, 54);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	}
+
+
+	#instagram-footer .wk-cols, 
+	#instagram-footer .wk-col-2, 
+	#instagram-footer .wk-col-1 {
+	height: 100%;
+	}

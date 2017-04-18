@@ -1,0 +1,60 @@
+
+/*********************************************************************************
+Options */
+
+	.description.description-header {
+	padding: 0px 12px 12px 12px;
+	}
+
+	.description .icon {
+	font-size: inherit;
+	text-decoration: none;
+	vertical-align: middle;
+	}
+
+	.description a {
+	text-decoration: inherit;
+	color: inherit;
+	}
+
+		.description a:hover {
+		color: dodgerblue;
+		}
+
+		.description a:active, 
+		.description a:focus {
+		outline: 0;
+		box-shadow: none;
+		}
+
+/*********************************************************************************
+ Image Uploader */
+
+		.wk_option_image_uploader_container {
+		position: relative;
+		display: inline-block;
+		margin-top: 22px;
+		}
+
+		.wk_option_image_uploader_container .image_src {
+		transition: .15s ease-out;
+		opacity: 1;
+		}
+
+		.wk_option_image_uploader_container:hover .image_src {
+		opacity: .75;
+		}
+
+		.wk_option_image_uploader_container .remove-image {
+		position: absolute;
+		left: calc(100% - 12px);
+		bottom: calc(100% - 12px);
+		background: white;
+		border-radius: 10px;
+		cursor: pointer;
+		transition: .25s ease-out;
+		}
+
+		.wk_option_image_uploader_container .remove-image:hover {
+		transform: scale(1.1);
+		}
