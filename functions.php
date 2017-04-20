@@ -44,7 +44,39 @@ WPKit */
 
 
 /*******************************************************************************
-Tus funciones */
+Partes de post */
+
+function post_head() {
+
+	?>
+
+		<div class="bs_post_head">
+			
+			<header class="bs_post_header">
+				<h4 class="bs_post_cat"><?php echo get_the_category_list( ' • ' ); ?></h4>
+				<h1 class="bs_post_title"><?php the_title(); ?></h1>
+				<h6 class="bs_post_meta bs_post_meta_topline"><?php echo get_the_date( 'M j, Y ' ); ?></h6>
+				<?php edit_post_link( '<span class="fa  fa-pencil-square-o" style="vertical-align: middle; margin-left: 6px;"></span>' ); ?>
+			</header>
+
+
+			<?php if( !is_single() || is_page() ) : ?>
+				
+				<section class="bs_post_excerpt">
+					<?php the_excerpt(); ?>
+				</section>
+
+				<a class="bs_button_o" rel="bookmark" title="<?php the_title_attribute(); ?>" href="<?php the_permalink() ?>" >Continue Reading</a>
+
+			<?php endif; ?>
+
+			
+		</div>
+
+	<?php
+}
+
+add_action( 'bs_post_head', 'post_head' );
 
 
 

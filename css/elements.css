@@ -72,11 +72,8 @@
 		
 		/* Post */
 
-			.bs_post,
-			.bs_post_full {
-			width: 100%;
-			max-width: 1080px;
-			margin: 60px auto;
+			.bs_post {
+		    margin: 60px 0;
 			}
 
 			.bs_post_white {
@@ -91,6 +88,12 @@
 
 				.bs_post_header {
 				margin: 20px 0;
+				width: 100%;
+				max-width: 500px;
+				}
+
+				.bs_post_full .bs_post_header {
+			    margin: auto;
 				}
 
 				.bs_post_cat {
@@ -124,6 +127,39 @@
 					
 				}
 
+		/* Post content
+		*
+		* Estílos del contenido
+		*
+		*/
+
+			/* Sección galería */
+
+				.bs_section_gallery {
+				display: flex;
+				}
+
+				.bs_section_gallery span, 
+				.bs_section_gallery img {
+				width: 100%;
+				}
+
+				.bs_section_gallery span {
+				margin-left: 20px;
+				margin-right: 20px;
+				}
+
+				.bs_section_gallery span:first-child {
+				margin-right: 20px;
+				margin-left: 0 !important;
+				}
+
+				.bs_section_gallery span:last-child {
+				margin-left: 20px;
+				margin-right: 0px !important;
+				}
+
+
 		/* Post full */
 
 			.bs_post_full {
@@ -149,6 +185,65 @@
 		    position: absolute;
 		    top: calc(100% - 20px);
 			}
+
+
+/*-----------------------------------------------------------------------------------------------------
+
+	Share post block
+
+------------------------------------------------------------------------------------------------------*/
+		
+		.bs_share_post_block {
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		}
+
+			.bs_share_post_title {
+			margin-bottom: 50px;
+			position: relative;
+			}
+
+				.bs_share_post_title:after {
+				content: "";
+				display: block;
+				width: 80px;
+				border-bottom: 1px solid black;
+				position: absolute;
+				left: 0;
+				right: 0;
+				margin: auto;
+				margin-top: 15px;
+				}
+
+			.bs_button_share {
+			font-family: 'Open sans', sans-serif;
+			font-weight: 400;
+			font-size: 12px;
+			padding: 6px 20px;
+			background-color: #607D8B;
+			margin: 6px;
+			color: #fff;
+			display: inline-block;
+			}
+
+			.bs_button_fb {
+			background-color: #46609f;
+			}
+
+			.bs_button_tw {
+			background-color: #00a9ec;
+			}
+
+			.bs_button_pin {
+			background-color: #cb262c;
+			}
+
+				.bs_button_share .fa {
+				margin-right: 6px;
+				}
+
+
 
 
 

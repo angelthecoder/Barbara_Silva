@@ -543,6 +543,9 @@ Options page
 		// Options page appearance/Login
 		add_theme_page( __( 'WPKit Login page', 'wpkit_txt_domain' ), __( 'Login page', 'wpkit_txt_domain' ), 'manage_options', 'login_page', 'wk_options_login_callback' );
 
+		// Options page appearance/Branding
+		add_theme_page( __( 'WPKit Branding page', 'wpkit_txt_domain' ), __( 'Branding page', 'wpkit_txt_domain' ), 'manage_options', 'branding_page', 'wk_options_branding_callback' );
+
 		// Callback
 		add_action( 'admin_init', 'wk_dashb_register_settings' );
 	}
@@ -558,190 +561,204 @@ Options page
 		register_setting( 'wpkit-theme-settings-group', 'footer_text' );
 
 		//register settings Login
-		register_setting( 'wk-login-settings-group', 'custom_logo' );
-		register_setting( 'wk-login-settings-group', 'custom_background' );
-		register_setting( 'wk-login-settings-group', 'custom_admin_background' );
+		register_setting( 'wk-login-settings-group', 'custom_logo' ); // Se queda para compatiblidad con sitios ya instalados con la versión anterior de wpkit
+		register_setting( 'wk-login-settings-group', 'wk_custom_login_logo' ); 
+		register_setting( 'wk-login-settings-group', 'wk_custom_login_background_image' );
+		register_setting( 'wk-login-settings-group', 'wk_custom_login_background_color' );
+		register_setting( 'wk-login-settings-group', 'wk_custom_login_color' );
+
+		//register settings branding
+		register_setting( 'wk-branding-settings-group', 'wk_custom_logo_main' );
+		register_setting( 'wk-branding-settings-group', 'wk_custom_logo_alt' );
+		register_setting( 'wk-branding-settings-group', 'wk_custom_logo_complementary' );
+		register_setting( 'wk-branding-settings-group', 'wk_custom_site_background' );
 
 	}
 
 
 	// Contenido appearance/Admin Panel
-	function wk_options_administrator_callback() { ?>
+	function wk_options_administrator_callback() { 
 
-		<div class="wrap">
+		?>
 
-			<h1><?php esc_attr_e( 'Admin panel', 'wpkit_txt_domain' ); ?></h1>
+			<div class="wrap">
 
-			<?php settings_errors(); ?>
+				<h1><?php esc_attr_e( 'Admin panel', 'wpkit_txt_domain' ); ?></h1>
 
-			<form method="post" action="options.php">
-				<?php settings_fields( 'general' ); ?>
-				<?php do_settings_sections( 'general' ); ?>
-				<?php submit_button(); ?>
-			</form>
+				<?php settings_errors(); ?>
 
-			<h2 class="nav-tab-wrapper">
-				<a href="#" class="nav-tab nav-tab-active">Tab #1</a>
-				<a href="#" class="nav-tab">Tab #2</a>
-				<a href="#" class="nav-tab">Tab #3</a>
-			</h2>
+				<form method="post" action="options.php">
+					<?php settings_fields( 'general' ); ?>
+					<?php do_settings_sections( 'general' ); ?>
+					<?php submit_button(); ?>
+				</form>
 
-			<div id="poststuff">
+				<h2 class="nav-tab-wrapper">
+					<a href="#" class="nav-tab nav-tab-active">Tab #1</a>
+					<a href="#" class="nav-tab">Tab #2</a>
+					<a href="#" class="nav-tab">Tab #3</a>
+				</h2>
 
-				<div id="post-body" class="metabox-holder columns-2">
+				<div id="poststuff">
 
-					<!-- main content -->
-					<div id="post-body-content">
+					<div id="post-body" class="metabox-holder columns-2">
 
-						<div class="meta-box-sortables ui-sortable">
+						<!-- main content -->
+						<div id="post-body-content">
 
-							<div class="postbox">
+							<div class="meta-box-sortables ui-sortable">
 
-								<h2><span><?php esc_attr_e( 'Main Content Header', 'wp_admin_style' ); ?></span></h2>
+								<div class="postbox">
 
-								<div class="inside">
-									<p><?php esc_attr_e(
-											'WordPress started in 2003 with a single bit of code to enhance the typography of everyday writing and with fewer users than you can count on your fingers and toes. Since then it has grown to be the largest self-hosted blogging tool in the world, used on millions of sites and seen by tens of millions of people every day.',
-											'wp_admin_style'
-										); ?></p>
+									<h2><span><?php esc_attr_e( 'Main Content Header', 'wp_admin_style' ); ?></span></h2>
+
+									<div class="inside">
+										<p><?php esc_attr_e(
+												'WordPress started in 2003 with a single bit of code to enhance the typography of everyday writing and with fewer users than you can count on your fingers and toes. Since then it has grown to be the largest self-hosted blogging tool in the world, used on millions of sites and seen by tens of millions of people every day.',
+												'wp_admin_style'
+											); ?></p>
+									</div>
+									<!-- .inside -->
+
 								</div>
-								<!-- .inside -->
+								<!-- .postbox -->
 
 							</div>
-							<!-- .postbox -->
+							<!-- .meta-box-sortables .ui-sortable -->
+
+							<table class="form-table">
+								<tr>
+									<th class="row-title"><?php esc_attr_e( 'Table header cell #1', 'wp_admin_style' ); ?></th>
+									<th><?php esc_attr_e( 'Table header cell #2', 'wp_admin_style' ); ?></th>
+								</tr>
+								<tr valign="top">
+									<td scope="row"><label for="tablecell"><?php esc_attr_e(
+												'Table data cell #1, with label', 'wp_admin_style'
+											); ?></label></td>
+									<td><?php esc_attr_e( 'Table Cell #2', 'wp_admin_style' ); ?></td>
+								</tr>
+								<tr valign="top" class="alternate">
+									<td scope="row"><label for="tablecell"><?php esc_attr_e(
+												'Table Cell #3, with label and class', 'wp_admin_style'
+											); ?> <code>alternate</code></label></td>
+									<td><?php esc_attr_e( 'Table Cell #4', 'wp_admin_style' ); ?></td>
+								</tr>
+								<tr valign="top">
+									<td scope="row"><label for="tablecell"><?php esc_attr_e(
+												'Table Cell #5, with label', 'wp_admin_style'
+											); ?></label></td>
+									<td><?php esc_attr_e( 'Table Cell #6', 'wp_admin_style' ); ?></td>
+								</tr>
+							</table>
 
 						</div>
-						<!-- .meta-box-sortables .ui-sortable -->
+						<!-- post-body-content -->
 
-						<table class="form-table">
-							<tr>
-								<th class="row-title"><?php esc_attr_e( 'Table header cell #1', 'wp_admin_style' ); ?></th>
-								<th><?php esc_attr_e( 'Table header cell #2', 'wp_admin_style' ); ?></th>
-							</tr>
-							<tr valign="top">
-								<td scope="row"><label for="tablecell"><?php esc_attr_e(
-											'Table data cell #1, with label', 'wp_admin_style'
-										); ?></label></td>
-								<td><?php esc_attr_e( 'Table Cell #2', 'wp_admin_style' ); ?></td>
-							</tr>
-							<tr valign="top" class="alternate">
-								<td scope="row"><label for="tablecell"><?php esc_attr_e(
-											'Table Cell #3, with label and class', 'wp_admin_style'
-										); ?> <code>alternate</code></label></td>
-								<td><?php esc_attr_e( 'Table Cell #4', 'wp_admin_style' ); ?></td>
-							</tr>
-							<tr valign="top">
-								<td scope="row"><label for="tablecell"><?php esc_attr_e(
-											'Table Cell #5, with label', 'wp_admin_style'
-										); ?></label></td>
-								<td><?php esc_attr_e( 'Table Cell #6', 'wp_admin_style' ); ?></td>
-							</tr>
-						</table>
+						<!-- sidebar -->
+						<div id="postbox-container-1" class="postbox-container">
 
-					</div>
-					<!-- post-body-content -->
+							<div class="meta-box-sortables">
 
-					<!-- sidebar -->
-					<div id="postbox-container-1" class="postbox-container">
+								<div class="postbox">
 
-						<div class="meta-box-sortables">
+									<h2><span><?php esc_attr_e(
+												'Sidebar Content Header', 'wp_admin_style'
+											); ?></span></h2>
 
-							<div class="postbox">
+									<div class="inside">
+										<p><?php esc_attr_e(
+												'Everything you see here, from the documentation to the code itself, was created by and for the community. WordPress is an Open Source project, which means there are hundreds of people all over the world working on it. (More than most commercial platforms.) It also means you are free to use it for anything from your cat’s home page to a Fortune 500 web site without paying anyone a license fee and a number of other important freedoms.',
+												'wp_admin_style'
+											); ?></p>
+									</div>
+									<!-- .inside -->
 
-								<h2><span><?php esc_attr_e(
-											'Sidebar Content Header', 'wp_admin_style'
-										); ?></span></h2>
-
-								<div class="inside">
-									<p><?php esc_attr_e(
-											'Everything you see here, from the documentation to the code itself, was created by and for the community. WordPress is an Open Source project, which means there are hundreds of people all over the world working on it. (More than most commercial platforms.) It also means you are free to use it for anything from your cat’s home page to a Fortune 500 web site without paying anyone a license fee and a number of other important freedoms.',
-											'wp_admin_style'
-										); ?></p>
 								</div>
-								<!-- .inside -->
+								<!-- .postbox -->
 
 							</div>
-							<!-- .postbox -->
+							<!-- .meta-box-sortables -->
 
 						</div>
-						<!-- .meta-box-sortables -->
+						<!-- #postbox-container-1 .postbox-container -->
 
 					</div>
-					<!-- #postbox-container-1 .postbox-container -->
+					<!-- #post-body .metabox-holder .columns-2 -->
 
+					<br class="clear">
 				</div>
-				<!-- #post-body .metabox-holder .columns-2 -->
+				<!-- #poststuff -->
 
-				<br class="clear">
-			</div>
-			<!-- #poststuff -->
+				<table class="widefat">
+					<tr>
+						<th class="row-title"><?php esc_attr_e( 'Table header cell #1', 'wp_admin_style' ); ?></th>
+						<th><?php esc_attr_e( 'Table header cell #2', 'wp_admin_style' ); ?></th>
+					</tr>
+					<tr>
+						<td class="row-title"><label for="tablecell"><?php esc_attr_e(
+									'Table Cell #1, with label', 'wp_admin_style'
+								); ?></label></td>
+						<td><?php esc_attr_e( 'Table Cell #2', 'wp_admin_style' ); ?></td>
+					</tr>
+					<tr class="alternate">
+						<td class="row-title"><label for="tablecell"><?php esc_attr_e(
+									'Table Cell #3, with label and class', 'wp_admin_style'
+								); ?> <code>alternate</code></label></td>
+						<td><?php esc_attr_e( 'Table Cell #4', 'wp_admin_style' ); ?></td>
+					</tr>
+					<tr>
+						<td class="row-title"><?php esc_attr_e( 'Table Cell #5, without label', 'wp_admin_style' ); ?></td>
+						<td><?php esc_attr_e( 'Table Cell #6', 'wp_admin_style' ); ?></td>
+					</tr>
+				</table>
 
-			<table class="widefat">
-				<tr>
-					<th class="row-title"><?php esc_attr_e( 'Table header cell #1', 'wp_admin_style' ); ?></th>
-					<th><?php esc_attr_e( 'Table header cell #2', 'wp_admin_style' ); ?></th>
-				</tr>
-				<tr>
-					<td class="row-title"><label for="tablecell"><?php esc_attr_e(
-								'Table Cell #1, with label', 'wp_admin_style'
-							); ?></label></td>
-					<td><?php esc_attr_e( 'Table Cell #2', 'wp_admin_style' ); ?></td>
-				</tr>
-				<tr class="alternate">
-					<td class="row-title"><label for="tablecell"><?php esc_attr_e(
-								'Table Cell #3, with label and class', 'wp_admin_style'
-							); ?> <code>alternate</code></label></td>
-					<td><?php esc_attr_e( 'Table Cell #4', 'wp_admin_style' ); ?></td>
-				</tr>
-				<tr>
-					<td class="row-title"><?php esc_attr_e( 'Table Cell #5, without label', 'wp_admin_style' ); ?></td>
-					<td><?php esc_attr_e( 'Table Cell #6', 'wp_admin_style' ); ?></td>
-				</tr>
-			</table>
+				<h1><?php esc_attr_e( 'Heading String', 'wp_admin_style' ); ?></h1>
 
-			<h1><?php esc_attr_e( 'Heading String', 'wp_admin_style' ); ?></h1>
+				<div id="col-container">
 
-			<div id="col-container">
+					<div id="col-right">
 
-				<div id="col-right">
+						<div class="col-wrap">
+							<?php esc_attr_e( 'Content Header', 'wp_admin_style' ); ?>
+							<div class="inside">
+								<p><?php esc_attr_e( 'WordPress started in 2003 with a single bit of code to enhance the typography of everyday writing and with fewer users than you can count on your fingers and toes. Since then it has grown to be the largest self-hosted blogging tool in the world, used on millions of sites and seen by tens of millions of people every day.', 'wp_admin_style' ); ?></p>
+							</div>
 
-					<div class="col-wrap">
-						<?php esc_attr_e( 'Content Header', 'wp_admin_style' ); ?>
-						<div class="inside">
-							<p><?php esc_attr_e( 'WordPress started in 2003 with a single bit of code to enhance the typography of everyday writing and with fewer users than you can count on your fingers and toes. Since then it has grown to be the largest self-hosted blogging tool in the world, used on millions of sites and seen by tens of millions of people every day.', 'wp_admin_style' ); ?></p>
 						</div>
+						<!-- /col-wrap -->
 
 					</div>
-					<!-- /col-wrap -->
+					<!-- /col-right -->
 
-				</div>
-				<!-- /col-right -->
+					<div id="col-left">
 
-				<div id="col-left">
-
-					<div class="col-wrap">
-						<?php esc_attr_e( 'Content Header', 'wp_admin_style' ); ?>
-						<div class="inside">
-							<p><?php esc_attr_e( 'Everything you see here, from the documentation to the code itself, was created by and for the community. WordPress is an Open Source project, which means there are hundreds of people all over the world working on it. (More than most commercial platforms.) It also means you are free to use it for anything from your cat’s home page to a Fortune 500 web site without paying anyone a license fee and a number of other important freedoms.', 'wp_admin_style' ); ?></p>
+						<div class="col-wrap">
+							<?php esc_attr_e( 'Content Header', 'wp_admin_style' ); ?>
+							<div class="inside">
+								<p><?php esc_attr_e( 'Everything you see here, from the documentation to the code itself, was created by and for the community. WordPress is an Open Source project, which means there are hundreds of people all over the world working on it. (More than most commercial platforms.) It also means you are free to use it for anything from your cat’s home page to a Fortune 500 web site without paying anyone a license fee and a number of other important freedoms.', 'wp_admin_style' ); ?></p>
+							</div>
 						</div>
+						<!-- /col-wrap -->
+
 					</div>
-					<!-- /col-wrap -->
+					<!-- /col-left -->
 
 				</div>
-				<!-- /col-left -->
-
-			</div>
-			<!-- /col-container -->
+				<!-- /col-container -->
 
 
-		</div> <!-- .wrap -->
+			</div> <!-- .wrap -->
 
-	<?php }
+		<?php 
+
+	}
 
 	// Content appearance/Login
 
 	function wk_options_login_callback() {
+		
 		?>
+		
 			<div class="wrap">
 
 				<h1>Login page</h1>
@@ -768,11 +785,15 @@ Options page
 
 
 							    <table class="widefat">
+							    	<col width="200">
 							        <tr valign="top">
-								        <td class="row-title" scope="row">Logo</td>
+								        <td class="row-title" scope="row">
+								        	Logo
+								        	<p class="description">Se usará unicamente en la página de login.</p>
+							        	</td>
 								        <td>
 								        	<div class="upload-img">
-				        		    			<?php if( ! get_option( 'custom_logo' ) ) : ?>
+				        		    			<?php if( ! get_option( 'wk_custom_login_logo' ) ) : ?>
 				        	    					<?php $wk_hide = 'style="display: inline-block;"'; ?>
 				        	    					<?php $wk_hide_image = 'style="display: none;"'; ?>
 				        		    			<?php else : ?>
@@ -780,21 +801,22 @@ Options page
 				        	    					<?php $wk_hide_image = 'style="display: inline-block;"'; ?>
 				        		    			<?php endif; ?>
 				        			    		<div class="wk_option_image_uploader_container" <?php echo $wk_hide_image; ?>>
-				        		    				<img class="image_src" src="<?php echo get_option( 'custom_logo' ); ?>">
+				        		    				<img class="image_src" src="<?php echo get_option( 'wk_custom_login_logo' ); ?>">
 				        			    			<span class="dashicons-before dashicons-dismiss remove-image"></span>
 				        			    		</div>
 				        						<div class="flex-item wk_option_image_uploader_action" <?php echo $wk_hide; ?>>
-				        						    <input style="display: none;" type="text" name="custom_logo" class="image_url regular-text" value="<?php echo esc_attr( get_option('custom_logo') ); ?>" >
+				        						    <input style="display: none;" type="text" name="wk_custom_login_logo" class="image_url regular-text" value="<?php echo esc_attr( get_option('wk_custom_login_logo') ); ?>" >
 				        						    <button type="button" name="upload-btn" id="" class="upload-btn button-secondary">Añadir imagen</button>
 				        						</div>
 								        	</div>
+								        	<p class="description">Callback: get_option('wk_custom_login_logo')</p>
 								        </td>
 							        </tr>
 							        <tr valign="top" class="alternate">
 								        <th scope="row">Background</th>
 								        <td>
 								        	<div class="upload-img">
-				        		    			<?php if( ! get_option( 'custom_background' ) ) : ?>
+				        		    			<?php if( ! get_option( 'wk_custom_login_background_image' ) ) : ?>
 				        	    					<?php $wk_hide = 'style="display: inline-block;"'; ?>
 				        	    					<?php $wk_hide_image = 'style="display: none;"'; ?>
 				        		    			<?php else : ?>
@@ -802,23 +824,33 @@ Options page
 				        	    					<?php $wk_hide_image = 'style="display: inline-block;"'; ?>
 				        		    			<?php endif; ?>
 				        			    		<div class="wk_option_image_uploader_container" <?php echo $wk_hide_image; ?>>
-				        		    				<img class="image_src" height="150" src="<?php echo get_option( 'custom_background' ); ?>">
+				        		    				<img class="image_src" height="150" src="<?php echo get_option( 'wk_custom_login_background_image' ); ?>">
 				        			    			<span class="dashicons-before dashicons-dismiss remove-image"></span>
 				        			    		</div>
 				        						<div class="flex-item wk_option_image_uploader_action" <?php echo $wk_hide; ?>>
-				        						    <input style="display: none;" type="text" name="custom_background" class="image_url regular-text" value="<?php echo esc_attr( get_option('custom_background') ); ?>" >
+				        						    <input style="display: none;" type="text" name="wk_custom_login_background_image" class="image_url regular-text" value="<?php echo esc_attr( get_option('wk_custom_login_background_image') ); ?>" >
 				        						    <button type="button" name="upload-btn" id="" class="upload-btn button-secondary">Añadir imagen</button>
 				        						</div>
 								        	</div>
-								        	<p class="description">URL de la imagen del background personalizado</p>
-								        	
+								        	<p class="description">Callback: get_option('wk_custom_login_background_image')</p>
 								        </td>
 							        </tr>
 							        <tr valign="top">
-								        <th scope="row">Fondo</th>
+								        <th scope="row">
+									        Color de fondo
+								        </th>
 								        <td>
-						        			<input type="checkbox" name="custom_admin_background" id="custom_admin_background" value="1" <?php checked(1, get_option('custom_admin_background'), true); ?> />
-								        	<p class="description">Aplicar un fondo obscuro en el logo del panel de administración.</p>
+								        	<input type="color" name="wk_custom_login_background_color" id="wk_custom_login_background_color" value="<?php echo esc_attr( get_option('wk_custom_login_background_color') ); ?>"/>
+								        	<p class="description">Callback: get_option('wk_custom_login_background_color')</p>
+								        </td>
+							        </tr>
+							        <tr valign="top">
+								        <th scope="row">
+									        Color de texto
+								        </th>
+								        <td>
+								        	<input type="color" name="wk_custom_login_color" id="wk_custom_login_color" value="<?php echo esc_attr( get_option('wk_custom_login_color') ); ?>"/>
+								        	<p class="description">Callback: get_option('wk_custom_login_color')</p>
 								        </td>
 							        </tr>
 							        <!--<tr valign="top">
@@ -879,31 +911,275 @@ Options page
 		<?php
 	}
 
+	function wk_options_branding_callback() {
+
+		?>
+
+			<div class="wrap">
+
+				<h1>Branding</h1>
+
+				<?php settings_errors(); ?>
+
+				<form method="post" action="options.php">
+				    <?php settings_fields( 'wk-branding-settings-group' ); ?>
+				    <?php do_settings_sections( 'wk-branding-settings-group' ); ?>
+
+				    <p>Puedes personalizar la página de Login en esta sección</p>
+
+					<div id="poststuff">
+
+						<div id="post-body" class="metabox-holder columns-2">
+
+							<div id="post-body-content">
+
+								<div class="meta-box-sortables ui-sortable">
+
+							    	<!-- <h3>Logo</h3> -->
+
+								</div><!--meta-box-sortables-->
+
+
+							    <table class="widefat">
+							    	<col width="200">
+							        <tr valign="top">
+								        <td class="row-title" scope="row">
+									        Logo principal
+									        <p class="description">Se usará como logo principal, aparecerá en el sitio, login page y secciones de administración si se habilita en este último</p></td>
+								        <td>
+								        	<div class="upload-img">
+				        		    			<?php if( ! get_option( 'wk_custom_logo_main' ) ) : ?>
+				        	    					<?php $wk_hide = 'style="display: inline-block;"'; ?>
+				        	    					<?php $wk_hide_image = 'style="display: none;"'; ?>
+				        		    			<?php else : ?>
+				        	    					<?php $wk_hide = 'style="display: none;"'; ?>
+				        	    					<?php $wk_hide_image = 'style="display: inline-block;"'; ?>
+				        		    			<?php endif; ?>
+				        			    		<div class="wk_option_image_uploader_container" <?php echo $wk_hide_image; ?>>
+				        		    				<img width="250" class="image_src" src="<?php echo get_option( 'wk_custom_logo_main' ); ?>">
+				        			    			<span class="dashicons-before dashicons-dismiss remove-image"></span>
+				        			    		</div>
+				        						<div class="flex-item wk_option_image_uploader_action" <?php echo $wk_hide; ?>>
+				        						    <input style="display: none;" type="text" name="wk_custom_logo_main" class="image_url regular-text" value="<?php echo esc_attr( get_option('wk_custom_logo_main') ); ?>" >
+				        						    <button type="button" name="upload-btn" id="" class="upload-btn button-secondary">Añadir imagen</button>
+				        						</div>
+								        	</div>
+								        	<?php if( is_admin() ) : ?><p class="description">Callback: get_option('wk_custom_logo_main')</p><?php endif; ?>
+								        </td>
+							        </tr>
+							        <tr valign="top" class="alternate">
+									        <td class="row-title" scope="row">
+									        Logo alternativo
+									        <p class="description">Se usará como logo alternativo. Es necesario consultar con el desarrollador si se ha implementado en el sitio.</p></td>
+								        <td>
+								        	<div class="upload-img">
+				        		    			<?php if( ! get_option( 'wk_custom_logo_alt' ) ) : ?>
+				        	    					<?php $wk_hide = 'style="display: inline-block;"'; ?>
+				        	    					<?php $wk_hide_image = 'style="display: none;"'; ?>
+				        		    			<?php else : ?>
+				        	    					<?php $wk_hide = 'style="display: none;"'; ?>
+				        	    					<?php $wk_hide_image = 'style="display: inline-block;"'; ?>
+				        		    			<?php endif; ?>
+				        			    		<div class="wk_option_image_uploader_container" <?php echo $wk_hide_image; ?>>
+				        		    				<img width="250" class="image_src" src="<?php echo get_option( 'wk_custom_logo_alt' ); ?>">
+				        			    			<span class="dashicons-before dashicons-dismiss remove-image"></span>
+				        			    		</div>
+				        						<div class="flex-item wk_option_image_uploader_action" <?php echo $wk_hide; ?>>
+				        						    <input style="display: none;" type="text" name="wk_custom_logo_alt" class="image_url regular-text" value="<?php echo esc_attr( get_option('wk_custom_logo_alt') ); ?>" >
+				        						    <button type="button" name="upload-btn" id="" class="upload-btn button-secondary">Añadir imagen</button>
+				        						</div>
+								        	</div>	
+								        	<?php if( is_admin() ) : ?><p class="description">Callback: get_option('wk_custom_logo_alt')</p><?php endif; ?>							        	
+								        </td>
+							        </tr>
+							        <tr valign="top">
+								        <td class="row-title" scope="row">
+									        Logo alternativo
+									        <p class="description">Se usará como logo adicional para variacionesd de la marca. Es necesario consultar con el desarrollador si se ha implementado en el sitio.</p></td>
+								        <td>
+								        	<div class="upload-img">
+				        		    			<?php if( ! get_option( 'wk_custom_logo_complementary' ) ) : ?>
+				        	    					<?php $wk_hide = 'style="display: inline-block;"'; ?>
+				        	    					<?php $wk_hide_image = 'style="display: none;"'; ?>
+				        		    			<?php else : ?>
+				        	    					<?php $wk_hide = 'style="display: none;"'; ?>
+				        	    					<?php $wk_hide_image = 'style="display: inline-block;"'; ?>
+				        		    			<?php endif; ?>
+				        			    		<div class="wk_option_image_uploader_container" <?php echo $wk_hide_image; ?>>
+				        		    				<img width="250" class="image_src" src="<?php echo get_option( 'wk_custom_logo_complementary' ); ?>">
+				        			    			<span class="dashicons-before dashicons-dismiss remove-image"></span>
+				        			    		</div>
+				        						<div class="flex-item wk_option_image_uploader_action" <?php echo $wk_hide; ?>>
+				        						    <input style="display: none;" type="text" name="wk_custom_logo_complementary" class="image_url regular-text" value="<?php echo esc_attr( get_option('wk_custom_logo_complementary') ); ?>" >
+				        						    <button type="button" name="upload-btn" id="" class="upload-btn button-secondary">Añadir imagen</button>
+				        						</div>
+								        	</div>
+								        	<?php if( is_admin() ) : ?><p class="description">Callback: get_option('wk_custom_logo_complementary')</p><?php endif; ?>	
+								        </td>
+							        </tr>
+							        <tr valign="top" class="alternate">
+								        <td scope="row">
+									        Background
+									        <p class="description">URL de la imagen del background personalizado</p>
+								        </td>
+								        <td>
+								        	<div class="upload-img">
+				        		    			<?php if( ! get_option( 'wk_custom_site_background' ) ) : ?>
+				        	    					<?php $wk_hide = 'style="display: inline-block;"'; ?>
+				        	    					<?php $wk_hide_image = 'style="display: none;"'; ?>
+				        		    			<?php else : ?>
+				        	    					<?php $wk_hide = 'style="display: none;"'; ?>
+				        	    					<?php $wk_hide_image = 'style="display: inline-block;"'; ?>
+				        		    			<?php endif; ?>
+				        			    		<div class="wk_option_image_uploader_container" <?php echo $wk_hide_image; ?>>
+				        		    				<img width="250" class="image_src" height="150" src="<?php echo get_option( 'wk_custom_site_background' ); ?>">
+				        			    			<span class="dashicons-before dashicons-dismiss remove-image"></span>
+				        			    		</div>
+				        						<div class="flex-item wk_option_image_uploader_action" <?php echo $wk_hide; ?>>
+				        						    <input style="display: none;" type="text" name="wk_custom_site_background" class="image_url regular-text" value="<?php echo esc_attr( get_option('wk_custom_site_background') ); ?>" >
+				        						    <button type="button" name="upload-btn" id="" class="upload-btn button-secondary">Añadir imagen</button>
+				        						</div>
+								        	</div>	
+								        	<?php if( is_admin() ) : ?><p class="description">Callback: get_option('wk_custom_site_background')</p><?php endif; ?>						        	
+								        </td>
+							        </tr>
+							        <tr valign="top">
+								        <td scope="row">
+									        Fondo
+									        <p class="description">Aplicar un fondo obscuro en el logo del panel de administración.</p>
+								        </td>
+								        <td>
+								        	<input type="color" name="custom_admin_background" id="custom_admin_background" value="<?php echo esc_attr( get_option('custom_admin_background') ); ?>" class="regular-text"/>
+								        	
+								        </td>
+							        </tr>
+							    </table>
+
+							</div><!--post-body-content-->
+
+							<div id="postbox-container-1" class="postbox-container">
+
+								<div class="meta-box-sortables">
+									
+									<div id="submitdiv" class="postbox ">
+										<button type="button" class="handlediv button-link" aria-expanded="true">
+											<span class="screen-reader-text">Alternar panel: Publicar</span>
+											<span class="toggle-indicator" aria-hidden="true"></span>
+										</button>
+										<h2 class="hndle ui-sortable-handle"><span>Logo principal</span></h2>
+										<div class="inside">
+											<div class="submitbox" id="submitpost">
+												<div id="minor-publishing">
+													<div style="display:none;">
+													<p class="submit"><input type="submit" name="save" id="save" class="button" value="Guardar"></p></div>
+													<div id="minor-publishing-actions">
+														<div id="save-action"></div>
+														<div class="clear"></div>
+													</div><!-- #minor-publishing-actions -->
+													<div id="misc-publishing-actions">
+														<div class="inside">
+												        	<?php if ( get_option('wk_custom_logo_main') ) : ?>
+														        <p style="text-align: center; margin: 22px 0;">
+															        <img width="160px" src="<?php echo esc_attr( get_option('wk_custom_logo_main') ); ?>">
+														        	<span style="display: block;" class="description"></span>
+
+														     	</p>
+														    <?php else: ?>
+														    	<p style="text-align: center; margin: 22px 0;">
+															        <img width="160px" src="<?php echo $GLOBALS['dashb_url']; ?>/img/wpkit-logo.svg" alt="<?php esc_attr__( get_bloginfo('name') ); ?>">
+														        	<span style="display: block;" class="description"></span>
+														     	</p>
+													    	<?php endif; ?>
+														</div><!-- .inside -->
+													</div>
+													<div class="clear"></div>
+												</div>
+
+												<div id="major-publishing-actions">
+													<div id="publishing-action">
+													<span class="spinner"></span>
+														<input name="" type="submit" class="button button-primary button-large" id="" value="Actualizar">
+														 <?php //submit_button( 'Guardar' ); ?>
+													</div>
+													<div class="clear"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div><!-- .meta-box-sortables -->
+
+							</div><!-- #postbox-container-1 .postbox-container -->
+
+
+						</div><!--post-body-->
+
+					</div><!--poststuff-->
+
+					<span style="display: block; clear:both;"></span>
+
+				    <?php submit_button( 'Guardar' ); ?>
+
+				</form>
+
+			</div><!--wrap-->
+
+		<?php
+
+	}
+
 
 	function wk_theme_alpha_login_style() {
 		wp_enqueue_style('dash-b-login-style', $GLOBALS['dashb_url'] . 'css/login.css' );
 		?>
 			<style type="text/css">
 				body {
-					<?php if( get_option( 'custom_background' ) ) : ?>
-						background-image: url('<?php echo esc_attr( get_option('custom_background') ); ?>') !important;
-					<?php else : ?>
-						background-color: #eee !important;
-					<?php endif; ?>
-					background-repeat: no-repeat !important;
-					background-position: center;
-					background-size: cover !important;
+				<?php if( get_option( 'wk_custom_login_background_color' ) ) : ?>
+					background-color:  <?php echo get_option('wk_custom_login_background_color'); ?> !important;
+				<?php endif; ?>
+				<?php if( get_option( 'wk_custom_login_background_image' ) ) : ?>
+					background-image: url( <?php echo get_option( 'wk_custom_login_background_image' ); ?> ) !important;
+				<?php endif; ?>
+				background-repeat: no-repeat !important;
+				background-position: center;
+				background-size: cover !important;
 				}
+
 		        body.login div#login h1 a {
-		        	<?php if( get_option( 'custom_logo' ) ) : ?>
-		        		background-image: url('<?php echo esc_attr( get_option('custom_logo') ); ?>');
-		        	<?php else : ?>
-		        		background-image: url('<?php echo $GLOBALS['dashb_url'] . '/img/wpkit-logo.svg'; ?>');
-		        	<?php endif; ?>
-					width: 50%;
-					background-size: contain;
-					background-position: center !important;
-					margin: 0 auto;
+	        	<?php if( get_option( 'wk_custom_login_logo' ) ) : ?>
+	        		background-image: url('<?php echo esc_attr( get_option('wk_custom_login_logo') ); ?>');
+	        	<?php else : ?>
+	        		background-image: url('<?php echo $GLOBALS['dashb_url'] . '/img/wpkit-logo.svg'; ?>');
+	        	<?php endif; ?>
+				width: 50%;
+				background-size: contain;
+				background-position: center !important;
+				margin: 0 auto;
+				}
+
+				body.login label {
+			    color: <?php echo get_option('wk_custom_login_color'); ?> !important;
+			    font-size: 14px;
+				}
+
+				<?php if( get_option( 'wk_custom_login_color' ) ) : ?>
+					#loginform,
+					body.login a,
+					body.login {
+				    color: <?php echo get_option('wk_custom_login_color'); ?> !important;
+					}
+				<?php endif; ?>
+
+				#loginform #user_pass, #loginform #user_login {
+					background: transparent;
+					border: 0;
+					box-shadow: none;
+					border-bottom: 1px solid rgba(142, 142, 142, 0.41);
+					<?php if( get_option( 'wk_custom_login_color' ) ) : ?>
+					border-color:  <?php echo get_option('wk_custom_login_color'); ?> !important;
+					<?php endif; ?>
+					transition: all .25s linear;
+					-webkit-transition: all .25s linear;
 				}
 
 	    </style>

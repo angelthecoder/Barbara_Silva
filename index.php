@@ -30,21 +30,15 @@ get_header(); ?>
 
 						<div class="wk-col-2e wk-flex-item wk-flex-align-center wk-padding-h-40">
 
-							<div class="bs_post_head">
-								
-								<header class="bs_post_header">
-									<h4 class="bs_post_cat">Editorial</h4>
-									<h1 class="bs_post_title">Laureus Sport by Mercedes-Benz</h1>
-									<h6 class="bs_post_meta bs_post_meta_topline">May 12, 2017</h6>
-								</header>
+							<?php 
 
-								<section class="bs_post_excerpt">
-									Laureus Sport for Good's goal lis to help young people overcome the limitations imposed by challenging social issues.
-								</section>
+		        			/*
+		        			*
+		        			* Llama a la cabecera del post
+		        			*
+		        			*/
 
-								<a class="bs_button_o" href="#">Continue Reading</a>
-								
-							</div>
+		        			do_action( 'bs_post_head' ); ?>
 							
 						</div>
 
@@ -68,21 +62,15 @@ get_header(); ?>
 
 						<div class="wk-col-5 wk-flex-item wk-flex-align-center wk-padding-h-40">
 
-							<div class="bs_post_head">
-								
-								<header class="bs_post_header">
-									<h4 class="bs_post_cat">Fashion • Catwalk</h4>
-									<h1 class="bs_post_title">Laureus Sport by Mercedes-Benz</h1>
-									<h6 class="bs_post_meta bs_post_meta_topline">May 12, 2017</h6>
-								</header>
+							<?php 
 
-								<section class="bs_post_excerpt">
-									Laureus Sport for Good's goal lis to help young people overcome the limitations imposed by challenging social issues.
-								</section>
+		        			/*
+		        			*
+		        			* Llama a la cabecera del post
+		        			*
+		        			*/
 
-								<a class="bs_button_o" href="#">Continue Reading</a>
-								
-							</div>
+		        			do_action( 'bs_post_head' ); ?>
 							
 						</div>
 
@@ -109,21 +97,15 @@ get_header(); ?>
 
 						<div class="wk-col-5 wk-flex-item wk-flex-align-center wk-padding-h-40">
 
-							<div class="bs_post_head">
-								
-								<header class="bs_post_header">
-									<h4 class="bs_post_cat">Editorial</h4>
-									<h1 class="bs_post_title">Laureus Sport by Mercedes-Benz</h1>
-									<h6 class="bs_post_meta bs_post_meta_topline">May 12, 2017</h6>
-								</header>
+							<?php 
 
-								<section class="bs_post_excerpt">
-									Laureus Sport for Good's goal lis to help young people overcome the limitations imposed by challenging social issues.
-								</section>
+		        			/*
+		        			*
+		        			* Llama a la cabecera del post
+		        			*
+		        			*/
 
-								<a class="bs_button_o" href="#">Continue Reading</a>
-								
-							</div>
+		        			do_action( 'bs_post_head' ); ?>
 							
 						</div>
 
@@ -134,25 +116,17 @@ get_header(); ?>
 
 
 
-				<article id="post-00" class="bs_post_full" style="background-image: url(<?php echo get_template_directory_uri(); ?>/img/generic-thumb-inv.jpg)">		
+				<article id="post-00" <?php post_class( 'bs_post_full' ); ?> style="background-image: url(<?php echo get_template_directory_uri(); ?>/img/generic-thumb-inv.jpg)">		
 
-					<div class="bs_post_head wk-padding-h-40">
-						
-						<header class="bs_post_header">
-							<h4 class="bs_post_cat">Editorial</h4>
-							<h1 class="bs_post_title">Laureus Sport by Mercedes-Benz</h1>
-							<h6 class="bs_post_meta bs_post_meta_topline">May 12, 2017</h6>
-						</header>
+					<?php 
 
-						<section class="bs_post_excerpt">
-							Laureus Sport for Good's goal lis to help young people overcome the limitations imposed by challenging social issues.
-						</section>
+        			/*
+        			*
+        			* Llama a la cabecera del post
+        			*
+        			*/
 
-					</div>						
-
-					<div class="bs_post_read_more">
-						<a class="bs_button" href="#">Continue Reading</a>
-					</div>
+        			do_action( 'bs_post_head' ); ?>
 					
 				</article>
 

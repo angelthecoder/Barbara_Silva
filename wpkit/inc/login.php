@@ -34,6 +34,18 @@
 		max-width: 300px;
 	}
 
+	#loginform #user_pass, #loginform #user_login {
+		background: transparent;
+		border: 0;
+		box-shadow: none;
+		border-bottom: 1px solid rgba(142, 142, 142, 0.41);
+		<?php if( get_option( 'wk_custom_login_color' ) ) : ?>
+		border-color:  <?php echo get_option('wk_custom_login_color'); ?> !important;
+		<?php endif; ?>
+		transition: all .25s linear;
+		-webkit-transition: all .25s linear;
+	}
+
 	.message {
 	    margin: 0;
 	    padding: 24px 24px 0;
@@ -62,12 +74,11 @@
 	    width: 100%;
 	    padding: 3px;
 	    margin: 2px 6px 16px 0;
-	        border: 1px solid #ddd;
+       	border: 1px solid #ddd;
 	}
 
 	#loginform {
     background: none;
-    color: #757474;
     font-weight: 100;
     font-size: 14px;
     box-shadow: none;
@@ -139,12 +150,7 @@
 	    text-decoration: none;
 	    color: #555d66;
 	}
-
-	#loginform #wp-submit {
-	background-color: #DB8C8C !important;
-	border: 0;
-	}
-
+		
 
 </style>
 
@@ -154,23 +160,35 @@
 
 <body class="login login-action-login wp-core-ui  locale-es-mx" data-pinterest-extension-installed="cr2.0.5">
 
-<?php if( get_option( 'custom_background' ) ) : ?>
 
 	<style>
 		body {
-			background-image: url( <?php echo get_option( 'custom_background' ); ?> );
+			<?php if( get_option( 'wk_custom_login_background_color' ) ) : ?>
+				background-color:  <?php echo get_option('wk_custom_login_background_color'); ?>;
+			<?php endif; ?>
+			<?php if( get_option( 'wk_custom_login_background_image' ) ) : ?>
+				background-image: url( <?php echo get_option( 'wk_custom_login_background_image' ); ?> );
+			<?php endif; ?>
 		}
+		<?php if( get_option( 'wk_custom_login_color' ) ) : ?>
+			#loginform,
+			body.login a,
+			body.login {
+		    color: <?php echo get_option('wk_custom_login_color'); ?> !important;
+			}
+		<?php endif; ?>
 	</style>
 
-<?php endif; ?>
+
+
 
 	<div class="wrapper">
 
 		<div id="login">
 			<h1>
 				<a href="<?php bloginfo('url'); ?>" title="<?php bloginfo('title'); ?>" tabindex="-1">
-					<?php if( get_option( 'custom_logo' ) ) : ?>
-						<img width="40" class="logo" src="<?php echo get_option( 'custom_logo' ); ?>">
+					<?php if( get_option( 'wk_custom_login_logo' ) ) : ?>
+						<img width="40" class="logo" src="<?php echo get_option( 'wk_custom_login_logo' ); ?>">
 					<?php else: ?>
 						<?php bloginfo( 'name' ); ?>
 					<?php endif; ?>

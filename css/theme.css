@@ -6,32 +6,55 @@
 ------------------------------------------------------------------------------------------------------*/
 
 body {
-	font-family: Montserrat;	
-	font-size: 13px;
-	line-height: 17px;
-	background-color: #f3efef;
+font-family: Montserrat;
+font-weight: 100;
+font-size: 13px;
+line-height: 18px;
+background-color: #f3efef;
 }
 
-.bs_text_pink {
-color: #DB8C8C;
-}
+	.bs_text_pink {
+	color: #DB8C8C;
+	}
 
-.bs_text_uppercase {
-text-transform: uppercase;
-}
+	.bs_text_uppercase {
+	text-transform: uppercase;
+	}
 
-.bs_text_italic {
-font-style: italic;
-}
+	.bs_text_italic {
+	font-style: italic;
+	}
 
-.bs_text_excerpt {
-font-family: "Adobe Garamond Pro", serif;	
-font-size: 18px;	
-font-style: italic;	
-line-height: 22px;
-}
+	.bs_text_excerpt {
+	font-family: "Adobe Garamond Pro", serif;	
+	font-size: 18px;	
+	font-style: italic;	
+	line-height: 22px;
+	}
 
-/* Title Menu */
+/* Aplica un wrapp adicional para los textos en posts */
+
+	.bs_post_section {
+    background-color: #fff;
+    padding: 20px 0;
+	}
+
+		.bs_post_section_wrap {
+		width: 100%;
+		max-width: 840px;
+		margin: auto;
+		}
+
+/* Columnas para posts */
+
+	@media ( min-width: 771px ) {
+		.bs_post_columns {
+		columns: 2;
+		column-gap: 40px;
+		-webkit-columns: 2;
+		-webkit-column-gap: 40px;		
+		}
+	}
 
 
 /* Títulos principales */
@@ -96,9 +119,16 @@ line-height: 22px;
 	.bs_title_garamond_bit,
 	.bs_post_meta,
 	.bs_post_excerpt,
-	.sub-menu {
+	.sub-menu,
+	.bs_article .bs_post_section:not(header) h1,
+	.bs_article .bs_post_section:not(header) h2,
+	.bs_article .bs_post_section:not(header) h3,
+	.bs_article .bs_post_section:not(header) h4,
+	.bs_article .bs_post_section:not(header) h5,
+	.bs_article .bs_post_section:not(header) h6 {
 		font-family: 'Adobe Garamond Pro', 'Fanwood Text', serif;
 		font-style: italic;	
+		line-height: 1;
 	}
 
 	.bs_title_garamond,
@@ -115,9 +145,33 @@ line-height: 22px;
 	font-size: 22px;
 	}
 
+	.bs_article .bs_post_section:not(header) h1,
+	.bs_article .bs_post_section:not(header) h2,
+	.bs_article .bs_post_section:not(header) h3,
+	.bs_article .bs_post_section:not(header) h4,
+	.bs_article .bs_post_section:not(header) h5,
+	.bs_article .bs_post_section:not(header) h6  {
+	font-size: 24px;
+	color: #DB8C8C;
+	}
+
+		.bs_article .bs_post_section:not(header) h1:after,
+		.bs_article .bs_post_section:not(header) h2:after,
+		.bs_article .bs_post_section:not(header) h3:after,
+		.bs_article .bs_post_section:not(header) h4:after,
+		.bs_article .bs_post_section:not(header) h5:after,
+		.bs_article .bs_post_section:not(header) h6:after, 
+		.bs_article .bs_post_section:not(header) h3:after {
+	    content: "";
+	    display: block;
+	    border-bottom: 1px solid black;
+	    width: 80px;
+	    padding-top: 10px;
+		}
+
 	.bs_post_excerpt {
-		font-size: 18px;
-		font-style: italic;
+	font-size: 18px;
+	font-style: italic;
 	}
 
 
