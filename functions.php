@@ -69,7 +69,9 @@ Partes de post */
 							<?php the_excerpt(); ?>
 						</section>
 
-						<a class="bs_button_o" rel="bookmark" title="<?php the_title_attribute(); ?>" href="<?php the_permalink() ?>" >Continue Reading</a>
+						<?php if( has_term( array( 'lifestyle', 'events', 'inspiration', 'my-everyday', 'travel' ) , 'category' ) ) : $bs_button_class = 'bs_button'; else : $bs_button_class = 'bs_button_o'; endif; ?>
+
+						<a class="<?php echo $bs_button_class; ?>" rel="bookmark" title="<?php the_title_attribute(); ?>" href="<?php the_permalink() ?>" >Continue Reading</a>
 
 					<?php endif; ?>
 
@@ -87,7 +89,9 @@ Partes de post */
 			
 			?>
 
-				<section id="related-posts" class="bs_post_section">
+				<?php if( has_term( 'editorial', 'category' ) ) : $bs_post_section_class = 'bs_post_section'; else : $bs_post_section_class = 'bs_post_section_wrap'; endif; ?>
+
+				<section id="related-posts" class="<?php echo $bs_post_section_class; ?>">
 
 					<h3 class="bs_title_small">Related posts</h3>
 

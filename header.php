@@ -11,11 +11,11 @@
 			<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/assets/slick/slick.css">
 			<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/assets/slick/slick.js"></script>
 			<!-- <link rel="stylesheet" type="text/css" href="http://localhost/wpkitui/css/wpkitui.css"> -->
-			<link href="https://fonts.googleapis.com/css?family=Fanwood+Text|Montserrat:100,300,400,700|Playfair+Display:400,700,900" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,700" rel="stylesheet">
 			
 		</head>
 
-		<body <?php body_class('wk-wrap-1440'); ?>>
+		<body <?php body_class('wk-wrap-1920'); ?>>
 		
 			<div id="wrapper">
 				

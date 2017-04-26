@@ -9,7 +9,7 @@
 */
 get_header(); ?>
 			
-		<section class="wk-section">
+		<section id="bs_post_feed" class="wk-section">
 
 			<div class="wk-section-wrap">
 
@@ -17,7 +17,7 @@ get_header(); ?>
 
 					<?php if( has_term( 'editorial', 'category' ) ) : ?>
 						
-						<article id="post-00" class="bs_post bs_post_white">
+						<article id="post-00" <?php post_class( 'bs_post_white' ); ?>>
 
 							<div class="wk-cols bs_section_mobil">
 								
@@ -50,7 +50,7 @@ get_header(); ?>
 
 					<?php elseif( has_term( array( 'fashion', 'catwalk', 'fashion-week' ) , 'category' ) ) : ?>
 						
-						<article id="post-00" class="bs_post">
+						<article id="post-00" <?php post_class( 'bs_post' ); ?>>
 
 							<div class="wk-cols bs_section_mobil">
 								

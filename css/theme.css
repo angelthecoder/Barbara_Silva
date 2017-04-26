@@ -5,16 +5,20 @@
 
 ------------------------------------------------------------------------------------------------------*/
 @font-face {
-	font-family: 'Pistilli-Roman';
-	src: url(../fonts/pistilli/Pistilli-Roman.otf);
-	font-weight: normal;
+	font-family: 'Pistilli';
+    src:url('../fonts/pistilli/Pistilli.ttf.woff') format('woff'),
+        url('../fonts/pistilli/Pistilli.ttf.svg#Pistilli') format('svg'),
+        url('../fonts/pistilli/Pistilli.ttf.eot'),
+        url('../fonts/pistilli/Pistilli.ttf.eot?#iefix') format('embedded-opentype'); 
+        font-weight: normal;
+        font-style: normal;
 }
 
 body {
-font-family: Montserrat;
-font-weight: 100;
+font-weight: 300;
 font-size: 13px;
 line-height: 18px;
+color: #424242;
 background-color: #f3efef;
 }
 
@@ -31,7 +35,6 @@ background-color: #f3efef;
 	}
 
 	.bs_text_excerpt {
-	font-family: "Adobe Garamond Pro", serif;	
 	font-size: 18px;	
 	font-style: italic;	
 	line-height: 22px;
@@ -106,8 +109,7 @@ background-color: #f3efef;
 	.page .bs_section_text h4,
 	.page .bs_section_text h5,
 	.page .bs_section_text h6 {
-	font-family: 'Pistilli-Roman', 'Playfair Display', 'Open sans', sans-serif;
-	font-weight: 700;	
+	font-family: 'Pistilli', serif;
 	line-height: 1;	
 	}
 
@@ -127,12 +129,19 @@ background-color: #f3efef;
 /* Títulos de categoría */
 
 	/* Texto arriba del título principal del post en el feed */
+		body,
 		.bs_title_montserrat, 
 		.bs_title_montserrat_lower,
 		.bs_title_menu,
 		.bs_post_cat {
-		font-family: 'Montserrat', 'Open sans', sans-serif;
-		font-weight: 100;	
+		font-family: 'Montserrat';
+		}
+
+		.bs_title_montserrat, 
+		.bs_title_montserrat_lower,
+		.bs_title_menu,
+		.bs_post_cat {
+		font-weight: 300;	
 		letter-spacing: 2px;	
 		line-height: 13px;
 		font-size: 10px;

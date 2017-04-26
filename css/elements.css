@@ -113,7 +113,8 @@
 			padding: 20px 0;
 			}
 
-				.bs_post_header {
+				.bs_post_header,
+				#bs_post_feed .bs_post_head {
 				margin: 20px 0;
 				width: 100%;
 				max-width: 500px;
@@ -226,6 +227,15 @@
 			.bs_post_full .bs_post_read_more {
 		    position: absolute;
 		    top: calc(100% - 20px);
+			}
+
+			.bs_post_full .bs_button {
+		    position: absolute;
+		    top: calc(100% - 21px);
+		    left: 0;
+		    right: 0;
+		    margin: auto;
+		    width: 180px;
 			}
 
 
@@ -346,23 +356,27 @@
 			/* Arrows */
 
 				.bs_arrow:before {
+				content: "";
 			    color: white;
-			    width: 25px;
-			    height: 26px;
-			    background-color: #fff;
-			    display: flex;
-			    align-items: center;
-			    justify-content: center;
-			    padding: 12px;
-			    cursor: pointer;
+		        width: 25px;
+		        height: 26px;
+		        background-color: #fff;
+		        display: flex;
+		        align-items: center;
+		        justify-content: center;
+		        padding: 12px;
+		        cursor: pointer;
+		        background-size: contain;
+		        background-repeat: no-repeat;
+		        background-position: center;
 				}
 
 				.slick-prev .bs_arrow:before {
-				content: url(../img/arrow-left.png);
+				background-image: url(../img/arrow-left.svg);
 				}
 
 				.slick-next .bs_arrow:before {
-				content: url(../img/arrow-right.png);
+				background-image: url(../img/arrow-right.svg);
 				}
 
 				.slick-arrow {

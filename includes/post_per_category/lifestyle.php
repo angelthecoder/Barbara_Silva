@@ -1,6 +1,6 @@
 <section class="bs_post_section bs_video_container bs_post_section_first">
 
-	<video class="bs_video" poster playsinline autoplay loop controls>
+	<video class="bs_video" poster="<?php the_field( 'bs_video_frame' ); ?>" controls>
 
 		<source src="http://codecase.xyz/public/MAH01262.MP4" type="video/mp4">
 
