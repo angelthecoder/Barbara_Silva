@@ -10,13 +10,13 @@
 
 			<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/assets/slick/slick.css">
 			<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/assets/slick/slick.js"></script>
-			<link rel="stylesheet" type="text/css" href="http://localhost/wpkitui/css/wpkitui.css">
+			<!-- <link rel="stylesheet" type="text/css" href="http://localhost/wpkitui/css/wpkitui.css"> -->
 			<link href="https://fonts.googleapis.com/css?family=Fanwood+Text|Montserrat:100,300,400,700|Playfair+Display:400,700,900" rel="stylesheet">
-				
+			
 		</head>
 
 		<body <?php body_class('wk-wrap-1440'); ?>>
-
+		
 			<div id="wrapper">
 				
 				<?php 
@@ -33,64 +33,65 @@
 
 				//do_action( 'wk_widgets_header_layout' ); ?>
 
-				<section class="wk-section">
+				<section class="wk-section <?php if( has_term( array( 'fashion', 'catwalk', 'fashion-week', 'looks', 'photo-set' ), 'category' ) && !is_home() && !is_archive ) : ?>bs_cat_fashion_menu<?php elseif( is_page( 'work-with-me' ) ) : ?>bs_cat_fashion_menu<?php endif; ?>">
 					
 					<div class="wk-section-wrap">
 						
-						<header id="main-header">
-
-							
-							<?php get_template_part( 'includes/social-bar' ); ?>
+						<header id="main-header">							
 							
 							<?php if( is_home() ) : ?>
+								
+								<?php get_template_part( 'includes/social-bar' ); ?>
 							
-								<section id="bs_logo_bar">
-									<a href="<?php bloginfo( 'url' ); ?>">
-										<img src="<?php echo get_option( 'custom_logo' ); ?>">
+								<section id="bs_logo_bar" class="bs_section_mobil">
+									<a class="bs_logo bs_logo_main" href="<?php bloginfo( 'url' ); ?>">
+										<img class="wk-img-responsive" src="<?php echo get_option( 'wk_custom_logo_main' ); ?>">
 									</a>
+								</section>
+
+								<section id="bs_menu_bar" class="bs_section_mobil wk-d">
+
+									<?php get_template_part( 'includes/main-menu' ); ?>
+
 								</section>
 
 							<?php else : ?>
 
-								<section id="bs_logo_bar" class="bs_logo_bar_alt">
-									<a href="<?php bloginfo( 'url' ); ?>">
-										<img src="<?php echo get_option( 'custom_logo' ); ?>">
-									</a>
-								</section>
+								<div class="bs_section_wrap_more bs_section_mobil wk-d-padding-t-100 wk-m-padding-t-20">
+									
+									<div class="wk-cols <?php if( has_term( 'fashion', 'category' ) ) : ?>bs_post_section_wrap<?php endif; ?>">
+										
+										<div class="wk-col-2  wk-m-flex-item wk-m-flex-justify-center">
+											
+											<section id="bs_logo_bar" class="bs_logo_bar_alt">
+												<a class="bs_logo bs_logo_complementary" href="<?php bloginfo( 'url' ); ?>">
+													<img width="100" src="<?php echo get_option( 'wk_custom_logo_complementary' ); ?>">
+												</a>
+											</section>
+											
+										</div>
+
+										<div class="wk-col-6">
+
+											<section id="bs_menu_bar">
+
+												<?php get_template_part( 'includes/social-bar' ); ?>
+
+												<div class="wk-d">
+		
+													<?php get_template_part( 'includes/main-menu' ); ?>
+													
+												</div>
+
+											</section>
+											
+										</div>
+										
+									</div>
+									
+								</div>
 
 							<?php endif; ?>
-
-
-							<section id="bs_menu_bar">
-								<?php 
-
-									$nav_args = array(
-								 		'theme_location'  => 'main-menu',
-								 		'menu'            => '',
-								 		'container'       => 'nav',
-								 		'container_class' => 'bs_title_menu',
-								 		'container_id'    => 'nav-main',
-								 		'menu_class'      => 'menu',
-								 		'menu_id'         => '',
-								 		'echo'            => true,
-								 		'fallback_cb'     => 'wp_page_menu',
-								 		'before'          => '',
-								 		'after'           => '',
-								 		'link_before'     => '',
-								 		'link_after'      => '',
-								 		'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-								 		'depth'           => 0, // Cuantos niveles de jerarquía se incluirán 0 es todos. -1 imprime todos los niveles en uno mismo.
-								 		'walker'          => ''
-									);
-
-									wp_nav_menu( $nav_args );
-
-								      /* Para pasar el menu sin los argumentos
-								      wp_nav_menu( 'theme_location=header-menu' );
-								      */
-
-								?>
-							</section>
 
 						</header>
 						
@@ -98,60 +99,80 @@
 
 				</section>
 
-				<!-- Slider -->
+				<?php if( is_home() ) : ?>
 
-				<section class="wk-section">
-					<div class="wk-section-wrap">
+					<!-- Slider -->
 
-						<div class="bs-slider">
+					<section class="wk-section">
 
-							<div class="bs_slide">
+						<div class="wk-section-wrap">
 
-								<div class="bs_slide_bg">
-									<img class="wk-img-responsive" data-lazy="<?php echo get_template_directory_uri(); ?>/img/generic-thumb-inv.jpg">									
-								</div>
-								<div class="bs_slide_content">
-									<div class="bs_slide_content_container">
-										<h1 class="bs_title_big">Back in black</h1>	
-										<p class="bs_title_garamond_mid">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla neque dolor, eleifend suscipit placerat id, fermentum ut risus. Sed sodales interdum augue sit amet convallis.</p>							
-									</div>
-								</div>
-								<div class="bs_slide_readmore">
-									<a class="bs_button bs_button_light" href="#">
-										Continue Reading
-									</a>
-								</div>
+							<div class="bs-slider">
 
-							</div>
+								<?php if( have_rows( 'bs_slides', 'option' ) ) : while( have_rows( 'bs_slides', 'option' ) ) : the_row(); ?>
 
+									<?php if( get_row_layout() == 'bs_custom_slider' ) : ?>
 
+										<div class="bs_slide">
 
-							<div class="bs_slide">
+											<div class="bs_slide_bg">
+												<img class="wk-img-responsive" data-lazy="<?php the_sub_field( 'bs_slide_image' ); ?>">									
+											</div>
+											<div class="bs_slide_content">
+												<div class="bs_slide_content_container">
+													<h1 class="bs_title_big"><?php the_sub_field( 'bs_slide_title' ); ?></h1>	
+													<p class="bs_title_garamond_mid"><?php the_sub_field( 'bs_slide_excerpt' ); ?></p>							
+												</div>
+											</div>
+											<div class="bs_slide_readmore">
+												<a class="bs_button bs_button_light" href="<?php the_permalink(); ?>">
+													Continue Reading
+												</a>
+											</div>
 
-								<div class="bs_slide_bg">
-									<img class="wk-img-responsive" data-lazy="<?php echo get_template_directory_uri(); ?>/img/generic-thumb-inv.jpg">									
-								</div>
-								<div class="bs_slide_content">
-									<div class="bs_slide_content_container">
-										<h1 class="bs_title_big">Back in black</h1>	
-										<p class="bs_title_garamond_mid">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla neque dolor, eleifend suscipit placerat id, fermentum ut risus. Sed sodales interdum augue sit amet convallis.</p>							
-									</div>
-								</div>
-								<div class="bs_slide_readmore">
-									<a class="bs_button bs_button_light" href="#">
-										Continue Reading
-									</a>
-								</div>
+										</div><!--.bs-slide-->
 
-							</div>
-	
+									<?php elseif( get_row_layout() == 'bs_post_slider' ) : ?>
+										
+										<?php $post_object = get_sub_field('bs_slide_post', 'option'); ?>
+								
+										<?php //print_r($post_object); ?>	
+								
+										<div class="bs_slide">
+
+											<div class="bs_slide_bg">
+												<img class="wk-img-responsive" data-lazy="<?php $featured_img_id = get_post_thumbnail_id( $post_object->ID ); $featured_img = wp_get_attachment_image_src( $featured_img_id, 'large' ); echo( $featured_img[0] ); ?>">									
+											</div>
+											<div class="bs_slide_content">
+												<div class="bs_slide_content_container">
+													<h1 class="bs_title_big"><?php echo $post_object->post_title; ?></h1>	
+													<p class="bs_title_garamond_mid"><?php echo $post_object->post_excerpt; ?></p>							
+												</div>
+											</div>
+											<div class="bs_slide_readmore">
+												<a class="bs_button bs_button_light" href="<?php  echo $post_object->guid;; ?>">
+													Continue Reading
+												</a>
+											</div>
+
+										</div><!--.bs-slide-->
+								
+									<?php endif; ?>									
+									
+								<?php endwhile; endif; ?>
+
+		
+							</div><!--.bs-slider-->
+
 						</div>
 
-					</div>
+					</section>
 
-				</section>
+				<?php endif; ?>
 
 				<main role="main">
+
+				
 
 
 

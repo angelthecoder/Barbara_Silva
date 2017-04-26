@@ -36,109 +36,64 @@ get_header(); ?>
 
 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
-	            <article id="post-<?php the_ID(); ?>" <?php post_class('bs_article'); ?>>
+					<article id="post-<?php the_ID(); ?>" <?php post_class('bs_article'); ?>>
 
-	            		<header class="bs_post_section">
+							<?php if( has_term( 'editorial', 'category' ) ) : ?>
 
-	            			<div class="bs_post_section_wrap">
+								<?php get_template_part( 'includes/post_per_category/editorial' ); ?>
 
-			        			<?php 
+							<?php elseif( has_term( array( 'fashion', 'catwalk', 'fashion-week' ), 'category' ) ) : ?>
 
-			        			/*
-			        			*
-			        			* Llama a la cabecera del post
-			        			*
-			        			*/
+								<?php get_template_part( 'includes/post_per_category/fashion' ); ?>
 
-			        			do_action( 'bs_post_head' ); ?>
+							<?php elseif( has_term( array( 'lifestyle', 'events', 'inspiration', 'my-everyday', 'travel' ), 'category' ) ) : ?>
 
-	            			</div>		        			
+								<?php get_template_part( 'includes/post_per_category/lifestyle' ); ?>
 
-	            		</header>
-
-	            		<section class="bs_post_section">
-
-
-		        			<?php if ( has_post_thumbnail() ) : ?>
-
-		        				<?php   
-
-		        					$featured_img_id = get_post_thumbnail_id($post->id); 					
-		        					$featured_img_large_attr = wp_get_attachment_image_src( $featured_img_id, 'large' );
-		        					$featured_img_thumb_attr = wp_get_attachment_image_src( $featured_img_id, 'thumbnail' );
-		        					$featured_img_alt = get_post_meta($featured_img_id, '_wp_attachment_image_alt', true);   
-
-		        				?>
-
-								<img src="<?php echo $featured_img_large_attr[0]; ?>" width="<?php echo $featured_img_large_attr[1];?>" height="<?php echo $featured_img_large_attr[2];?>" class="attachment wk-img-responsive" title="<?php echo get_the_title( $featured_img_large_attr ); ?>" alt="<?php echo $featured_img_alt; ?>" >	
-
-							<?php endif; ?>	
-	            			
-	            		</section>    			
-						
-
-						<?php if( have_rows( 'bs_section' ) ) : while( have_rows( 'bs_section' ) ) : the_row(); ?>
-
-
-							<?php if( get_row_layout() == texto ) : ?>
-
-								<section class="bs_post_section bs_section_text">
-
-									<div class="bs_post_section_wrap bs_post_columns">
-								
-										<?php the_sub_field( 'bs_section_text' ); ?>
-
-									</div>
-									
-								</section>
-
-							<?php elseif( get_row_layout() == galeria ) : ?>
-
-								<section class="bs_post_section bs_section_gallery">
-
-										<?php $gallery = get_sub_field( 'bs_section_gallery' ); ?>
-
-										<?php foreach( $gallery as $image ) : ?>
-
-											<span><img src="<?php echo $image[sizes][large] ?>"></span>
-
-										<?php endforeach; ?>
-									
-								</section>
-
-							<?php endif; ?>
-
-						<?php endwhile; endif; ?>
-
-						<section class="bs_post_section">
-
-							<div class="bs_post_section_wrap ">
-
-								<div class="bs_share_post_block">
-									
-									<div class="bs_title_menu bs_share_post_title">SHARE THIS ARTICLE</div>
-
-										<div class="bs_share_post_buttons">
-
-											<a href="#" class="bs_button_share bs_button_fb"><i class="fa fa-facebook"></i> Share</a>
-											<a href="#" class="bs_button_share bs_button_tw"><i class="fa fa-twitter"></i> Tweet</a>
-											<a href="#" class="bs_button_share bs_button_pin"><i class="fa fa-pinterest"></i> Pin it</a>
-
-										</div>
-
-									
-								</div>
-								
-								
-							</div>
-
-						</section>
-
+							<?php endif; ?>	            		
 	      
 				</article>
 
-	      <?php endwhile; endif; ?>
+		<?php endwhile; wp_reset_postdata(); endif; ?>
 
-	<?php get_footer(); ?>
+		<?php 
+
+		/*
+		*
+		* Related posts
+		*
+		*/
+
+		do_action( 'bs_related_posts' ); ?>
+
+	<section class="bs_post_section">
+		
+		<div class="bs_post_section_wrap">
+
+			<div id="disqus_thread"></div>
+			<script>
+
+			/**
+			*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+			*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+			/*
+			var disqus_config = function () {
+			this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+			this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+			};
+			*/
+			(function() { // DON'T EDIT BELOW THIS LINE
+			var d = document, s = d.createElement('script');
+			s.src = 'https://barbarasilva.disqus.com/embed.js';
+			s.setAttribute('data-timestamp', +new Date());
+			(d.head || d.body).appendChild(s);
+			})();
+			</script>
+			<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+			
+		</div>
+		
+	</section>
+                                
 
 <?php get_footer(); ?>

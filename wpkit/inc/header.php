@@ -219,6 +219,7 @@
 		<link type="text/css" rel="stylesheet" media="screen,projection" href="<?php echo get_template_directory_uri(); ?>/css/theme.css">
 		<?php if( get_option('option_mobile_callback') ) : $mobile_callback = get_option('option_mobile_callback'); else : $mobile_callback = 770; endif; ?>
 		<link type="text/css" rel="stylesheet" media="screen and (max-width:<?php echo $mobile_callback; ?>px)" href="<?php echo get_template_directory_uri(); ?>/css/mobile.css">	
+		<link type="text/css" rel="stylesheet" media="screen and (min-width:<?php echo $mobile_callback + 1; ?>px)" href="<?php echo get_template_directory_uri(); ?>/css/desktop.css">	
 	
 	
 

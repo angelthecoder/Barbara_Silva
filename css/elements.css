@@ -62,6 +62,33 @@
 
 
 
+/*-----------------------------------------------------------------------------------------------------
+
+	Pagination
+
+------------------------------------------------------------------------------------------------------*/
+
+
+	#pagination {
+	width: 100%;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	}
+
+		#pagination .bs_pagination_container {
+		display: inline-block;
+		border-top: 1px solid gray;
+		padding-top: 6px;
+		}
+
+			#pagination .page-numbers:not(:last-child) {
+			margin-right: 20px;
+			}
+
+			#pagination .page-numbers.current {
+			color: #ff8f79;
+			}
 
 
 /*-----------------------------------------------------------------------------------------------------
@@ -92,6 +119,15 @@
 				max-width: 500px;
 				}
 
+				.bs_post_head_light {
+				color: #fff;
+				}
+
+				
+				.bs_post_head_light .bs_post_title:after {
+				border-color: #fff;
+				}
+
 				.bs_post_full .bs_post_header {
 			    margin: auto;
 				}
@@ -105,7 +141,6 @@
 				}
 				
 				.bs_post_meta.bs_post_meta_topline {
-				border-top: 1px solid black;
 				display: inline-block;
 				padding-top: 6px;
 				margin: 0;
@@ -158,6 +193,13 @@
 				margin-left: 20px;
 				margin-right: 0px !important;
 				}
+
+			/* Sección de texto */
+
+			.bs_section_text img {
+			width: 100%;
+			height: auto;
+			}
 
 
 		/* Post full */
@@ -371,6 +413,39 @@
 
 /*-----------------------------------------------------------------------------------------------------
 
+	Related posts
+
+------------------------------------------------------------------------------------------------------*/
+
+	#related-posts {
+	background-color: #444444;
+	padding-top: 0;
+	padding-bottom: 0;
+	margin-bottom: 80px;
+	}
+
+	.bs_related_post {
+	height: 180px;
+	background-size: cover;
+	background-position: center;
+	position: relative;
+	color: #fff;
+	padding: 0 20px;
+	display: flex;
+	align-items: flex-end;
+	font-size: 16px;
+	}
+
+
+	#related-posts > h3 {
+	text-align: center;
+	color: #fff;
+	padding-top: 20px;
+	margin-top: 0;
+	}
+
+/*-----------------------------------------------------------------------------------------------------
+
 	Instagram Feed 
 
 ------------------------------------------------------------------------------------------------------*/
@@ -394,7 +469,6 @@
 	.bs_instagram_feed_image {
 	width: 100%;
 	height: 100%;
-	border: 1px solid rgb(54, 54, 54);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;

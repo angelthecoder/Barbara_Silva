@@ -23,6 +23,10 @@ License: © Copyright Alumin.Agency All rights reserved
 @import url('css/elements.css');
 
 
+	* {
+	box-sizing: border-box;
+	}
+
 /*-----------------------------------------------------------------------------------------------------
 
 	Estílos generales
@@ -36,6 +40,20 @@ License: © Copyright Alumin.Agency All rights reserved
 		width: 100%;
 		max-width: 1080px;
 		margin: auto;
+		}
+
+		iframe, 
+		video {
+	    width: 100%;
+		}
+
+		.bs_video {
+		object-fit: cover;
+		object-position: center;
+		}
+
+		p:first-child {
+		margin-top: 0;
 		}
 
 /*-----------------------------------------------------------------------------------------------------
@@ -107,12 +125,16 @@ License: © Copyright Alumin.Agency All rights reserved
 			padding: 6px 18px;
 			visibility: hidden;
 			opacity: 0;
-			transition: all .25s linear;
+			transition: all .15s linear;
 			}
 
 			.menu > .menu-item:hover .sub-menu {
 			visibility: visible;
 			opacity: 1;
+			width: 170px;
+			position: absolute;
+			top: 100%;
+			left: -35%;
 			}
 
 			.sub-menu > .menu-item {
@@ -138,6 +160,7 @@ License: © Copyright Alumin.Agency All rights reserved
 
 ------------------------------------------------------------------------------------------------------*/
 
+
 	/* Instagram Footer feed */
 
 		.bs_instagram-headers {
@@ -160,3 +183,50 @@ License: © Copyright Alumin.Agency All rights reserved
 	color: #fff;
 	padding: 60px;
 	}
+
+		#footer-logo {
+		max-width: 250px;
+		}
+
+	#main-footer .bs_icons {
+	filter: contrast(100);
+		-webkit-filter: contrast(100);
+	}
+
+
+/*-----------------------------------------------------------------------------------------------------
+
+	Cat Fashon
+
+------------------------------------------------------------------------------------------------------*/
+
+	
+	.bs_cat_fashion_menu {
+	position: absolute;
+	top: 0;
+	color: #fff;
+	}
+
+	.bs_cat_fashion_menu .bs_logo_complementary {
+		filter: invert() contrast(100);
+		-webkit-filter: invert() contrast(100);
+	}
+
+
+/*-----------------------------------------------------------------------------------------------------
+
+	Cat Lifestyle
+
+------------------------------------------------------------------------------------------------------*/
+
+	/* Centra post head */
+
+		.category-lifestyle .bs_post_header {
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+		}
+
+		.category-lifestyle .bs_post_title:after {
+		margin: auto;
+		}

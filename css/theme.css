@@ -4,6 +4,11 @@
 	UI
 
 ------------------------------------------------------------------------------------------------------*/
+@font-face {
+	font-family: 'Pistilli-Roman';
+	src: url(../fonts/pistilli/Pistilli-Roman.otf);
+	font-weight: normal;
+}
 
 body {
 font-family: Montserrat;
@@ -35,14 +40,46 @@ background-color: #f3efef;
 /* Aplica un wrapp adicional para los textos en posts */
 
 	.bs_post_section {
-    background-color: #fff;
     padding: 20px 0;
+	}
+
+	.category-editorial .bs_post_section {
+    background-color: #fff;		
+	}
+
+	.category-fashion .bs_post_section {
+    background-color: transparent;
+	}
+
+	@media ( max-width: 770px ) {
+		.bs_section_mobil {
+	    padding-left: 30px !important;
+	    padding-right: 30px !important;	
+		}		
+	}
+
+
+	.bs_post_section_no_padding {
+	padding-top: 0;
+	padding-bottom: 0;
+	}
+
+	.bs_post_section_bg {
+	height: 100vh;
+	max-height: 700px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	}
+
+	.bs_post_section_first {
+	padding-top: 0;
 	}
 
 		.bs_post_section_wrap {
 		width: 100%;
 		max-width: 840px;
-		margin: auto;
+		margin: 0 auto;
 		}
 
 /* Columnas para posts */
@@ -62,8 +99,14 @@ background-color: #f3efef;
 	.bs_title_big,
 	.bs_title_mid,
 	.bs_title_small,
-	.bs_post_title {
-	font-family: 'Pistilli', 'Playfair Display', 'Open sans', sans-serif;
+	.bs_post_title,
+	.page .bs_section_text h1,
+	.page .bs_section_text h2,
+	.page .bs_section_text h3,
+	.page .bs_section_text h4,
+	.page .bs_section_text h5,
+	.page .bs_section_text h6 {
+	font-family: 'Pistilli-Roman', 'Playfair Display', 'Open sans', sans-serif;
 	font-weight: 700;	
 	line-height: 1;	
 	}
@@ -120,13 +163,14 @@ background-color: #f3efef;
 	.bs_post_meta,
 	.bs_post_excerpt,
 	.sub-menu,
-	.bs_article .bs_post_section:not(header) h1,
-	.bs_article .bs_post_section:not(header) h2,
-	.bs_article .bs_post_section:not(header) h3,
-	.bs_article .bs_post_section:not(header) h4,
-	.bs_article .bs_post_section:not(header) h5,
-	.bs_article .bs_post_section:not(header) h6 {
-		font-family: 'Adobe Garamond Pro', 'Fanwood Text', serif;
+	.bs_what,
+	.single .bs_section_text h1,
+	.single .bs_section_text h2,
+	.single .bs_section_text h3,
+	.single .bs_section_text h4,
+	.single .bs_section_text h5,
+	.single .bs_section_text h6 {
+		font-family: 'EB Garamond', serif;
 		font-style: italic;	
 		line-height: 1;
 	}
@@ -141,33 +185,60 @@ background-color: #f3efef;
 	font-size: 18px;
 	}
 
-	.bs_title_garamond_big {
+	.bs_title_garamond_big,
+	.bs_what {
 	font-size: 22px;
 	}
-
-	.bs_article .bs_post_section:not(header) h1,
-	.bs_article .bs_post_section:not(header) h2,
-	.bs_article .bs_post_section:not(header) h3,
-	.bs_article .bs_post_section:not(header) h4,
-	.bs_article .bs_post_section:not(header) h5,
-	.bs_article .bs_post_section:not(header) h6  {
+	
+	.single .bs_section_text h1,
+	.single .bs_section_text h2,
+	.single .bs_section_text h3,
+	.single .bs_section_text h4,
+	.single .bs_section_text h5,
+	.single .bs_section_text h6  {
 	font-size: 24px;
 	color: #DB8C8C;
 	}
 
-		.bs_article .bs_post_section:not(header) h1:after,
-		.bs_article .bs_post_section:not(header) h2:after,
-		.bs_article .bs_post_section:not(header) h3:after,
-		.bs_article .bs_post_section:not(header) h4:after,
-		.bs_article .bs_post_section:not(header) h5:after,
-		.bs_article .bs_post_section:not(header) h6:after, 
-		.bs_article .bs_post_section:not(header) h3:after {
+	.page .bs_section_text h1,
+	.page .bs_section_text h2,
+	.page .bs_section_text h3,
+	.page .bs_section_text h4,
+	.page .bs_section_text h5,
+	.page .bs_section_text h6  {
+	font-size: 48px;
+	}
+
+	.single .bs_section_text h1,
+	.single .bs_section_text h2,
+	.single .bs_section_text h3,
+	.single .bs_section_text h4,
+	.single .bs_section_text h5,
+	.single .bs_section_text h6,
+	.page .bs_section_text h1,
+	.page .bs_section_text h2,
+	.page .bs_section_text h3,
+	.page .bs_section_text h4,
+	.page .bs_section_text h5,
+	.page .bs_section_text h6 {
+	margin: 0 0px 50px;
+	}
+
+		.bs_post_title:after,
+		.bs_section_text h1:after,
+		.bs_section_text h2:after,
+		.bs_section_text h3:after,
+		.bs_section_text h4:after,
+		.bs_section_text h5:after,
+		.bs_section_text h6:after, 
+		.bs_section_text h3:after {
 	    content: "";
 	    display: block;
 	    border-bottom: 1px solid black;
 	    width: 80px;
 	    padding-top: 10px;
 		}
+
 
 	.bs_post_excerpt {
 	font-size: 18px;

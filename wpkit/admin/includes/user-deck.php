@@ -25,24 +25,19 @@
 	 		<section id="wk-menu-user-dashboard">
 	 			<span class="avatar-container" id="wk-menu-user-avatar">
 					
-					<?php //echo get_avatar( $current_user->ID, 64 ); ?>
 
 					<?php
 
+						if( isset( $wk_avatar ) ) :
 
-                        // Gravatar
-
-                            //echo get_avatar( $current_user->ID, 64 );
-
-                        // ACF custom avatar
-
+                        	// ACF custom avatar
+							
 							$wk_avatar = get_field('wk_custom_avatar', 'user_' . $current_user->ID ); 
 							$current_screen = get_current_screen();
 							
 							echo '<span class="avatar-container" id="wk-menu-user-avatar">';
 							
 							if( $wk_avatar ) {
-
 
 								if( $current_screen->id == 'acf-field-group' || $current_screen->id == 'custom-fields_page_acf-settings-tools' ) {
 
@@ -64,6 +59,11 @@
 
 							echo '</span>';
 
+						else :
+
+							echo get_avatar( $current_user->ID, 64 );
+
+						endif;
 
                   ?>
 

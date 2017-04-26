@@ -232,7 +232,7 @@ Admin scripts */
 		/***************************************************************************
 		* Campos por default de Advanced Custom Fields */
 
-			include_once( get_template_directory() . '/wpkit/acf/acf-custom.php');
+			include_once( get_template_directory() . '/functions/acf-custom.php');
 
 
 /*******************************************************************************

@@ -5,10 +5,6 @@ Las especificaciones para escritorio contendrán el prefijo .wk-d-
 
 */
 
-* {
-    box-sizing: border-box;
-}
-
 .wk-text-bold {
   font-weight: 700;
 }
