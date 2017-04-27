@@ -2007,7 +2007,7 @@ Flex items*/
             .wk-flex-column { flex-direction: column; } 
             .wk-flex-column-reverse { flex-direction: column-reverse; } 
             .wk-flex-row { flex-direction: row; } 
-            .wk-flex-row-reverse { flex-direction: row-reveser; }
+            .wk-flex-row-reverse { flex-direction: row-reverse; }
         /* Flex justify */
             .wk-flex-justify-center { justify-content: center; } 
             .wk-flex-justify-start { justify-content: flex-start; } 

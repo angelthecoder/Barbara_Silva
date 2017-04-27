@@ -139,6 +139,7 @@
 
 				.bs_post_title {
 				margin: 10px 0px 20px;
+				position: relative;
 				}
 				
 				.bs_post_meta.bs_post_meta_topline {
@@ -487,6 +488,12 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	}
+
+		.bs_instagram_feed_image_source {
+	    background-size: cover;
+	    background-position: center;
+	    background-repeat: no-repeat;
+		}
 
 
 	#instagram-footer .wk-cols, 

@@ -29,6 +29,16 @@ WPKit */
 			'position'		=> '4',
 		));
 
+		acf_add_options_page(array(
+			'page_title' 	=> 'Redes sociales',
+			'menu_title'	=> 'Redes',
+			'menu_slug' 	=> 'redes-sociales',
+			'capability'	=> 'edit_posts',
+			'redirect'		=> false,
+			'icon_url'		=> 'dashicons-twitter',
+			'position'		=> '30',
+		));
+
 		// acf_add_options_sub_page(array(
 		// 	'page_title' 	=> 'Herramientas',
 		// 	'menu_title'	=> 'Herramientas',
@@ -42,6 +52,13 @@ WPKit */
 		// ));
 
 	}
+
+/************************************************************************************************************************
+* Tamaños adicionales de imagen */
+
+		if ( function_exists( 'add_theme_support' ) ) {			
+			add_image_size( 'Post feed Thumbnail', 450, 600 );
+		}
 
 
 /*******************************************************************************
@@ -57,7 +74,7 @@ Partes de post */
 					
 					<header class="bs_post_header">
 						<h4 class="bs_post_cat"><?php echo get_the_category_list( ' • ' ); ?></h4>
-						<h1 class="bs_post_title"><?php the_title(); ?></h1>
+						<h1 class="bs_post_title"><?php the_title(); ?></h1><span class="bs_remate"></span>
 						<h6 class="bs_post_meta bs_post_meta_topline"><?php echo get_the_date( 'M j, Y ' ); ?></h6>
 						<?php edit_post_link( '<span class="fa  fa-pencil-square-o" style="vertical-align: middle; margin-left: 6px;"></span>' ); ?>
 					</header>

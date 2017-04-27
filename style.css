@@ -229,4 +229,6 @@ License: © Copyright Alumin.Agency All rights reserved
 
 		.category-lifestyle .bs_post_title:after {
 		margin: auto;
+		left: 0;
+	    right: 0;
 		}

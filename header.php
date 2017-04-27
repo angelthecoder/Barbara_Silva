@@ -141,7 +141,7 @@
 										<div class="bs_slide">
 
 											<div class="bs_slide_bg">
-												<img class="wk-img-responsive" data-lazy="<?php $featured_img_id = get_post_thumbnail_id( $post_object->ID ); $featured_img = wp_get_attachment_image_src( $featured_img_id, 'large' ); echo( $featured_img[0] ); ?>">									
+												<img class="wk-img-responsive" data-lazy="<?php $featured_img_id = get_post_thumbnail_id( $post_object->ID ); $featured_img = wp_get_attachment_image_src( $featured_img_id, 'medium' ); echo( $featured_img[0] ); ?>">									
 											</div>
 											<div class="bs_slide_content">
 												<div class="bs_slide_content_container">

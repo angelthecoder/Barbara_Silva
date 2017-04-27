@@ -246,6 +246,13 @@ background-color: #f3efef;
 	    border-bottom: 1px solid black;
 	    width: 80px;
 	    padding-top: 10px;
+	    position: absolute;
+		}
+
+
+		/* Caso especial para post alternados "Fashion"*/
+		.wk-flex-row-reverse .bs_post_title:after {
+	    right: 0;
 		}
 
 

@@ -1,0 +1,41 @@
+#instafeed {
+display: flex;
+flex-wrap: wrap;
+position: relative;
+}
+
+.bs_instagram_feed_image_source {
+width: calc(100% / 6 * 2);
+height: 100%;
+display: block;
+position: absolute;
+}
+
+.bs_instagram_feed_image_source:nth-child(2),
+.bs_instagram_feed_image_source:nth-child(3),
+.bs_instagram_feed_image_source:nth-child(5), 
+.bs_instagram_feed_image_source:nth-child(6) {
+width: calc(100% / 6);
+height: 50%;
+}
+
+
+.bs_instagram_feed_image_source:nth-child(2), 
+.bs_instagram_feed_image_source:nth-child(3) {
+left: calc(100% / 6 * 2);
+}
+
+.bs_instagram_feed_image_source:nth-child(3), 
+.bs_instagram_feed_image_source:nth-child(6) {
+bottom: 0;
+}
+
+.bs_instagram_feed_image_source:nth-child(4) {
+left: calc(100% / 6 * 3);
+}
+
+.bs_instagram_feed_image_source:nth-child(5),
+.bs_instagram_feed_image_source:nth-child(6) {
+left: calc(100% / 6 * 5);
+}
+
