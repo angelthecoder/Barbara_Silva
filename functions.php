@@ -148,7 +148,7 @@ Partes de post */
 
 									<?php if( get_sub_field( 'bs_section_right_type' ) == 'Imagen' ) : ?>					
 
-										<img src="<?php the_sub_field( 'bs_section_right_image' ); ?>">							
+										<img src="<?php $image = get_sub_field( 'bs_section_right_image' ); echo $image['sizes']['Post feed Thumbnail']; ?>">							
 
 									<?php elseif( get_sub_field( 'bs_section_right_type' ) == 'Texto' ) : ?>					
 

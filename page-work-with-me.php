@@ -13,11 +13,7 @@
 
 get_header(); ?>
 
-	<style>
-		main {
-		max-width: initial;
-		}
-		
+	<style>		
 		.bs_post_title:after{
 		border-color: white;
 		}
@@ -26,8 +22,6 @@ get_header(); ?>
 	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 		
 		<section class="wk-section">
-
-			<div class="wk-section-wrap">
 
 				<?php if ( has_post_thumbnail() ) : ?>
 
@@ -45,30 +39,27 @@ get_header(); ?>
 
 				<div class="bs_post_section_bg wk-flex-item wk-flex-align-center wk-d-padding-h-200 wk-m-padding-h-30" style="background-image: url(<?php echo $featured_img_url; ?>);min-height: 100vh; background-position: top;">
 
-						<div>
+					<div>
 
-							<header class="bs_post_header" style="color: white;">
-								<h4 class="bs_post_cat"><?php echo get_the_category_list( ' • ' ); ?></h4>
-								<h1 class="bs_post_title"><?php the_title(); ?></h1>
-								<?php edit_post_link( '<span class="fa  fa-pencil-square-o" style="vertical-align: middle; margin-left: 6px;"></span>' ); ?>
-							</header>
+						<header class="bs_post_header" style="color: white;">
+							<h4 class="bs_post_cat"><?php echo get_the_category_list( ' • ' ); ?></h4>
+							<h1 class="bs_post_title"><?php the_title(); ?></h1>
+							<?php edit_post_link( '<span class="fa  fa-pencil-square-o" style="vertical-align: middle; margin-left: 6px;"></span>' ); ?>
+						</header>
 
-							<section class="bs_post_excerpt" style="font-size: 32px;">
-								<div class="bs_text_pink">
-									<?php the_content(); ?>
-								</div>
-								<div style="color: #fff;">hello@barbarasilvablog.com</div>
-							</section>
+						<section class="bs_post_excerpt" style="font-size: 32px;">
+							<div class="bs_text_pink">
+								<?php the_content(); ?>
+							</div>
+							<div style="color: #fff;">hello@barbarasilvablog.com</div>
+						</section>
 
-						</div>
-
+					</div>
+					
 				</div>
-
-			</div>
 
 		</section>  		
 
-	<?php endwhile; endif; ?>
-                             
+	<?php endwhile; endif; ?>                             
 
 <?php get_footer(); ?>
