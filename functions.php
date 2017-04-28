@@ -100,7 +100,109 @@ Partes de post */
 
 		add_action( 'bs_post_head', 'post_head' );
 
-		// Related posts 
+	// Post content
+
+		function post_content() {
+			
+			if( have_rows( 'bs_section' ) ) : $n=1; while( have_rows( 'bs_section' ) ) : $n++; the_row(); ?>
+
+				<?php if( get_row_layout() == texto ) : ?>
+
+					<section id="post-section-<?php echo $n; ?>" class="wk-section">
+
+						<div class="wk-section-wrap bs_post_section">
+
+							<div class="bs_post_section_wrap bs_section_mobil bs_section_text <?php if( get_sub_field( 'bs_section_text_cols' ) ) : ?>bs_post_columns<?php endif; ?>">
+
+								<?php the_sub_field( 'bs_section_text' ); ?>
+
+							</div>	
+
+						</div>
+
+					</section>
+
+				<?php elseif( get_row_layout() == texto_cols ) : ?>
+
+					<section id="post-section-<?php echo $n; ?>" class="wk-section">
+
+						<div class="wk-section-wrap bs_post_section bs_section_text">
+
+							<div class="bs_post_section_wrap wk-cols bs_section_mobil">
+
+								<div class="wk-col-2e wk-d-margin-r-20">
+
+									<?php if( get_sub_field( 'bs_section_left_type' ) == 'Imagen' ) : ?>					
+
+										<img src="<?php $image = get_sub_field( 'bs_section_left_image' ); echo $image['sizes']['Post feed Thumbnail']; ?>">						
+
+									<?php elseif( get_sub_field( 'bs_section_left_type' ) == 'Texto' ) : ?>					
+
+										<?php the_sub_field( 'bs_section_left_text' ); ?>
+
+									<?php endif; ?>		
+
+								</div>
+
+								<div class="wk-col-2e wk-d-margin-l-20">
+
+									<?php if( get_sub_field( 'bs_section_right_type' ) == 'Imagen' ) : ?>					
+
+										<img src="<?php the_sub_field( 'bs_section_right_image' ); ?>">							
+
+									<?php elseif( get_sub_field( 'bs_section_right_type' ) == 'Texto' ) : ?>					
+
+										<?php the_sub_field( 'bs_section_right_text' ); ?>
+
+									<?php endif; ?>	
+
+								</div>
+
+							</div>		
+
+						</div>
+
+					</section>
+
+				<?php elseif( get_row_layout() == galeria ) : ?>
+
+					<section id="post-section-<?php echo $n; ?>" class="wk-section">
+
+						<div class="wk-section-wrap bs_post_section <?php if( !has_term( array( 'fashion', 'catwalk', 'fashion-week' ), 'category' ) ) : ?>bs_section_gallery<?php endif; ?>">
+							
+							<?php $gallery = get_sub_field( 'bs_section_gallery' ); ?>
+							
+							<?php if( has_term( array( 'fashion', 'catwalk', 'fashion-week' ), 'category' ) ) : ?>
+							
+								<div class="bs_post_section_wrap bs_section_gallery">									
+							
+							<?php endif; ?>							
+
+								<?php foreach( $gallery as $image ) : ?>
+
+									<span><img src="<?php echo $image[sizes][large] ?>"></span>
+
+								<?php endforeach; ?>
+							
+							<?php if( has_term( array( 'fashion', 'catwalk', 'fashion-week' ), 'category' ) ) : ?>							
+									
+								</div>
+							
+							<?php endif; ?>
+
+						</div>
+
+					</section>
+
+				<?php endif; ?>
+
+			<?php endwhile; endif; 
+
+		}
+
+		add_action( 'bs_post_content', 'post_content' );
+
+	// Related posts 
 
 		function related_posts() {
 			
@@ -108,7 +210,7 @@ Partes de post */
 
 				<?php if( has_term( 'editorial', 'category' ) ) : $bs_post_section_class = 'bs_post_section'; else : $bs_post_section_class = 'bs_post_section_wrap'; endif; ?>
 
-				<section id="related-posts" class="<?php echo $bs_post_section_class; ?>">
+				<div id="related-posts" class="<?php echo $bs_post_section_class; ?>">
 
 					<h3 class="bs_title_small">Related posts</h3>
 
@@ -150,7 +252,8 @@ Partes de post */
 
 					<?php endif; ?>
 
-			</section>
+				</div>
+
 			<?php 
 			
 		}
@@ -195,7 +298,7 @@ What I wore shortcode */
 		ob_start(); ?>
 
 		<p>
-			<table style="line-height: 2; margin: 50px 0;">
+			<table class="bs_what-i-whore">
 				<caption style="text-align: left;" class="bs_what">What I Whore</caption>
 				<?php if( have_rows( 'bs_prendas' ) ) : while( have_rows( 'bs_prendas' ) ) : the_row(); ?>
 					<tr>

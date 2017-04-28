@@ -39,3 +39,37 @@ left: calc(100% / 6 * 3);
 left: calc(100% / 6 * 5);
 }
 
+/*-----------------------------------------------------------------------------------------------------
+
+	Posts
+
+------------------------------------------------------------------------------------------------------*/
+   
+    /* What I Whore */
+
+            .bs_what_i_whore {
+            margin: 50px 0;
+            }
+
+    /* Sección galería */
+
+        .bs_section_gallery {
+        display: flex;
+        }
+
+        .bs_section_gallery > * {
+        margin-left: 20px;
+        margin-right: 20px;
+        display: inline-block;
+        }
+
+        .bs_section_gallery > *:first-child {
+        margin-right: 20px;
+        margin-left: 0 !important;
+        }
+
+        .bs_section_gallery > *:last-child {
+        margin-left: 20px;
+        margin-right: 0px !important;
+        }
+

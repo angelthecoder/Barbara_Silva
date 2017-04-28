@@ -18,6 +18,49 @@ jQuery(document).ready(function($){
 		// asNavFor: '.da-slider-nav',
 		//autoplay: true,
 	});
+	
+	// Video icon play 
+	
+// 	$('video').click(function(){
+// 		$(this).get(0).play();
+// 		$(this).siblings('.bs_icon_play').hide();
+// 		if($(this).siblings('video').get(0).paused()) {
+// 			$(this).show();
+// 		}
+// 	});
+	
+	var $video = $("video");
+	var $icon = $(".bs_icon_play");
+	  
+        mousedown = false;
+
+    $icon.click(function(){
+		$icon.hide();
+        if ($video.get(0).paused) {
+            $video.get(0).play();
+            return false;
+        }
+        return true;
+    });
+
+//     $video.on('mousedown', function () {
+//         mousedown = true;
+//     });
+
+//     $(window).on('mouseup', function () {
+//         mousedown = false;
+//     });
+
+    $video.on('play', function () {
+        $video.attr('controls', '');
+    });
+
+//     $video.on('pause', function () {
+//         if (!mousedown) {
+//             $video.removeAttr('controls');
+//         }
+//     });
+
 
 
 

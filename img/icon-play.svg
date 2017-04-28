@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="74px" height="74px" viewBox="0 0 74 74" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>assets / play button</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Video-Post" transform="translate(-683.000000, -553.000000)">
+            <g id="Travel-post" transform="translate(0.000000, 190.000000)">
+                <g id="Video">
+                    <g id="assets-/-play-button" transform="translate(683.000000, 363.000000)">
+                        <circle id="Oval" fill="#F7F6F3" opacity="0.854619565" cx="37" cy="37" r="37"></circle>
+                        <path d="M39.3687287,21.9002048 C40.1110754,20.4155113 41.315256,20.4167085 42.0570042,21.9002048 L56.8687287,51.5236538 C57.6110754,53.0083474 56.8622708,54.2119293 55.2136558,54.2119293 L26.212077,54.2119293 C24.5556587,54.2119293 23.815256,53.0071501 24.5570042,51.5236538 L39.3687287,21.9002048 Z" id="Triangle" fill="#DB8C8C" transform="translate(40.712398, 37.499531) rotate(90.000000) translate(-40.712398, -37.499531) "></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

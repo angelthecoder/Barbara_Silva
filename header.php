@@ -15,7 +15,7 @@
 			
 		</head>
 
-		<body <?php body_class('wk-wrap-1920'); ?>>
+		<body <?php body_class('wk-wrap-1080'); ?>>
 		
 			<div id="wrapper">
 				
@@ -33,11 +33,9 @@
 
 				//do_action( 'wk_widgets_header_layout' ); ?>
 
-				<section class="wk-section <?php if( has_term( array( 'fashion', 'catwalk', 'fashion-week', 'looks', 'photo-set' ), 'category' ) && !is_home() && !is_archive ) : ?>bs_cat_fashion_menu<?php elseif( is_page( 'work-with-me' ) ) : ?>bs_cat_fashion_menu<?php endif; ?>">
+				<header id="main-header" class="wk-section <?php if( has_term( array( 'fashion', 'catwalk', 'fashion-week', 'looks', 'photo-set' ), 'category' ) && !is_home() && !is_archive ) : ?>bs_cat_fashion_menu<?php elseif( is_page( 'work-with-me' ) ) : ?>bs_cat_fashion_menu<?php endif; ?>">
 					
-					<div class="wk-section-wrap">
-						
-						<header id="main-header">							
+					<div class="wk-section-wrap">						
 							
 							<?php if( is_home() ) : ?>
 								
@@ -57,11 +55,11 @@
 
 							<?php else : ?>
 
-								<div class="bs_section_wrap_more bs_section_mobil wk-d-padding-t-100 wk-m-padding-t-20">
+								<div class="bs_section_mobil wk-d-padding-t-100 wk-m-padding-t-20">
 									
-									<div class="wk-cols <?php if( has_term( 'fashion', 'category' ) ) : ?>bs_post_section_wrap<?php endif; ?>">
+									<div class="wk-cols">
 										
-										<div class="wk-col-2  wk-m-flex-item wk-m-flex-justify-center">
+										<div class="wk-col-2 wk-m-flex-item wk-m-flex-justify-center">
 											
 											<section id="bs_logo_bar" class="bs_logo_bar_alt">
 												<a class="bs_logo bs_logo_complementary" href="<?php bloginfo( 'url' ); ?>">
@@ -93,78 +91,72 @@
 
 							<?php endif; ?>
 
-						</header>
 						
 					</div>
 
-				</section>
+				</header>
 
 				<?php if( is_home() ) : ?>
 
 					<!-- Slider -->
 
-					<section class="wk-section">
+					<section id="slider" class="wk-section">
 
-						<div class="wk-section-wrap">
+						<div class="bs-slider">
 
-							<div class="bs-slider">
+							<?php if( have_rows( 'bs_slides', 'option' ) ) : while( have_rows( 'bs_slides', 'option' ) ) : the_row(); ?>
 
-								<?php if( have_rows( 'bs_slides', 'option' ) ) : while( have_rows( 'bs_slides', 'option' ) ) : the_row(); ?>
+								<?php if( get_row_layout() == 'bs_custom_slider' ) : ?>
 
-									<?php if( get_row_layout() == 'bs_custom_slider' ) : ?>
+									<div class="bs_slide">
 
-										<div class="bs_slide">
-
-											<div class="bs_slide_bg">
-												<img class="wk-img-responsive" data-lazy="<?php the_sub_field( 'bs_slide_image' ); ?>">									
+										<div class="bs_slide_bg">
+											<img class="wk-img-responsive" data-lazy="<?php the_sub_field( 'bs_slide_image' ); ?>">									
+										</div>
+										<div class="bs_slide_content">
+											<div class="bs_slide_content_container">
+												<h1 class="bs_title_big"><?php the_sub_field( 'bs_slide_title' ); ?></h1>	
+												<p class="bs_title_garamond_mid"><?php the_sub_field( 'bs_slide_excerpt' ); ?></p>							
 											</div>
-											<div class="bs_slide_content">
-												<div class="bs_slide_content_container">
-													<h1 class="bs_title_big"><?php the_sub_field( 'bs_slide_title' ); ?></h1>	
-													<p class="bs_title_garamond_mid"><?php the_sub_field( 'bs_slide_excerpt' ); ?></p>							
-												</div>
+										</div>
+										<div class="bs_slide_readmore">
+											<a class="bs_button bs_button_light" href="<?php the_permalink(); ?>">
+												Continue Reading
+											</a>
+										</div>
+
+									</div><!--.bs-slide-->
+
+								<?php elseif( get_row_layout() == 'bs_post_slider' ) : ?>
+
+									<?php $post_object = get_sub_field('bs_slide_post', 'option'); ?>
+
+									<?php //print_r($post_object); ?>	
+
+									<div class="bs_slide">
+
+										<div class="bs_slide_bg">
+											<img class="wk-img-responsive" data-lazy="<?php $featured_img_id = get_post_thumbnail_id( $post_object->ID ); $featured_img = wp_get_attachment_image_src( $featured_img_id, 'medium' ); echo( $featured_img[0] ); ?>">									
+										</div>
+										<div class="bs_slide_content">
+											<div class="bs_slide_content_container">
+												<h1 class="bs_title_big"><?php echo $post_object->post_title; ?></h1>	
+												<p class="bs_title_garamond_mid"><?php echo $post_object->post_excerpt; ?></p>							
 											</div>
-											<div class="bs_slide_readmore">
-												<a class="bs_button bs_button_light" href="<?php the_permalink(); ?>">
-													Continue Reading
-												</a>
-											</div>
+										</div>
+										<div class="bs_slide_readmore">
+											<a class="bs_button bs_button_light" href="<?php  echo $post_object->guid;; ?>">
+												Continue Reading
+											</a>
+										</div>
 
-										</div><!--.bs-slide-->
+									</div><!--.bs-slide-->
 
-									<?php elseif( get_row_layout() == 'bs_post_slider' ) : ?>
-										
-										<?php $post_object = get_sub_field('bs_slide_post', 'option'); ?>
-								
-										<?php //print_r($post_object); ?>	
-								
-										<div class="bs_slide">
+								<?php endif; ?>									
 
-											<div class="bs_slide_bg">
-												<img class="wk-img-responsive" data-lazy="<?php $featured_img_id = get_post_thumbnail_id( $post_object->ID ); $featured_img = wp_get_attachment_image_src( $featured_img_id, 'medium' ); echo( $featured_img[0] ); ?>">									
-											</div>
-											<div class="bs_slide_content">
-												<div class="bs_slide_content_container">
-													<h1 class="bs_title_big"><?php echo $post_object->post_title; ?></h1>	
-													<p class="bs_title_garamond_mid"><?php echo $post_object->post_excerpt; ?></p>							
-												</div>
-											</div>
-											<div class="bs_slide_readmore">
-												<a class="bs_button bs_button_light" href="<?php  echo $post_object->guid;; ?>">
-													Continue Reading
-												</a>
-											</div>
+							<?php endwhile; endif; ?>
 
-										</div><!--.bs-slide-->
-								
-									<?php endif; ?>									
-									
-								<?php endwhile; endif; ?>
-
-		
-							</div><!--.bs-slider-->
-
-						</div>
+						</div><!--.bs-slider-->
 
 					</section>
 

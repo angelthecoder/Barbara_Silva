@@ -11,64 +11,53 @@
 *
 */
 
-get_header(); ?>
+get_header(); ?>                             
                              
-	<?php 
-	/**
-	*
-	*  El loop para página o post. Este se incluye en el template de pagina page.php y post single.php.
-	*
-	* @see is_preview()
-	* @see post_class()
-	* @see has_post_thumbnail()
-	* @see get_post_thumbnail_id()
-	* @see wp_get_attachment_image_src()
-	* @see get_post_meta()
-	* @see the_title_attribute()
-	*
-	* @package WPKit
-	* @author ALUMIN
-	* @version WPKIT 2.0
-	*/
-	get_header(); ?>
-	                             
-		<?php if ( is_preview()) : ?><div class="site-notice"><?php echo edit_post_link('Regresa a editar'); ?></div><?php endif; ?>
+	<?php if ( is_preview()) : ?><div class="site-notice"><?php echo edit_post_link('Regresa a editar'); ?></div><?php endif; ?>
 
-		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
-					<article id="post-<?php the_ID(); ?>" <?php post_class('bs_article'); ?>>
+		<article id="post-<?php the_ID(); ?>" <?php post_class('bs_article'); ?>>
 
-							<?php if( has_term( 'editorial', 'category' ) ) : ?>
+			<?php if( has_term( 'editorial', 'category' ) ) : ?>
 
-								<?php get_template_part( 'includes/post_per_category/editorial' ); ?>
+				<?php get_template_part( 'includes/post_per_category/editorial' ); ?>
 
-							<?php elseif( has_term( array( 'fashion', 'catwalk', 'fashion-week' ), 'category' ) ) : ?>
+			<?php elseif( has_term( array( 'fashion', 'catwalk', 'fashion-week' ), 'category' ) ) : ?>
 
-								<?php get_template_part( 'includes/post_per_category/fashion' ); ?>
+				<?php get_template_part( 'includes/post_per_category/fashion' ); ?>
 
-							<?php elseif( has_term( array( 'lifestyle', 'events', 'inspiration', 'my-everyday', 'travel' ), 'category' ) ) : ?>
+			<?php elseif( has_term( array( 'lifestyle', 'events', 'inspiration', 'my-everyday', 'travel' ), 'category' ) ) : ?>
 
-								<?php get_template_part( 'includes/post_per_category/lifestyle' ); ?>
+				<?php get_template_part( 'includes/post_per_category/lifestyle' ); ?>
 
-							<?php endif; ?>	            		
-	      
-				</article>
+			<?php endif; ?>	            		
 
-		<?php endwhile; wp_reset_postdata(); endif; ?>
+		</article>
 
-		<?php 
+	<?php endwhile; wp_reset_postdata(); endif; ?>
 
-		/*
-		*
-		* Related posts
-		*
-		*/
-
-		do_action( 'bs_related_posts' ); ?>
-
-	<section class="bs_post_section">
+	<aside class="wk-section">
 		
-		<div class="bs_post_section_wrap">
+		<div class="wk-section-wrap">
+			
+			<?php 
+
+			/*
+			*
+			* Related posts
+			*
+			*/
+
+			do_action( 'bs_related_posts' ); ?>
+			
+		</div>		
+
+	</aside>
+
+	<footer id="comments" class="wk-section">
+		
+		<div class="wk-section-wrap">
 
 			<div id="disqus_thread"></div>
 			<script>
@@ -94,7 +83,7 @@ get_header(); ?>
 			
 		</div>
 		
-	</section>
+	</footer>
                                 
 
 <?php get_footer(); ?>

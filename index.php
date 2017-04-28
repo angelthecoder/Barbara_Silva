@@ -128,7 +128,6 @@ get_header(); ?>
 									
 								</div>
 
-
 							</div>
 
 						</article>	 -->								
@@ -161,8 +160,5 @@ get_header(); ?>
 			</div>
 
 		</section>
-
-			
-
 
 	<?php get_footer(); ?>

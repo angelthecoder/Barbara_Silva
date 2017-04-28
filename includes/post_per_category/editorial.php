@@ -1,86 +1,73 @@
-<header class="bs_post_section bs_section_mobil bs_post_section_no_padding">
+	<header id="post-header" class="wk-section">
 
-	<div class="bs_post_section_wrap">
+		<div class="wk-section-wrap bs_post_section bs_section_mobil">
 
-		<?php 
+			<div class="bs_post_section_wrap">
 
-		/*
-		*
-		* Llama a la cabecera del post
-		*
-		*/
+				<?php 
 
-		do_action( 'bs_post_head' ); ?>
+				/*
+				*
+				* Llama a la cabecera del post
+				*
+				*/
 
-	</div>		        			
-
-</header>
-
-<section class="bs_post_section bs_post_section_first">
-
-	<?php if ( has_post_thumbnail() ) : ?>
-
-		<?php   
-
-			$featured_img_id = get_post_thumbnail_id($post->id); 					
-			$featured_img_large_attr = wp_get_attachment_image_src( $featured_img_id, 'large' );
-			$featured_img_thumb_attr = wp_get_attachment_image_src( $featured_img_id, 'thumbnail' );
-			$featured_img_alt = get_post_meta($featured_img_id, '_wp_attachment_image_alt', true);   
-
-		?>
-
-		<img src="<?php echo $featured_img_large_attr[0]; ?>" width="<?php echo $featured_img_large_attr[1];?>" height="<?php echo $featured_img_large_attr[2];?>" class="attachment wk-img-responsive" title="<?php echo get_the_title( $featured_img_large_attr ); ?>" alt="<?php echo $featured_img_alt; ?>" >	
-
-	<?php endif; ?>	
-	
-</section>  			
-
-<?php if( have_rows( 'bs_section' ) ) : while( have_rows( 'bs_section' ) ) : the_row(); ?>
-
-	<?php if( get_row_layout() == texto ) : ?>
-
-		<section class="bs_post_section bs_section_text bs_section_mobil">
-
-			<div class="bs_post_section_wrap bs_post_columns">
-		
-				<?php the_sub_field( 'bs_section_text' ); ?>
+				do_action( 'bs_post_head' ); ?>
 
 			</div>
-			
-		</section>
 
-	<?php elseif( get_row_layout() == galeria ) : ?>
+		</div>		        			
 
-		<section class="bs_post_section bs_section_gallery">
+	</header>
 
-				<?php $gallery = get_sub_field( 'bs_section_gallery' ); ?>
+	<section id="post-section-1" class="wk-section bs_post_section_first">
 
-				<?php foreach( $gallery as $image ) : ?>
+		<div class="wk-section-wrap">
 
-					<span><img src="<?php echo $image[sizes][large] ?>"></span>
+			<?php if ( has_post_thumbnail() ) : ?>
 
-				<?php endforeach; ?>
-			
-		</section>
+				<?php   
 
-	<?php endif; ?>
+					$featured_img_id = get_post_thumbnail_id($post->id); 					
+					$featured_img_large_attr = wp_get_attachment_image_src( $featured_img_id, 'large' );
+					$featured_img_thumb_attr = wp_get_attachment_image_src( $featured_img_id, 'thumbnail' );
+					$featured_img_alt = get_post_meta($featured_img_id, '_wp_attachment_image_alt', true);   
 
-<?php endwhile; endif; ?>
+				?>
 
-<section class="bs_post_section">
+				<img src="<?php echo $featured_img_large_attr[0]; ?>" width="<?php echo $featured_img_large_attr[1];?>" height="<?php echo $featured_img_large_attr[2];?>" class="attachment wk-img-responsive" title="<?php echo get_the_title( $featured_img_large_attr ); ?>" alt="<?php echo $featured_img_alt; ?>" >	
 
-	<div class="bs_post_section_wrap ">
+			<?php endif; ?>	
 
-		<?php 
+		</div>
 
-		/*
-		*
-		* Llama al bloque de botónes para compartir
-		*
-		*/
+	</section>  			
 
-		do_action( 'bs_post_share' ); ?>	
-		
-	</div>
+	<?php 
 
-</section>
+	/*
+	*
+	* Post content, sin contenedor principal,
+	* Los contenedores se crean a partir de los bloques de texto
+	*
+	*/
+
+	do_action( 'bs_post_content' ); ?>
+
+	<section id="post-share" class="wk-section">
+
+		<div class="wk-section-wrap bs_post_section">
+
+			<?php 
+
+			/*
+			*
+			* Llama al bloque de botónes para compartir
+			*
+			*/
+
+			do_action( 'bs_post_share' ); ?>	
+
+		</div>
+
+	</section>

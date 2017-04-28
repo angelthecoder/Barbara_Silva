@@ -172,29 +172,12 @@
 
 			/* Sección galería */
 
-				.bs_section_gallery {
-				display: flex;
-				}
-
-				.bs_section_gallery span, 
+				.bs_section_gallery > *, 
 				.bs_section_gallery img {
 				width: 100%;
 				}
 
-				.bs_section_gallery span {
-				margin-left: 20px;
-				margin-right: 20px;
-				}
-
-				.bs_section_gallery span:first-child {
-				margin-right: 20px;
-				margin-left: 0 !important;
-				}
-
-				.bs_section_gallery span:last-child {
-				margin-left: 20px;
-				margin-right: 0px !important;
-				}
+				
 
 			/* Sección de texto */
 
@@ -239,6 +222,41 @@
 		    width: 180px;
 			}
 
+		/* What I Whore */
+
+		.bs_what_i_whore {
+		line-height: 2; 
+		}
+
+
+/*-----------------------------------------------------------------------------------------------------
+
+	Video play icon
+
+------------------------------------------------------------------------------------------------------*/
+
+	.bs_video_container {
+	position: relative;
+	}
+
+	.bs_video_container .bs_icon_play {
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 80px;
+	height: 80px;
+	margin: auto;
+	cursor: pointer;
+	z-index: 10;
+	transition: all .25s ease-in-out;
+	}
+
+	.bs_video_container .bs_icon_play:hover {
+	transform: scale(1.1);
+	}
 
 /*-----------------------------------------------------------------------------------------------------
 

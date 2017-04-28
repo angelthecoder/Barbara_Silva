@@ -197,17 +197,7 @@ background-color: #f3efef;
 	.bs_title_garamond_big,
 	.bs_what {
 	font-size: 22px;
-	}
-	
-	.single .bs_section_text h1,
-	.single .bs_section_text h2,
-	.single .bs_section_text h3,
-	.single .bs_section_text h4,
-	.single .bs_section_text h5,
-	.single .bs_section_text h6  {
-	font-size: 24px;
-	color: #DB8C8C;
-	}
+	}	
 
 	.page .bs_section_text h1,
 	.page .bs_section_text h2,
@@ -230,7 +220,29 @@ background-color: #f3efef;
 	.page .bs_section_text h4,
 	.page .bs_section_text h5,
 	.page .bs_section_text h6 {
-	margin: 0 0px 50px;
+	margin: 40px 0;
+	}
+	
+	.single .bs_section_text h1,
+	.single .bs_section_text h2,
+	.single .bs_section_text h3,
+	.single .bs_section_text h4,
+	.single .bs_section_text h5,
+	.single .bs_section_text h6  {
+	font-size: 24px;
+	color: #DB8C8C;
+	max-width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	}
+
+	.single .bs_section_text h1:first-child,
+	.single .bs_section_text h2:first-child,
+	.single .bs_section_text h3:first-child,
+	.single .bs_section_text h4:first-child,
+	.single .bs_section_text h5:first-child,
+	.single .bs_section_text h6:first-child  {
+	margin-top: 0;
 	}
 
 		.bs_post_title:after,
