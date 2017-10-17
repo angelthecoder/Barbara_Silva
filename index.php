@@ -47,6 +47,43 @@ get_header(); ?>
 							</div>
 
 						</article>
+				
+				<!--=================== Cherry Bomb MX (Angel del Rock) ===================-->
+
+					<?php elseif( has_term( array( 'bloom', 'health', 'beauty', 'zen' ) , 'category' ) ) : $m++; ?>
+					
+					<article id="post-<?php echo $n; ?>-fashion-<?php echo $m; ?>" <?php post_class( 'bs_post bs_post_fashion' ); ?>>							
+
+						<div class="wk-cols bs_section_mobil <?php if( $m % 2 == 1 ) : echo 'wk-flex-row-reverse'; endif; ?>">
+							
+							<div class="wk-col-3">
+								
+								<div class="bs_post_thumb">
+									<img class="wk-img-responsive" src="<?php the_post_thumbnail_url( 'post-feed-thumbnail' ); ?>">
+								</div>
+								
+							</div>
+
+							<div class="wk-col-5 wk-flex-item wk-flex-align-center wk-padding-h-40 <?php if( $m % 2 == 1 ) : echo 'wk-flex-row-reverse wk-text-right'; endif; ?>">
+
+								<?php 
+
+										/*
+										*
+										* Llama a la cabecera del post
+										*
+										*/
+
+										do_action( 'bs_post_head' ); ?>
+								
+							</div>
+
+
+						</div>
+
+					</article>
+
+					<!--=================== Cherry Bomb MX (Angel del Rock) ===================-->
 
 					<?php elseif( has_term( array( 'fashion', 'catwalk', 'fashion-week' ) , 'category' ) ) : $m++; ?>
 						
