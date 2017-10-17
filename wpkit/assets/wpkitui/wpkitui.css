@@ -2364,11 +2364,28 @@ Sidebar */
 /***************************************************************************************************
 Imágenes */
       
-        .wk-img-responsive,
+        /*.wk-img-responsive,
         .wk-img-full-width {
         width: 100%;
         height: auto;
-        }
+        }*/
+        
+/*=========================Edición CherryBomb (Angel del Rock)===================*/
+
+.wk-img-full-width {
+width: 100%;
+height: auto;
+}
+
+.bs_post_thumb { 
+  height:100%;
+}
+.wk-img-responsive {
+  object-fit:cover;
+  width: 100%;
+  height: 100%;
+}
+/*=========================Edición CherryBomb (Angel del Rock)===================*/
 
 /***************************************************************************************
 Botones */
