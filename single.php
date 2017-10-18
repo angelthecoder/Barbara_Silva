@@ -27,6 +27,10 @@ get_header(); ?>
 
 				<?php get_template_part( 'includes/post_per_category/fashion' ); ?>
 
+			<?php elseif( has_term( array( 'bloom', 'health', 'beauty', 'zen' ), 'category' ) ) : ?>
+
+				<?php get_template_part( 'includes/post_per_category/bloom' ); ?>
+
 			<?php elseif( has_term( array( 'lifestyle', 'events', 'inspiration', 'my-everyday', 'travel' ), 'category' ) ) : ?>
 
 				<?php get_template_part( 'includes/post_per_category/lifestyle' ); ?>
