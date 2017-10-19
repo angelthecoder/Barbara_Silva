@@ -2,12 +2,9 @@
 WPKit - Dash-b
 *
 
-@import url(material_themes.css);
+@import url(material-theme.css);
 
 */
- .blavatar {
- 	-webkit-filter: invert() contrast(160%);
- }
 
 /*******************************************************************************
 Theme styles

@@ -1,11 +1,11 @@
 			</main>
 
-			<?php 
+			<?php
 
 				/*
 				* Layout de widgets
 				*
-				* Imprime el layout de widgets en el footer. 
+				* Imprime el layout de widgets en el footer.
 				*
 				* Si no ocupas el layout de widgets, desactivalo desde el administrador
 				* en WPKit / Layouts en lugar de borrar esta función, Si desactivas la opción
@@ -33,18 +33,18 @@
 
 						var userFeed = new Instafeed({
 							get: 'user',
-							userId: '1158757654',
-							clientId: '1d8c0d36234c44a4855e844a16b07c79',
-							accessToken: '1158757654.72e693f.505896f5fc594edb8c014a526e20b76d',
+							userId: '<?php the_field( 'bs_user_id', 'option' ); ?>',
+							clientId: '<?php the_field( 'bs_client_id', 'option' ); ?>',
+							accessToken: '<?php the_field( 'bs_instagram_token', 'option' ); ?>',
 							resolution: 'standard_resolution',
 							template: '<a href="{{link}}" target="_blank" id="{{id}}" class="bs_instagram_feed_image_source" style="background-image: url({{image}});"></a>',
 							sortBy: 'most-liked',
 							limit: 6,
 							links: true,
 						});
-						userFeed.run();							
+						userFeed.run();
 
-					</script>	
+					</script>
 
 
 					<div class="wk-cols">
@@ -53,12 +53,12 @@
 								<span class="bs_follow_me_text bs_title_montserrat">FOLLOW ME ON</span>
 								<span class="bs_instagram_text bs_title_mid">Instagram</span>
 								<span class="bs_divider" style="width: 60px;"></span>
-								<a class="bs_bsoficial_text bs_title_montserrat bs_text_pink" href="http://instagram.com/<?php the_field( 'bs_instagram', 'option' ); ?>" target="_blank">@<?php the_field( 'bs_instagram', 'option' ); ?></a>								
+								<a class="bs_bsoficial_text bs_title_montserrat bs_text_pink" href="http://instagram.com/<?php the_field( 'bs_instagram', 'option' ); ?>" target="_blank">@<?php the_field( 'bs_instagram', 'option' ); ?></a>
 							</div>
 						</div>
 						<div class="wk-col-6">
 
-							<div id="instafeed" style="width: 100%; height: 100%;"></div>					
+							<div id="instafeed" style="width: 100%; height: 100%;"></div>
 
 						</div>
 
@@ -67,7 +67,7 @@
 						</div>
 
 						<div class="wk-col-1">
-							<div class="bs_instagram_feed_images"> 
+							<div class="bs_instagram_feed_images">
 								<div id="bs_instagram_feed_image-2" class="bs_instagram_feed_image" style="background-image: url(<?php echo get_template_directory_uri(); ?>/img/generic-thumb-square-inv.jpg)"></div>
 								<div id="bs_instagram_feed_image-3" class="bs_instagram_feed_image" style="background-image: url(<?php echo get_template_directory_uri(); ?>/img/generic-thumb-square-inv.jpg)"></div>
 							</div>
@@ -78,18 +78,18 @@
 						</div>
 
 						<div class="wk-col-1">
-							<div class="bs_instagram_feed_images"> 
+							<div class="bs_instagram_feed_images">
 								<div id="bs_instagram_feed_image-5" class="bs_instagram_feed_image" style="background-image: url(<?php echo get_template_directory_uri(); ?>/img/generic-thumb-square-inv.jpg)"></div>
 								<div id="bs_instagram_feed_image-6" class="bs_instagram_feed_image" style="background-image: url(<?php echo get_template_directory_uri(); ?>/img/generic-thumb-square-inv.jpg)"></div>
 							</div>
 						</div> -->
-					</div>							
+					</div>
 
-				</footer>	
+				</footer>
 
 				<footer id="main-footer" class="wk-section">
-					
-					<div class="wk-section-wrap">					
+
+					<div class="wk-section-wrap">
 
 						<div class="wk-cols">
 							<div class="wk-col-2e">
@@ -101,20 +101,20 @@
 								<?php get_template_part( 'includes/social-bar' ); ?>
 
 							</div>
-						</div>							
-						
+						</div>
+
 					</div>
 
 				</footer>
 
 
 		</div><!--wrapper-->
-			
+
 	</body>
-	
+
 	<!--Script-->
 	<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/scripts.js"></script>
-		
+
 	<?php wp_footer(); ?>
 
 </html>

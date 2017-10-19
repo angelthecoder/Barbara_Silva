@@ -27,11 +27,15 @@ Admin scripts */
 			// Style
 				wp_register_style( 'wk-style', $GLOBALS['wpkit_url'] . 'css/style.css' ); wp_enqueue_style( 'wk-style' );
 				wp_register_style( 'wk-admin-wkui-style', $GLOBALS['wpkit_url'] . 'assets/wpkitui/wpkitui.css' ); wp_enqueue_style( 'wk-admin-wkui-style' );
+				wp_register_style( 'codemirror-style', $GLOBALS['wpkit_url'] . 'assets/codemirror/codemirror.css' ); wp_enqueue_style( 'codemirror-style' );
+				wp_register_style( 'wk-admin-style', get_template_directory_uri() . '/css/admin.css' ); wp_enqueue_style( 'wk-admin-style' );
 
 			// Script
 			   wp_enqueue_media();
 			   wp_register_script( 'wk-scripts', $GLOBALS['wpkit_url'] . '/js/scripts.js', array('jquery') ); wp_enqueue_script( 'wk-scripts' );
 			   wp_register_script( 'wk-admin-wkui-scripts', $GLOBALS['wpkit_url'] . 'assets/wpkitui/wpkitui.js', array('jquery') ); wp_enqueue_script( 'wk-admin-wkui-scripts' );
+			   wp_register_script( 'codemirror-scripts', $GLOBALS['wpkit_url'] . 'assets/codemirror/codemirror.js', array('jquery') ); wp_enqueue_script( 'codemirror-scripts' );
+			   wp_register_script( 'codemirror-mode-scripts', $GLOBALS['wpkit_url'] . 'assets/codemirror/mode/javascript.js', array('jquery') ); wp_enqueue_script( 'codemirror-mode-scripts' );
 
 		 }
 
@@ -43,121 +47,43 @@ Admin scripts */
 
 			// Style
 				wp_register_style( 'wk-wkui-style', $GLOBALS['wpkit_url'] . 'assets/wpkitui/wpkitui.css' ); wp_enqueue_style( 'wk-wkui-style' );
-			
+
 			// Script
 				wp_register_script( 'wk-wkui-scripts', $GLOBALS['wpkit_url'] . 'assets/wpkitui/wpkitui.js', array('jquery') ); wp_enqueue_script( 'wk-wkui-scripts' );
-		
+
 		}
-		
+
 		add_action( 'wp_enqueue_scripts', 'wpkit_wp_enqueue_scripts' );
 
 	// Admin head
 
 	 	function wpkit_admin_head() {
+
 	 		echo '<link rel="Shortcut Icon" type="image/ico" href="' . $GLOBALS['wpkit_url'] . '/img/favicon.png">';
+
 	 	}
+
 	 	add_action( 'admin_head', 'wpkit_admin_head', 20 );
 
 	// WP head
 
  		function wpkit_wp_head() {
- 			
+
  			get_template_part( 'wpkit/inc/header' );
 
  		}
- 		
+
  		add_action( 'wp_head', 'wpkit_wp_head', 0 );
 
  	// WP Footer
 
-		function wpkit_wp_footer() { ?>
+		function wpkit_wp_footer() {
 
-			<!--Script-->
-			<script src="<?php echo get_template_directory_uri(); ?>/js/jquery-2.1.3.min.js"></script>
-			<!--Modernizr-->
-			<script src='https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js'></script><?php
-
-			if( get_option( 'wk_option_library_oknav' ) ) { ?>
-				<!--OkNav-->
-				<link id="style-okaynav-lib" rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/oknav/okayNav.min.css">
-				<script id="script-okaynav-lib" src="<?php echo get_template_directory_uri(); ?>/assets/oknav/jquery.okayNav-min.js"></script>
-				<script id="script-okaynav" type="text/javascript">
-			        var navigation = $('#nav-main').okayNav();
-			    </script>
-			    <style id="style-okaynav">
-				    .okayNav a {color: inherit; font-size: inherit; font-weight: inherit;}
-				    .okayNav__menu-toggle {top: 12px; height: 18px; }
-			    </style><?php 
-			}
-		    
-		    if( get_option( 'wk_option_library_fancybox' ) ) { ?>
-		    	
-	    		<!--Fancybox-->
-	    		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
-	    		<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/assets/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-	    		<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/assets/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
-	    		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
-	    		<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/assets/fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
-	    		<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/assets/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
-	    		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
-	    		<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/assets/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
-	    		<script type="text/javascript">
-	    			$(document).ready(function() {
-	    				$(".fancybox-thumb").fancybox({
-	    					prevEffect	: 'elastic',
-	    					nextEffect	: 'elastic',
-	    					helpers	: {
-	    						title	: {
-	    							type: 'outside'
-	    						},
-	    						thumbs	: {
-	    							width	: 50,
-	    							height	: 50
-	    						}
-	    					}
-	    				});
-	    			});
-	    		</script>
-
-	    		<script>
-	    			$(document).ready(function() {
-	    				$(".various").fancybox({
-	    					maxWidth	: 800,
-	    					maxHeight	: 600,
-	    					fitToView	: false,
-	    					width		: '70%',
-	    					height		: '70%',
-	    					autoSize	: false,
-	    					closeClick	: false,
-	    					openEffect	: 'none',
-	    					closeEffect	: 'none'
-	    				});
-	    			});
-	    			base= '<?php echo get_template_directory_uri(); ?>';
-	    		</script>
-	    	<!--end Fancybox--><?php 
-		    } 
-
-		    if( get_option( 'wk_option_library_flickity' ) ) { ?>
-		      <!-- Flickity-->
-	    		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/flickity/flickity.css" media="screen">
-	    		<script src="<?php echo get_template_directory_uri(); ?>/assets/flickity/flickity.pkgd.min.js"></script>
-	    		<script>
-	    			/*$('.slider').flickity({
-	    				
-	    			});*/
-	    		</script><?php 
-		    } ?>
-
-			<!--Photoswipe-->
-			<!--<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/photoswipe/photoswipe.css">
-			<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/photoswipe/default-skin/default-skin.css">
-			<script src="<?php echo get_template_directory_uri(); ?>/assets/photoswipe/photoswipe.min.js"></script>
-			<script src="<?php echo get_template_directory_uri(); ?>/assets/photoswipe/photoswipe-ui-default.min.js"></script>--><?php
+			get_template_part( 'wpkit/inc/footer' );
 
 		}
 
-		add_action( 'wp_footer', 'wpkit_wp_footer' );		
+		add_action( 'wp_footer', 'wpkit_wp_footer' );
 
 /*********************************************************************************
 * ACF */
@@ -194,7 +120,7 @@ Admin scripts */
 
 			add_filter('acf/settings/show_admin', '__return_false');
 
-		} 
+		}
 
 		/***************************************************************************
 		* Página de opciones ACF *
@@ -293,7 +219,7 @@ Admin scripts */
 			  'section_viewport_size_textbox_callback', // !important - This is where the args go!
 			  'general', // La página en la que se mostrará
 			  'mobile_optimization_options', // Nombre de la sección
-			  array( 
+			  array(
 				'viewport_size' // Deberá ser el ID de la sección
 			  )
 		    );
@@ -318,7 +244,7 @@ Admin scripts */
 /* ***********************************************************************************************************************
 * Añade páginas de opciones:
 1. General settings / Contenidos
-2. General settings / Redes sociales 
+2. General settings / Redes sociales
 */
 
 
@@ -432,7 +358,7 @@ Admin scripts */
 									<input type="text" name="site_rating" value="<?php echo esc_attr( get_option('site_rating') ); ?>" class="regular-text"/>
 								</td>
 							</tr>
-						</table>						
+						</table>
 
 					    <?php submit_button(); ?>
 
@@ -520,6 +446,26 @@ Admin scripts */
 
 /* ***********************************************************************************************************************
 *  Snippets */
+
+		/* ***********************************************************************************************************************
+		*  Oculta toolbar para todos los usuarios *
+
+				show_admin_bar(false);
+
+		/* ***********************************************************************************************************************
+		*  Oculta toolbar para todos los usuarios excepto admin */
+
+
+				function wk_remove_admin_bar() {
+					if( get_option( 'wk_hide_wp_toolbar' ) == 1 ) {
+						show_admin_bar(false);
+					} elseif( get_option( 'wk_hide_wp_toolbar' ) == 2 ) {
+						if (!current_user_can('administrator') && !is_admin()) {
+						  show_admin_bar(false);
+						}
+					}
+				}
+				add_action('after_setup_theme', 'wk_remove_admin_bar');
 
 		/* ***********************************************************************************************************************
 		*  Incluye OS y Explorador en boddy_class */
@@ -674,20 +620,34 @@ Admin scripts */
 			* Muestra solo imagenes que ha subido el usuario desde el dialogo insetar en las publicaciones, en media library podrá segui
 			viendo todas las imágenes. *
 
-	  		function wk_query_set_only_author( $wp_query ) {
-	  		    global $current_user;
-	  		    if( is_admin() && !current_user_can('edit_others_posts') ) {
-	  		        $wp_query->set( 'author', $current_user->ID );
-	  		        add_filter('views_edit-post', 'fix_post_counts');
-	  		        add_filter('views_upload', 'fix_media_counts');
-	  		    }
-	  		}
+	  		// Muestra solo las imagenes que ha subido el usuario
 
-	  		add_action('pre_get_posts', 'wk_query_set_only_author' );
-	
-		
+				function wk_users_own_attachments( $wp_query_obj ) {
+
+				    global $current_user, $pagenow;
+
+				    $is_attachment_request = ($wp_query_obj->get('post_type')=='attachment');
+
+				    if( !$is_attachment_request )
+				        return;
+
+				    if( !is_a( $current_user, 'WP_User') )
+				        return;
+
+				    if( !in_array( $pagenow, array( 'upload.php', 'admin-ajax.php' ) ) )
+				        return;
+
+				    if( !current_user_can('delete_pages') )
+				        $wp_query_obj->set('author', $current_user->ID );
+
+				    return;
+				}
+
+				add_action('pre_get_posts','wk_users_own_attachments');
+
+
   		/************************************************************************************************************************
-		Requiere "Featured image" para poder publicar *	  		
+		Requiere "Featured image" para poder publicar *
 
 	  		add_action('save_post', 'wpds_check_thumbnail');
 	  		add_action('admin_notices', 'wpds_thumbnail_error');
@@ -728,14 +688,14 @@ Admin scripts */
 		  		);
 		  		return $mimes;
 	  		}
-	  			
+
 	  			add_filter('upload_mimes','restrict_mime');
-		
+
 		/***********************************************************************************************************************
 		Remove Meta boxes - esconde metaboxes */
 
 			// https://codex.wordpress.org/Function_Reference/remove_meta_box
-			
+
 			function wk_remove_meta_boxes() {
 
 				$post_type = array('post', 'page');
@@ -746,7 +706,7 @@ Admin scripts */
 				// remove_meta_box('commentsdiv', $post_type, 'normal');
 				// remove_meta_box('formatdiv', $post_type, 'normal');
 				// remove_meta_box('pageparentdiv', $post_type, 'normal');
-				remove_meta_box('postcustom', $post_type, 'normal');	
+				remove_meta_box('postcustom', $post_type, 'normal');
 				// remove_meta_box('postexcerpt', $post_type, 'normal');
 				// remove_meta_box('postimagediv', $post_type, 'normal');
 				// remove_meta_box('revisionsdiv', $post_type, 'normal');
@@ -863,7 +823,7 @@ Admin scripts */
 				add_action( 'admin_enqueue_scripts', 'wk_admin_pointer' );
 
   		/************************************************************************************************************************
-		
+
 	  		///////////////////////////////////////////////////////
 	  		// TinyMCE //////////////////////////////////////////
 	  		///////////////////////////////////////////////////////
@@ -902,7 +862,7 @@ Admin scripts */
 		  			if (! ( isset( $_GET['post']) || isset( $_POST['post'])  || ( isset($_REQUEST['action']) && 'rd_duplicate_post_as_draft' == $_REQUEST['action'] ) ) ) {
 		  				wp_die('No post to duplicate has been supplied!');
 		  			}
-		  		 
+
 		  			/*
 		  			 * get the original post id
 		  			 */
@@ -911,19 +871,19 @@ Admin scripts */
 		  			 * and all the original post data then
 		  			 */
 		  			$post = get_post( $post_id );
-		  		 
+
 		  			/*
 		  			 * if you don't want current user to be the new post author,
 		  			 * then change next couple of lines to this: $new_post_author = $post->post_author;
 		  			 */
 		  			$current_user = wp_get_current_user();
 		  			$new_post_author = $current_user->ID;
-		  		 
+
 		  			/*
 		  			 * if post data exists, create the post duplicate
 		  			 */
 		  			if (isset( $post ) && $post != null) {
-		  		 
+
 		  				/*
 		  				 * new post data array
 		  				 */
@@ -942,12 +902,12 @@ Admin scripts */
 		  					'to_ping'        => $post->to_ping,
 		  					'menu_order'     => $post->menu_order
 		  				);
-		  		 
+
 		  				/*
 		  				 * insert the post by wp_insert_post() function
 		  				 */
 		  				$new_post_id = wp_insert_post( $args );
-		  		 
+
 		  				/*
 		  				 * get all current post terms ad set them to the new post draft
 		  				 */
@@ -956,7 +916,7 @@ Admin scripts */
 		  					$post_terms = wp_get_object_terms($post_id, $taxonomy, array('fields' => 'slugs'));
 		  					wp_set_object_terms($new_post_id, $post_terms, $taxonomy, false);
 		  				}
-		  		 
+
 		  				/*
 		  				 * duplicate all post meta just in two SQL queries
 		  				 */
@@ -971,8 +931,8 @@ Admin scripts */
 		  					$sql_query.= implode(" UNION ALL ", $sql_query_sel);
 		  					$wpdb->query($sql_query);
 		  				}
-		  		 
-		  		 
+
+
 		  				/*
 		  				 * finally, redirect to the edit post screen for the new draft
 		  				 */
@@ -983,7 +943,7 @@ Admin scripts */
 		  			}
 		  		}
 		  		add_action( 'admin_action_rd_duplicate_post_as_draft', 'rd_duplicate_post_as_draft' );
-		  		 
+
 		  		/*
 		  		 * Add the duplicate link to action list for post_row_actions
 		  		 */
@@ -993,7 +953,7 @@ Admin scripts */
 		  			}
 		  			return $actions;
 		  		}
-		  		 
+
 		  		add_filter( 'post_row_actions', 'rd_duplicate_post_link', 10, 2 );
 
 /***********************************************************************************************************************
@@ -1163,7 +1123,7 @@ Widgets */
 
 /***********************************************************************************************************************
 Options */
-	
+
 		include( get_template_directory() . '/wpkit/systems/options.php' );
 
 
@@ -1171,7 +1131,7 @@ Options */
 Options functions */
 
 	function wk_opengraph_header() {
-		if( get_option( 'option_open_graph' ) ) { 
+		if( get_option( 'option_open_graph' ) ) {
 
 			echo 'prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#"';
 
@@ -1184,25 +1144,25 @@ Options functions */
 
 		 		if( is_home() || is_page() ) {
 
-		 			if( get_option( 'option_schema_type_manual' ) ) { 
+		 			if( get_option( 'option_schema_type_manual' ) ) {
 
-		 				$schema_type = get_option( 'option_schema_type_manual' ); 
+		 				$schema_type = get_option( 'option_schema_type_manual' );
 
-		 			} else { 
+		 			} else {
 
-		 				$schema_type = get_option( 'option_schema_type' ); 
-		 			} 
+		 				$schema_type = get_option( 'option_schema_type' );
+		 			}
 
 	 			} elseif( is_author() ) {
 
 	 				$schema_type = 'Person';
 
-	 			} else { 
+	 			} else {
 
 	 				$schema_type = 'Article';
 
 	 			}
-		 		
+
 	 		echo 'itemscope itemtype="http://schema.org/' . $schema_type . '"';
 	 	}
 
@@ -1241,10 +1201,10 @@ Options functions */
 		}
 
 
-		
+
 
 /************************************************************************************************************************
-Testing */
+Testing *
 
 		function wk_notification() {
 			?>
@@ -1253,7 +1213,7 @@ Testing */
 		        <p>Esta es una notificación</p>
 		    </div>
 
-		    <?php 
+		    <?php
 		}
 
 		add_action( 'admin_notices', 'wk_notification' );
@@ -1263,11 +1223,11 @@ Buscar en el codex en admin menu */
 
 		function wp_codex_search_form() { ?>
 		    <form id="search-codex" class="wk-padding-h-22 wk-flex-item wk-flex-align-center wk-flex-justify-between" target="_blank" method="get" action="http://wordpress.org/search/do-search.php" class="alignright" style="margin: 11px 5px 0;">
-		        <input style="width: 77%;height: 29px;" type="text" onblur="this.value=(this.value==\'\') ? \'Search the Codex\' : this.value;" onfocus="this.value=(this.value==\'Search the Codex\') ? \'\' : this.value;" maxlength="150" placeholder="Buscar en el codex" ="Search the Codex" name="search" class="text"> 
+		        <input style="width: 77%;height: 29px;" type="text" onblur="this.value=(this.value==\'\') ? \'Search the Codex\' : this.value;" onfocus="this.value=(this.value==\'Search the Codex\') ? \'\' : this.value;" maxlength="150" placeholder="Buscar en el codex" ="Search the Codex" name="search" class="text">
 		        <input type="submit" value="Go" class="button" />
 		    </form>
 		<?php }
-		
+
 		if(is_admin()) {
 			add_filter( 'adminmenu', 'wp_codex_search_form', 11 );
 		}
@@ -1277,8 +1237,7 @@ Cuenta caracteres en el excerpt */
 
 		function wk_excerpt_count_js(){
 		      echo '<script>jQuery(document).ready(function(){
-		jQuery("#postexcerpt .handlediv").after("<div style=\"position:absolute;top:0px;right:5px;color:#666;\"><small>Excerpt length: </small><input type=\"text\" value=\"0\" maxlength=\"3\" size=\"3\" id=\"excerpt_counter\" readonly=\"\" style=\"background:#fff;\"> <small>character(s).</small></div>");
-		     jQuery("#excerpt_counter").val(jQuery("#excerpt").val().length);
+		jQuery("#postexcerpt .handlediv").after("<div style=\"position: absolute; top: -1px; right: 35px; color: #666; height: 36px; display: flex; align-items: center; width: 140px; justify-content: space-between; padding: 0 10px;\"><small></small><input type=\"text\" value=\"0\" maxlength=\"3\" size=\"3\" id=\"excerpt_counter\" readonly=\"\" style=\"background:#fff;\"> <small>character(s).</small></div>"); jQuery("#excerpt_counter").val(jQuery("#excerpt").val().length);
 		     jQuery("#excerpt").keyup( function() {
 		     jQuery("#excerpt_counter").val(jQuery("#excerpt").val().length);
 		   });
@@ -1286,6 +1245,169 @@ Cuenta caracteres en el excerpt */
 		}
 		add_action( 'admin_head-post.php', 'wk_excerpt_count_js');
 		add_action( 'admin_head-post-new.php', 'wk_excerpt_count_js');
+
+
+
+/************************************************************************************************************************
+Meta boxes */
+
+
+		/**
+		 * Generated by the WordPress Meta Box generator
+		 * at http://jeremyhixon.com/tool/wordpress-meta-box-generator/
+		 */
+
+		// Estílos adicionales
+
+				function wk_codediv_get_meta( $value ) {
+					global $post;
+
+					$field = get_post_meta( $post->ID, $value, true );
+					if ( ! empty( $field ) ) {
+						return is_array( $field ) ? stripslashes_deep( $field ) : stripslashes( wp_kses_decode_entities( $field ) );
+					} else {
+						return false;
+					}
+				}
+
+				function wk_codediv_add_meta_box() {
+
+					$args = array(
+						'public'	=> true,
+						//'_builtin' 	=> false
+					);
+
+					$post_types = get_post_types( $args, 'names' );
+
+					add_meta_box(
+						'wk-codediv',
+						__( 'Estílos adicionales', 'wk_codediv' ),
+						'wk_codediv_html',
+						$post_types,
+						'advanced',
+						'low'
+					);
+				}
+				add_action( 'add_meta_boxes', 'wk_codediv_add_meta_box' );
+
+				function wk_codediv_html( $post) {
+					wp_nonce_field( '_wk_codediv_nonce', 'wk_codediv_nonce' ); ?>
+
+						<style id="codediv-style-inline">#wk-codediv .inside {margin-top: 0; padding: 0; } </style>
+						<!-- <label for="wk_codediv_cdigo"><?php _e( 'Inserta estílos y escripts adicionales', 'wk_codediv' ); ?></label><br> -->
+						<form><textarea name="wk_codediv_cdigo" id="wk_codediv_cdigo" rows="10" style="width: 100%;"><?php echo wk_codediv_get_meta( 'wk_codediv_cdigo' ); ?></textarea></form>
+
+					<script>
+					  var editor = CodeMirror.fromTextArea(document.getElementById("wk_codediv_cdigo"), {
+					    lineNumbers: true,
+					    styleActiveLine: true,
+					    matchBrackets: true
+					  });
+					</script>
+
+					<?php
+				}
+
+				function wk_codediv_save( $post_id ) {
+					if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
+					if ( ! isset( $_POST['wk_codediv_nonce'] ) || ! wp_verify_nonce( $_POST['wk_codediv_nonce'], '_wk_codediv_nonce' ) ) return;
+					if ( ! current_user_can( 'edit_post', $post_id ) ) return;
+
+					if ( isset( $_POST['wk_codediv_cdigo'] ) )
+						update_post_meta( $post_id, 'wk_codediv_cdigo', esc_attr( $_POST['wk_codediv_cdigo'] ) );
+				}
+				add_action( 'save_post', 'wk_codediv_save' );
+
+				/*
+					Usage: wk_codediv_get_meta( 'wk_codediv_cdigo' )
+				*/
+
+		// Scripts adicionales
+
+				function wk_scriptdiv_get_meta( $value ) {
+					global $post;
+
+					$field = get_post_meta( $post->ID, $value, true );
+					if ( ! empty( $field ) ) {
+						return is_array( $field ) ? stripslashes_deep( $field ) : stripslashes( wp_kses_decode_entities( $field ) );
+					} else {
+						return false;
+					}
+				}
+
+				function wk_scriptdiv_add_meta_box() {
+
+					$args = array(
+						'public'	=> true,
+						//'_builtin' 	=> false
+					);
+
+					$post_types = get_post_types( $args, 'names' );
+
+					add_meta_box(
+						'wk_scriptdiv',
+						__( 'Scripts', 'wk_scriptdiv' ),
+						'wk_scriptdiv_html',
+						$post_types,
+						'advanced',
+						'low'
+					);
+				}
+				add_action( 'add_meta_boxes', 'wk_scriptdiv_add_meta_box' );
+
+				function wk_scriptdiv_html( $post) {
+
+					wp_nonce_field( '_wk_scriptdiv_nonce', 'wk_scriptdiv_nonce' );
+
+					?>
+
+						<style id="scriptdiv-style-inline">#wk_scriptdiv .inside {margin-top: 0; padding: 0; } </style>
+						<!-- <label for="wk_scriptdiv_scripts"><?php _e( 'Scripts', 'wk_scriptdiv' ); ?></label><br> -->
+						<textarea name="wk_scriptdiv_scripts" id="wk_scriptdiv_scripts" ><?php echo wk_scriptdiv_get_meta( 'wk_scriptdiv_scripts' ); ?></textarea>
+						<script>
+						  var editor = CodeMirror.fromTextArea(document.getElementById("wk_scriptdiv_scripts"), {
+						    lineNumbers: true,
+						    styleActiveLine: true,
+						    matchBrackets: true
+						  });
+						</script>
+						<p class="description" style="padding: 12px;">
+
+							<span>¿En dónde se aplicarán?</span>
+
+							<input type="radio" name="wk_scriptdiv_locate" id="wk_scriptdiv_locate_0" value="Header" <?php echo ( wk_scriptdiv_get_meta( 'wk_scriptdiv_locate' ) === 'Header' ) ? 'checked' : ''; ?>>
+							<label for="wk_scriptdiv_locate_0">Header</label>
+
+							<input type="radio" name="wk_scriptdiv_locate" id="wk_scriptdiv_locate_1" value="Footer" <?php echo ( wk_scriptdiv_get_meta( 'wk_scriptdiv_locate' ) === 'Footer' ) ? 'checked' : ''; ?> style="margin-left: 12px;">
+							<label for="wk_scriptdiv_locate_1">Footer</label><br>
+						</p>
+
+					<?php
+
+				}
+
+				function wk_scriptdiv_save( $post_id ) {
+					if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
+					if ( ! isset( $_POST['wk_scriptdiv_nonce'] ) || ! wp_verify_nonce( $_POST['wk_scriptdiv_nonce'], '_wk_scriptdiv_nonce' ) ) return;
+					if ( ! current_user_can( 'edit_post', $post_id ) ) return;
+
+					if ( isset( $_POST['wk_scriptdiv_locate'] ) )
+						update_post_meta( $post_id, 'wk_scriptdiv_locate', esc_attr( $_POST['wk_scriptdiv_locate'] ) );
+					if ( isset( $_POST['wk_scriptdiv_scripts'] ) )
+						update_post_meta( $post_id, 'wk_scriptdiv_scripts', esc_attr( $_POST['wk_scriptdiv_scripts'] ) );
+				}
+				add_action( 'save_post', 'wk_scriptdiv_save' );
+
+				/*
+					Usage: wk_scriptdiv_get_meta( 'wk_scriptdiv_locate' )
+					Usage: wk_scriptdiv_get_meta( 'wk_scriptdiv_scripts' )
+				*/
+
+
+
+
+
+
 
 
 

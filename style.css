@@ -9,7 +9,7 @@ License: © Copyright Alumin.Agency All rights reserved
 */
 
 
-/* 
+/*
 
 	Colores
 
@@ -42,7 +42,7 @@ License: © Copyright Alumin.Agency All rights reserved
 		margin: auto;
 		} */
 
-		iframe, 
+		iframe,
 		video {
 	    width: 100%;
 		}
@@ -62,7 +62,7 @@ License: © Copyright Alumin.Agency All rights reserved
 
 ------------------------------------------------------------------------------------------------------*/
 
-	
+
 
 	/* Logo Bar */
 		#bs_logo_bar:not(.bs_logo_bar_alt) {
@@ -80,7 +80,7 @@ License: © Copyright Alumin.Agency All rights reserved
 		/* justify-content: space-around; */
 		align-items: center;
 		}
-			
+
 			#nav-main .menu {
 			text-align: right;
 			width: 100%;
@@ -98,11 +98,15 @@ License: © Copyright Alumin.Agency All rights reserved
 				display: flex;
 				align-items: center;
 				}
-			
+
 				#nav-main .menu > .menu-item {
 				display: inline-block;
 				position: relative;
 				height: 100%;
+				}
+
+				#nav-main .sub-menu .menu-item a {
+				color: black;
 				}
 
 				/*#nav-main .menu > .menu-item:not(:last-child) {
@@ -111,7 +115,7 @@ License: © Copyright Alumin.Agency All rights reserved
 
 	/* Sub menu */
 
-	
+
 			.sub-menu {
 			text-transform: initial;
 			letter-spacing: initial;
@@ -200,7 +204,7 @@ License: © Copyright Alumin.Agency All rights reserved
 
 ------------------------------------------------------------------------------------------------------*/
 
-	
+
 	.bs_cat_fashion_menu {
 	position: absolute;
 	top: 0;

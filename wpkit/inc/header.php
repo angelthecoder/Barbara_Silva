@@ -220,6 +220,37 @@
 		<?php if( get_option('option_mobile_callback') ) : $mobile_callback = get_option('option_mobile_callback'); else : $mobile_callback = 770; endif; ?>
 		<link type="text/css" rel="stylesheet" media="screen and (max-width:<?php echo $mobile_callback; ?>px)" href="<?php echo get_template_directory_uri(); ?>/css/mobile.css">	
 		<link type="text/css" rel="stylesheet" media="screen and (min-width:<?php echo $mobile_callback + 1; ?>px)" href="<?php echo get_template_directory_uri(); ?>/css/desktop.css">	
+
+	<!--page-style-->
+		<style id="<?php global $post; echo $post->post_name; ?>-style">
+			<?php 
+
+			/* 
+			* Toma el campo guardado en metabox codediv
+			*/
+
+			$code = wk_codediv_get_meta( 'wk_codediv_cdigo' ); echo $code; ?>
+		</style>
+	<!--Page scripts-->
+		<?php 
+
+			/* 
+			* Toma el campo guardado en metabox scriptdiv y opción Header
+			*/
+
+			if( wk_scriptdiv_get_meta( 'wk_scriptdiv_locate' ) == 'Header' ) { 
+
+				$script = wk_scriptdiv_get_meta( 'wk_scriptdiv_scripts' ); ?>
+
+				<script id="<?php global $post; echo $post->post_name; ?>-head-scripts">
+					<?php echo $script; ?>
+				</script>
+
+				<?php 
+
+			} 
+
+		?>
 	
 	
 

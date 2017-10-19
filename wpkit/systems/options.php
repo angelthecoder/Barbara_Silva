@@ -103,10 +103,6 @@
 			
 			<?php settings_errors(); ?>
 
-			<div class="notice notice-success">
-		        <p>Así es como se verán las notificaciones.</p>
-		    </div>
-
 			<h2>
 				<img style="width: 120px; margin: 20px 0;" src="<?php echo get_template_directory_uri(); ?>/wpkit/admin/img/wpkit-logo.svg">
 			</h2>
@@ -127,7 +123,7 @@
 
 						<div id="post-body-content">
 
-							<div class="wk-tabs-content-left">						
+							<div class="wk-tabs-content-top">						
 
 								<ul class="wk-tabs-list clearfix" data-tabgroup="first-tab-group">
 									<li><a href="#tab1" class="active"><i class="dashicons-before dashicons-admin-settings"></i> Opciones</a></li>
@@ -337,7 +333,7 @@
 											<div class="wk-tab-rows">
 												<div class="wk-tab-row wk-cols">
 													<div class="wk-col wk-col-2e wk-col-data">
-														<label for="option-mobile-callback">Media Query</label>
+														<label for="option-mobile-callback">Media Query break point</label>
 														<p class="description">A que medida se aplicará la hoja de estílo mobile.css Si no se especifíca, por default se aplicará a 770px.</p>
 													</div>
 													<div class="wk-col wk-col-2e wk-col-data">
@@ -462,23 +458,35 @@
 												</div>
 												<div class="wk-tab-row wk-cols">
 													<div class="wk-col wk-col-2e wk-col-data">Título del sitio</div>
-													<div class="wk-col wk-col-2e wk-col-data"><strong><?php bloginfo( 'name' ); ?></strong></div>
+													<div class="wk-col wk-col-2e wk-col-data">
+														<input type="text" value="<?php bloginfo( 'name' ); ?>" disabled style="margin: 0;">
+														<p class="description">Cambia el título del sitio en ajustes generales</p>
+													</div>
 												</div>
 												<div class="wk-tab-row wk-cols">
 													<div class="wk-col wk-col-2e wk-col-data">Descripción</div>
-													<div class="wk-col wk-col-2e wk-col-data"><?php bloginfo( 'description' ); ?></div>
+													<div class="wk-col wk-col-2e wk-col-data">
+														<input type="text" value="<?php bloginfo( 'description' ); ?>" disabled style="margin: 0;">
+														<p class="description">Cambia la descripción del sitio en ajustes generales</p>
+													</div>
 												</div>
 												<div class="wk-tab-row wk-cols">
 													<div class="wk-col wk-col-2e wk-col-data">URL Canónica de homepage</div>
-													<div class="wk-col wk-col-2e wk-col-data"><?php bloginfo( 'url' ); ?></div>
+													<div class="wk-col wk-col-2e wk-col-data">
+														<input type="text" value="<?php bloginfo( 'url' ); ?>" disabled style="margin: 0;">
+													</div>
 												</div>
 												<div class="wk-tab-row wk-cols">
 													<div class="wk-col wk-col-2e wk-col-data">Codificación de caractéres</div>
-													<div class="wk-col wk-col-2e wk-col-data"><?php bloginfo( 'charset' ); ?></div>
+													<div class="wk-col wk-col-2e wk-col-data">
+														<input type="text" value="<?php bloginfo( 'charset' ); ?>" disabled style="margin: 0;">
+													</div>
 												</div>
 												<div class="wk-tab-row wk-cols">
 													<div class="wk-col wk-col-2e wk-col-data">Idioma</div>
-													<div class="wk-col wk-col-2e wk-col-data"><?php bloginfo( 'language' ); ?></div>
+													<div class="wk-col wk-col-2e wk-col-data">
+														<input type="text" value="<?php bloginfo( 'language' ); ?>" disabled style="margin: 0;">
+													</div>
 												</div>
 											</div>
 											<div class="wk-tab-rows">
@@ -968,7 +976,7 @@
 											<div id="major-publishing-actions">
 												<div id="publishing-action">
 												<span class="spinner"></span>
-													<input name="" type="submit" class="button button-primary button-large" id="" value="Actualizar">
+													<input name="" type="submit" class="button button-primary button-large_" id="" value="Actualizar">
 												</div>
 												<div class="clear"></div>
 											</div>
@@ -980,7 +988,7 @@
 
 						<div id="postbox-container-2" class="postbox-container">
 
-							<h1><?php esc_attr_e( 'Heading String', 'wp_admin_style' ); ?></h1>
+							<!-- <h1><?php esc_attr_e( 'Heading String', 'wp_admin_style' ); ?></h1>
 
 							<div id="col-container">
 
@@ -993,10 +1001,8 @@
 										</div>
 
 									</div>
-									<!-- /col-wrap -->
 
 								</div>
-								<!-- /col-right -->
 
 								<div id="col-left">
 
@@ -1006,15 +1012,12 @@
 											<p><?php esc_attr_e( 'Everything you see here, from the documentation to the code itself, was created by and for the community. WordPress is an Open Source project, which means there are hundreds of people all over the world working on it. (More than most commercial platforms.) It also means you are free to use it for anything from your cat’s home page to a Fortune 500 web site without paying anyone a license fee and a number of other important freedoms.', 'wp_admin_style' ); ?></p>
 										</div>
 									</div>
-									<!-- /col-wrap -->
 
 								</div>
-								<!-- /col-left -->
 
-							</div>
-							<!-- /col-container -->
+							</div> -->
 
-							<table class="widefat">
+							<!-- <table class="widefat">
 								<tr>
 									<th class="row-title">
 										<?php esc_attr_e( 'Table header cell #1', 'wp_admin_style' ); ?>
@@ -1052,7 +1055,7 @@
 										<?php esc_attr_e( 'Table Cell #6', 'wp_admin_style' ); ?>
 									</td>
 								</tr>
-						    </table>
+						    </table> -->
 
 
 							<span style="display: block; clear:both;"></span>
@@ -1065,9 +1068,7 @@
 
 				</div><!-- #poststuff -->				
 
-				
-
-				<?php submit_button( 'Guardar' ); ?>
+				<?php //submit_button( 'Guardar' ); ?>
 
 			</form>
 

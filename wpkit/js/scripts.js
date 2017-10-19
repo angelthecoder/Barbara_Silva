@@ -32,4 +32,12 @@ jQuery(document).ready(function($){
 			$(current).closest('.upload-img').find('.wk_option_image_uploader_action').css('display', 'initial');
 		});
 
+
+		// Cambia de posición metabox de Excerpt arriba del editor
+			$('#postdivrich').prepend($('#postexcerpt'));
+			$('#postexcerpt').css( 'margin-top', '30px' );
+			$('#postexcerpt .inside').prepend( 'Se usará para mostrar descripciones en google y redes sociales, manten este extracto abajo de 160 caracteres.' );
+			$('#postexcerpt .inside p').remove();
+
+
 });

@@ -58,3 +58,13 @@ Toolbar
 		background: #fafafa;
 		color: inherit;
 		}
+
+		/* Avatar & user info */
+
+		#wpadminbar .avatar-32 {
+	    max-width: 32px;
+		}
+
+		#wpadminbar .avatar-64 {
+		max-width: 64px;
+		}

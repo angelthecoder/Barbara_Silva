@@ -31,6 +31,9 @@ Admin scripts */
 				wp_register_style( 'wpkit-dashb-toolbar', $GLOBALS['dashb_url'] . 'css/toolbar.css' ); wp_enqueue_style( 'wpkit-dashb-toolbar' );
 				wp_register_style( 'wpkit-dashb-admin-menu', $GLOBALS['dashb_url'] . 'css/admin-menu.css' ); wp_enqueue_style( 'wpkit-dashb-admin-menu' );
 				wp_register_style( 'wpkit-dashb-admin-sidebar', $GLOBALS['dashb_url'] . 'css/admin-sidebar.css' ); wp_enqueue_style( 'wpkit-dashb-admin-sidebar' );
+				if( get_option( 'wk_set_material_theme' ) ) {
+					wp_register_style( 'wpkit-dashb-admin-theme', $GLOBALS['dashb_url'] . 'css/material-theme.css' ); wp_enqueue_style( 'wpkit-dashb-admin-theme' );
+				} 
 				//wp_register_style( 'bootstrap', $dashb_url . 'assets/bootstrap/css/bootstrap.min.css', '', '3.3.6', 'all' ); wp_enqueue_style( 'bootstrap' );
 				//wp_register_style( 'bootstrap-reset', $GLOBALS['dashb_url'] . 'assets/bootstrap/css/reset-bootstrap.css' ); wp_enqueue_style( 'bootstrap-reset' );
 
@@ -120,7 +123,6 @@ Admin sidebar
 	function wpkit_admin_sidebar() {
 		include 'includes/admin-sidebar.php';
 	}
-	add_action( 'in_admin_header', 'wpkit_admin_sidebar' );
 
 	// Widgetized
 	function wpkit_admin_sidebar_widget_sidebar() {
@@ -138,7 +140,30 @@ Admin sidebar
 		register_sidebar( $args );
 
 	}
-	add_action( 'widgets_init', 'wpkit_admin_sidebar_widget_sidebar' );
+	
+	// Toggle Icon toolbar
+
+		function wpkit_toolbar_item_toggle( $wp_admin_bar ) {
+			$args = array(
+				'id'    => 'toggle_icon',
+				'title' => '<span id="toggle-icon-sidebar" class="ab-icon dashicons-before dashicons-menu"></span>',
+				'menu_icon' => 'dashicons-images-alt2',
+				'parent' => 'top-secondary',
+			);
+			$wp_admin_bar->add_node( $args );
+		}
+
+		
+	if( get_option( 'wk_set_admin_sidebar' ) ) {
+
+		//Render sidebar
+		add_action( 'in_admin_header', 'wpkit_admin_sidebar' );
+		// Widget area
+		add_action( 'widgets_init', 'wpkit_admin_sidebar_widget_sidebar' );
+		// Tooble icon
+		add_action( 'admin_bar_menu', 'wpkit_toolbar_item_toggle', 0 );
+	}
+
 
 /*******************************************************************************
 Toolbar
@@ -150,22 +175,32 @@ Toolbar
 			$wp_admin_bar->remove_node( 'wp-logo' );
 			$wp_admin_bar->remove_node( 'view-site' );
 			$wp_admin_bar->remove_node( 'site-name' );
-			/*if ( get_option( 'custom_logo' ) ) {
+			if ( get_option( 'wk_custom_admin_logo' ) ) {
 
-				$blavatar = '<img style="max-height: 70%; width: auto;" src="' . get_option( 'custom_logo' ) . '" alt="' . esc_attr__( get_bloginfo('name') ) . '" class="blavatar"/>';
+				$blavatar = '<img style="max-height: 22px;" src="' . get_option( 'wk_custom_admin_logo' ) . '" alt="' . esc_attr__( get_bloginfo('name') ) . '" class="blavatar"/>';
 
-			} else {
-				if( get_option( 'custom_admin_background' ) ) {
-					$site_logo_source = $GLOBALS['dashb_url'] . '/img/wpkit-logo-w.svg';
-				} else {
-					$site_logo_source = $GLOBALS['dashb_url'] . '/img/wpkit-logo.svg';
-				}
+			} else {				
 				
-				$blavatar = '<img style="max-height: 22px; width: 70%;" src="' . $site_logo_source . '" alt="' . esc_attr__( get_bloginfo('name') ) . '" class="blavatar"/>';
-			}*/
-
-			$site_logo_source = $GLOBALS['dashb_url'] . '/img/wpkit-logo_b.svg';
-            $blavatar = '<span><img style="max-height: 22px;" src="' . $site_logo_source . '" alt="' . esc_attr__( get_bloginfo('name') ) . '" class="blavatar"/></span>';
+				if( get_option( 'wk_toolbar_color' ) == '#ffffff' ) { 
+					
+					$site_logo_source = $GLOBALS['dashb_url'] . '/img/wpkit-logo.svg';
+					
+				} else {
+					?>
+						<style>
+							#wpadminbar {
+							background-color: <?php echo get_option( 'wk_toolbar_color' ); ?>;
+							color: <?php echo get_option( 'wk_toolbar_text_color' ); ?>;
+							}	
+						</style>
+					<?php
+					$site_logo_source = $GLOBALS['dashb_url'] . '/img/wpkit-logo-w.svg';
+				}
+			
+				//$site_logo_source = $GLOBALS['dashb_url'] . '/img/wpkit-logo_b.svg';
+				$blavatar = '<img style="max-height: 22px;" src="' . $site_logo_source . '" alt="' . esc_attr__( get_bloginfo('name') ) . '" class="blavatar"/>';			
+				
+			}            
 
 			$wp_admin_bar->add_menu( array(
 				'id' => 'site-logo',
@@ -259,20 +294,12 @@ Toolbar
 			$wp_admin_bar->add_node( $args );
 
 	}
-	add_action( 'admin_bar_menu', 'wk_add_nodes_and_groups_to_toolbar', 999 );
 
-	// Toggle Icon
+	if( get_option( 'wk_set_toolbar_menu' ) ) {
+		
+		add_action( 'admin_bar_menu', 'wk_add_nodes_and_groups_to_toolbar', 999 );
 
-	function wpkit_toolbar_item_toggle( $wp_admin_bar ) {
-		$args = array(
-			'id'    => 'toggle_icon',
-			'title' => '<span id="toggle-icon-sidebar" class="ab-icon dashicons-before dashicons-menu"></span>',
-			'menu_icon' => 'dashicons-images-alt2',
-			'parent' => 'top-secondary',
-		);
-		$wp_admin_bar->add_node( $args );
 	}
-	add_action( 'admin_bar_menu', 'wpkit_toolbar_item_toggle', 0 );
 
 
 /*******************************************************************************
@@ -290,7 +317,7 @@ User info en toolbar fixed
 			$avatar = '<style>.wk-avatar .avatar { width: 100%; height: auto; border-radius: 100px !important; }</style><span class="wk-avatar">' . get_avatar( $user_id, 32 ) . '</span>';
 		
 
-		$howdy = sprintf( __('Loged in as  <span class="display-name" style="margin-left: 3px; 	text-transform: capitalize;"> %1$s</span>'), $current_user->user_login );
+		$howdy = sprintf( __('<span class="display-name" style="margin-left: 3px; 	text-transform: capitalize;"> %1$s</span>'), $current_user->user_login );
 		$class = empty( $avatar ) ? '' : 'with-avatar';
 
 		$wp_admin_bar->add_menu( array(
@@ -358,8 +385,14 @@ Admin menú secundario
 
 		function wpkit_admin_footer() {
 			$my_theme = wp_get_theme();
-			echo '<strong>' . $my_theme->get( 'Name' ) . '</strong>' . " V" . $my_theme->get( 'Version' );
-			echo ' Powered by <strong>WPKit Framework</strong> developed by <a href="http://www.albertohartzet.com" target="_blank">Hrtzt</a>';
+
+			$custom_footer_text = get_option( 'wk_footer_text' );
+
+			if( $custom_footer_text ) {
+				echo $custom_footer_text;
+			} else {
+				echo '<strong>' . $my_theme->get( 'Name' ) . '</strong>' . " V" . $my_theme->get( 'Version' ) . ' Powered by <strong>WPKit Framework</strong> developed by <a href="http://www.albertohartzet.com" target="_blank">Hrtzt</a>';				
+			}
 
 		}
 		add_filter('admin_footer_text', 'wpkit_admin_footer');
@@ -555,10 +588,17 @@ Options page
 
 	function wk_dashb_register_settings() {
 		//register settings Admin panel
-		register_setting( 'wpkit-theme-settings-group', 'toolbar_logo' );
-		register_setting( 'wpkit-theme-settings-group', 'show_admin_sidebar' );
-		register_setting( 'wpkit-theme-settings-group', 'posts_by_you' );
-		register_setting( 'wpkit-theme-settings-group', 'footer_text' );
+		register_setting( 'wk-admin-theme-settings-group', 'wk_custom_admin_logo' );
+		register_setting( 'wk-admin-theme-settings-group', 'wk_set_material_theme' );
+		register_setting( 'wk-admin-theme-settings-group', 'wk_set_admin_sidebar' );
+		register_setting( 'wk-admin-theme-settings-group', 'wk_set_toolbar_menu' );
+		register_setting( 'wk-admin-theme-settings-group', 'wk_posts_by_you' );
+		register_setting( 'wk-admin-theme-settings-group', 'wk_footer_text' );
+		
+		register_setting( 'wk-admin-theme-settings-group', 'wk_toolbar_color' );
+		register_setting( 'wk-admin-theme-settings-group', 'wk_toolbar_text_color' );
+		register_setting( 'wk-admin-theme-settings-group', 'wk_hide_wp_toolbar' );
+		register_setting( 'wk-admin-theme-settings-group', 'wk_use_wp_color_scheme' );
 
 		//register settings Login
 		register_setting( 'wk-login-settings-group', 'custom_logo' ); // Se queda para compatiblidad con sitios ya instalados con la versión anterior de wpkit
@@ -578,7 +618,7 @@ Options page
 
 	// Contenido appearance/Admin Panel
 	function wk_options_administrator_callback() { 
-
+		
 		?>
 
 			<div class="wrap">
@@ -588,164 +628,305 @@ Options page
 				<?php settings_errors(); ?>
 
 				<form method="post" action="options.php">
-					<?php settings_fields( 'general' ); ?>
-					<?php do_settings_sections( 'general' ); ?>
+					<?php settings_fields( 'wk-admin-theme-settings-group' ); ?>
+					<?php do_settings_sections( 'wk-admin-theme-settings-group' ); ?>
+					
+
+					<h2 class="nav-tab-wrapper">
+						<a href="#" class="nav-tab nav-tab-active">Tab #1</a>
+						<a href="#" class="nav-tab">Tab #2</a>
+						<a href="#" class="nav-tab">Tab #3</a>
+					</h2>
+
+					<div id="poststuff">
+
+						<div id="post-body" class="metabox-holder columns-2">
+
+							<!-- main content -->
+							<div id="post-body-content">
+
+								<div class="meta-box-sortables ui-sortable">
+
+									<div class="postbox">
+
+										<h2><span><?php esc_attr_e( 'Main Content Header', 'wp_admin_style' ); ?></span></h2>
+
+										<div class="inside">
+											<p><?php esc_attr_e(
+													'WordPress started in 2003 with a single bit of code to enhance the typography of everyday writing and with fewer users than you can count on your fingers and toes. Since then it has grown to be the largest self-hosted blogging tool in the world, used on millions of sites and seen by tens of millions of people every day.',
+													'wp_admin_style'
+												); ?></p>
+										</div>
+										<!-- .inside -->
+
+									</div>
+									<!-- .postbox -->
+
+								</div>
+
+								<!-- .meta-box-sortables .ui-sortable -->														
+								<table class="form-table widefat">
+									<col width="200">
+									<tr valign="top">
+										<td scope="row">
+											<?php esc_attr_e( 'Admin Logo', 'wp_admin_style' ); ?>
+											<p class="description">Personaliza el logo en el panel de administración</p>
+										</td>
+										<td>
+											<div class="upload-img">
+				        		    			<?php if( ! get_option( 'wk_custom_admin_logo' ) ) : ?>
+				        	    					<?php $wk_hide = 'style="display: inline-block;"'; ?>
+				        	    					<?php $wk_hide_image = 'style="display: none;"'; ?>
+				        		    			<?php else : ?>
+				        	    					<?php $wk_hide = 'style="display: none;"'; ?>
+				        	    					<?php $wk_hide_image = 'style="display: inline-block;"'; ?>
+				        		    			<?php endif; ?>
+				        			    		<div class="wk_option_image_uploader_container" <?php echo $wk_hide_image; ?>>
+				        		    				<img width="250" class="image_src" src="<?php echo get_option( 'wk_custom_admin_logo' ); ?>">
+				        			    			<span class="dashicons-before dashicons-dismiss remove-image"></span>
+				        			    		</div>
+				        						<div class="flex-item wk_option_image_uploader_action" <?php echo $wk_hide; ?>>
+				        						    <input style="display: none;" type="text" name="wk_custom_admin_logo" class="image_url regular-text" value="<?php echo esc_attr( get_option('wk_custom_admin_logo') ); ?>" >
+				        						    <button type="button" name="upload-btn" id="" class="upload-btn button-secondary">Añadir imagen</button>
+				        						</div>
+								        	</div>
+										</td>
+									</tr>
+									<tr valign="top" class="alternate">
+								        <td scope="row">
+									       <label for="tablecell">Color de toolbar</label>
+											<p class="description">Aplica un fondo obscuro al toolbar, útil cuando los logos son blancos.</p>
+								        </td>
+								        <td>
+								        	<input type="color" name="wk_toolbar_color" id="wk_toolbar_color" value="<?php if( get_option( 'wk_toolbar_color' ) ) : echo esc_attr( get_option('wk_toolbar_color') ); else : echo '#ffffff'; endif; ?>"/>
+											<p class="description">#1d242a</p>
+								        </td>
+							        </tr>
+									<tr valign="top">
+								        <td scope="row">
+									       <label for="tablecell">Color del texto del toolbar</label>
+								        </td>
+								        <td>
+								        	<input type="color" name="wk_toolbar_text_color" id="wk_toolbar_text_color" value="<?php if( get_option( 'wk_toolbar_text_color' ) ) : echo esc_attr( get_option('wk_toolbar_text_color') ); else : echo '#000000'; endif; ?>"/>
+								        </td>
+							        </tr>
+									<tr valign="top" class="alternate">
+										<td scope="row">
+											<label for="tablecell">Material theme</label>
+											<p class="description">Activa el tema "Material" para el panel de administración.</p>
+										</td>
+										<td>
+											<input type="checkbox" name="wk_set_material_theme" id="wk_set_material_theme" value="1" <?php checked(1, get_option('wk_set_material_theme'), true); ?> />
+										</td>
+									</tr>
+									<tr valign="top">
+										<td scope="row">
+											<label for="tablecell">Esquemas de color de WP</label>
+											<p class="description">Utilizar los esquemas de color default de wordpress.</p>
+										</td>
+										<td>
+											<input type="checkbox" name="wk_use_wp_color_scheme" id="wk_use_wp_color_scheme" value="1" <?php checked(1, get_option('wk_use_wp_color_scheme'), true); ?> />
+										</td>
+									</tr>
+									<tr valign="top" class="alternate">
+										<td scope="row">
+											<label for="tablecell">Admin sidebar</label>
+											<p class="description">Muestra un área de widgets en un sidebar lateral oculto.</p>
+										</td>
+										<td>
+											<input type="checkbox" name="wk_set_admin_sidebar" id="wk_set_admin_sidebar" value="1" <?php checked(1, get_option('wk_set_admin_sidebar'), true); ?> />
+										</td>
+									</tr>
+									<tr valign="top">
+										<td scope="row">
+											<label for="tablecell">Toolbar menu</label>
+											<p class="description">Menú personalizado en toolbar</p>
+										</td>
+										<td>
+											<input type="checkbox" name="wk_set_toolbar_menu" id="wk_set_toolbar_menu" value="1" <?php checked(1, get_option('wk_set_toolbar_menu'), true); ?> />
+										</td>
+									</tr>
+									<tr valign="top"  class="alternate">
+										<td scope="row">
+											<label for="tablecell">Posts by you</label>
+											<p class="description">Muestra los posts publicados por el usuario en el user deck de admin menú.</p>
+										</td>
+										<td>
+											<input type="checkbox" name="wk_posts_by_you" id="wk_posts_by_you" value="1" <?php checked(1, get_option('wk_posts_by_you'), true); ?> />
+										</td>
+									</tr>
+									<tr valign="top">
+										<td scope="row">
+											<label for="tablecell">Texto en el footer</label>
+											<p class="description">Personaliza el texto en el footer dentro panel de administración. Acepta html.</p>
+										</td>
+										<td>
+											<input type="text" name="wk_footer_text" id="wk_footer_text" value="<?php echo esc_attr( get_option('wk_footer_text') ); ?>" class="regular-text"/>
+										</td>
+									</tr>
+									<tr valign="top" class="alternate">
+										<td scope="row">
+											<label for="tablecell">Oculta Toolbar en el sitio</label>
+											<p class="description">Solo se ocultará en el frente del sitio.</p>
+										</td>
+										<td>
+											<select name="wk_hide_wp_toolbar" id="wk_hide_wp_toolbar">
+												<option value="0" <?php selected( get_option('wk_hide_wp_toolbar'), 0 ); ?>>- Selecciona una opción</option>
+												<option value="1" <?php selected( get_option('wk_hide_wp_toolbar'), 1 ); ?>>Para todos</option>
+												<option value="2" <?php selected( get_option('wk_hide_wp_toolbar'), 2 ); ?>>Excepto para administradores</option>
+											</select>
+										</td>
+									</tr>
+								</table>
+
+								<!--<table class="form-table widefat">
+									<td valign="top">
+										<th class="row-title"><?php esc_attr_e( 'Table header cell #1', 'wp_admin_style' ); ?></th>
+										<th><?php esc_attr_e( 'Table header cell #2', 'wp_admin_style' ); ?></th>
+									</td>
+									<tr valign="top">
+										<td scope="row"><label for="tablecell"><?php esc_attr_e('Table data cell #1, with label', 'wp_admin_style'); ?></label></td>
+										<td><?php esc_attr_e( 'Table Cell #2', 'wp_admin_style' ); ?></td>
+									</tr>
+									<tr valign="top" class="alternate">
+										<td scope="row"><label for="tablecell"><?php esc_attr_e('Table Cell #3, with label and class', 'wp_admin_style'); ?> <code>alternate</code></label></td>
+										<td><?php esc_attr_e( 'Table Cell #4', 'wp_admin_style' ); ?></td>
+									</tr>
+									<tr valign="top">
+										<td scope="row"><label for="tablecell"><?php esc_attr_e('Table Cell #5, with label', 'wp_admin_style'); ?></label></td>
+										<td><?php esc_attr_e( 'Table Cell #6', 'wp_admin_style' ); ?></td>
+									</tr>
+								</table>-->
+
+							</div>
+							<!-- post-body-content -->
+
+							<!-- sidebar -->
+							<div id="postbox-container-1" class="postbox-container">
+							<div id="side-sortables" class="meta-box-sortables ui-sortable">
+								<div id="submitdiv" class="postbox ">
+									
+									<!-- Content box-->
+									<button type="button" class="handlediv button-link" aria-expanded="true">
+										<span class="screen-reader-text">Alternar panel: Publicar</span>
+										<span class="toggle-indicator" aria-hidden="true"></span>
+									</button>
+									<h2 class="hndle ui-sortable-handle"><span>Publicar</span></h2>
+									<div class="inside">
+										<div class="submitbox" id="submitpost">
+											<div id="minor-publishing">
+												<div style="display:none;">
+												<p class="submit"><input type="submit" name="save" id="save" class="button" value="Guardar"></p></div>
+												<div id="minor-publishing-actions">
+													<div id="save-action"></div>
+													<div class="clear"></div>
+												</div><!-- #minor-publishing-actions -->
+												<div id="misc-publishing-actions">
+													<div class="misc-pub-section misc-pub-post-status"><label for="post_status">Estado:</label>
+														<span id="post-status-display">Active</span>
+													</div><!-- .misc-pub-section -->
+													<div class="misc-pub-section misc-pub-visibility" id="visibility">
+														Visibilidad: <span id="post-visibility-display">Público</span>
+													</div><!-- .misc-pub-section -->
+													<div class="misc-pub-section curtime misc-pub-curtime">
+														<span id="timestamp">
+														Publicada el: <b>26 Nov de 2016 @ 05:49</b></span>
+													</div>
+													<script type="text/javascript">
+														(function($) {
+															
+															// modify status
+															$('#post-status-display').html('Active');
+															
+															
+															// remove edit links
+															$('#misc-publishing-actions a').remove();
+															
+															
+															// remove editables (fixes status text changing on submit)
+															$('#misc-publishing-actions .hide-if-js').remove();
+															
+														})(jQuery);	
+													</script>
+												</div>
+												<div class="clear"></div>
+											</div>
+
+											<div id="major-publishing-actions">
+												<div id="publishing-action">
+												<span class="spinner"></span>
+													<input name="" type="submit" class="button button-primary button-large" id="" value="Actualizar">
+												</div>
+												<div class="clear"></div>
+											</div>
+										</div>
+									</div><!-- END content box-->
+
+								</div>
+							</div>
+						</div>
+
+						</div>
+						<!-- #post-body .metabox-holder .columns-2 -->
+
+						<br class="clear">
+					</div>
+					<!-- #poststuff -->
+
+					<!-- <table class="widefat">
+						<tr>
+							<th class="row-title"><?php esc_attr_e( 'Table header cell #1', 'wp_admin_style' ); ?></th>
+							<th><?php esc_attr_e( 'Table header cell #2', 'wp_admin_style' ); ?></th>
+						</tr>
+						<tr>
+							<td class="row-title"><label for="tablecell"><?php esc_attr_e('Table Cell #1, with label', 'wp_admin_style'); ?></label></td>
+							<td><?php esc_attr_e( 'Table Cell #2', 'wp_admin_style' ); ?></td>
+						</tr>
+						<tr class="alternate">
+							<td class="row-title"><label for="tablecell"><?php esc_attr_e('Table Cell #3, with label and class', 'wp_admin_style'); ?> <code>alternate</code></label></td>
+							<td><?php esc_attr_e( 'Table Cell #4', 'wp_admin_style' ); ?></td>
+						</tr>
+						<tr>
+							<td class="row-title"><?php esc_attr_e( 'Table Cell #5, without label', 'wp_admin_style' ); ?></td>
+							<td><?php esc_attr_e( 'Table Cell #6', 'wp_admin_style' ); ?></td>
+						</tr>
+					</table> -->
+
+					<!-- <h1><?php esc_attr_e( 'Heading String', 'wp_admin_style' ); ?></h1> -->
+
+					<!-- <div id="col-container">
+
+						<div id="col-right">
+
+							<div class="col-wrap">
+								<?php esc_attr_e( 'Content Header', 'wp_admin_style' ); ?>
+								<div class="inside">
+									<p><?php esc_attr_e( 'WordPress started in 2003 with a single bit of code to enhance the typography of everyday writing and with fewer users than you can count on your fingers and toes. Since then it has grown to be the largest self-hosted blogging tool in the world, used on millions of sites and seen by tens of millions of people every day.', 'wp_admin_style' ); ?></p>
+								</div>
+
+							</div>
+
+						</div>
+
+						<div id="col-left">
+
+							<div class="col-wrap">
+								<?php esc_attr_e( 'Content Header', 'wp_admin_style' ); ?>
+								<div class="inside">
+									<p><?php esc_attr_e( 'Everything you see here, from the documentation to the code itself, was created by and for the community. WordPress is an Open Source project, which means there are hundreds of people all over the world working on it. (More than most commercial platforms.) It also means you are free to use it for anything from your cat’s home page to a Fortune 500 web site without paying anyone a license fee and a number of other important freedoms.', 'wp_admin_style' ); ?></p>
+								</div>
+							</div>
+
+						</div>
+
+					</div> -->
+					<!-- /col-container -->
+					
+					<div style="clear: both;"></div>
+				
 					<?php submit_button(); ?>
+					
 				</form>
-
-				<h2 class="nav-tab-wrapper">
-					<a href="#" class="nav-tab nav-tab-active">Tab #1</a>
-					<a href="#" class="nav-tab">Tab #2</a>
-					<a href="#" class="nav-tab">Tab #3</a>
-				</h2>
-
-				<div id="poststuff">
-
-					<div id="post-body" class="metabox-holder columns-2">
-
-						<!-- main content -->
-						<div id="post-body-content">
-
-							<div class="meta-box-sortables ui-sortable">
-
-								<div class="postbox">
-
-									<h2><span><?php esc_attr_e( 'Main Content Header', 'wp_admin_style' ); ?></span></h2>
-
-									<div class="inside">
-										<p><?php esc_attr_e(
-												'WordPress started in 2003 with a single bit of code to enhance the typography of everyday writing and with fewer users than you can count on your fingers and toes. Since then it has grown to be the largest self-hosted blogging tool in the world, used on millions of sites and seen by tens of millions of people every day.',
-												'wp_admin_style'
-											); ?></p>
-									</div>
-									<!-- .inside -->
-
-								</div>
-								<!-- .postbox -->
-
-							</div>
-							<!-- .meta-box-sortables .ui-sortable -->
-
-							<table class="form-table">
-								<tr>
-									<th class="row-title"><?php esc_attr_e( 'Table header cell #1', 'wp_admin_style' ); ?></th>
-									<th><?php esc_attr_e( 'Table header cell #2', 'wp_admin_style' ); ?></th>
-								</tr>
-								<tr valign="top">
-									<td scope="row"><label for="tablecell"><?php esc_attr_e(
-												'Table data cell #1, with label', 'wp_admin_style'
-											); ?></label></td>
-									<td><?php esc_attr_e( 'Table Cell #2', 'wp_admin_style' ); ?></td>
-								</tr>
-								<tr valign="top" class="alternate">
-									<td scope="row"><label for="tablecell"><?php esc_attr_e(
-												'Table Cell #3, with label and class', 'wp_admin_style'
-											); ?> <code>alternate</code></label></td>
-									<td><?php esc_attr_e( 'Table Cell #4', 'wp_admin_style' ); ?></td>
-								</tr>
-								<tr valign="top">
-									<td scope="row"><label for="tablecell"><?php esc_attr_e(
-												'Table Cell #5, with label', 'wp_admin_style'
-											); ?></label></td>
-									<td><?php esc_attr_e( 'Table Cell #6', 'wp_admin_style' ); ?></td>
-								</tr>
-							</table>
-
-						</div>
-						<!-- post-body-content -->
-
-						<!-- sidebar -->
-						<div id="postbox-container-1" class="postbox-container">
-
-							<div class="meta-box-sortables">
-
-								<div class="postbox">
-
-									<h2><span><?php esc_attr_e(
-												'Sidebar Content Header', 'wp_admin_style'
-											); ?></span></h2>
-
-									<div class="inside">
-										<p><?php esc_attr_e(
-												'Everything you see here, from the documentation to the code itself, was created by and for the community. WordPress is an Open Source project, which means there are hundreds of people all over the world working on it. (More than most commercial platforms.) It also means you are free to use it for anything from your cat’s home page to a Fortune 500 web site without paying anyone a license fee and a number of other important freedoms.',
-												'wp_admin_style'
-											); ?></p>
-									</div>
-									<!-- .inside -->
-
-								</div>
-								<!-- .postbox -->
-
-							</div>
-							<!-- .meta-box-sortables -->
-
-						</div>
-						<!-- #postbox-container-1 .postbox-container -->
-
-					</div>
-					<!-- #post-body .metabox-holder .columns-2 -->
-
-					<br class="clear">
-				</div>
-				<!-- #poststuff -->
-
-				<table class="widefat">
-					<tr>
-						<th class="row-title"><?php esc_attr_e( 'Table header cell #1', 'wp_admin_style' ); ?></th>
-						<th><?php esc_attr_e( 'Table header cell #2', 'wp_admin_style' ); ?></th>
-					</tr>
-					<tr>
-						<td class="row-title"><label for="tablecell"><?php esc_attr_e(
-									'Table Cell #1, with label', 'wp_admin_style'
-								); ?></label></td>
-						<td><?php esc_attr_e( 'Table Cell #2', 'wp_admin_style' ); ?></td>
-					</tr>
-					<tr class="alternate">
-						<td class="row-title"><label for="tablecell"><?php esc_attr_e(
-									'Table Cell #3, with label and class', 'wp_admin_style'
-								); ?> <code>alternate</code></label></td>
-						<td><?php esc_attr_e( 'Table Cell #4', 'wp_admin_style' ); ?></td>
-					</tr>
-					<tr>
-						<td class="row-title"><?php esc_attr_e( 'Table Cell #5, without label', 'wp_admin_style' ); ?></td>
-						<td><?php esc_attr_e( 'Table Cell #6', 'wp_admin_style' ); ?></td>
-					</tr>
-				</table>
-
-				<h1><?php esc_attr_e( 'Heading String', 'wp_admin_style' ); ?></h1>
-
-				<div id="col-container">
-
-					<div id="col-right">
-
-						<div class="col-wrap">
-							<?php esc_attr_e( 'Content Header', 'wp_admin_style' ); ?>
-							<div class="inside">
-								<p><?php esc_attr_e( 'WordPress started in 2003 with a single bit of code to enhance the typography of everyday writing and with fewer users than you can count on your fingers and toes. Since then it has grown to be the largest self-hosted blogging tool in the world, used on millions of sites and seen by tens of millions of people every day.', 'wp_admin_style' ); ?></p>
-							</div>
-
-						</div>
-						<!-- /col-wrap -->
-
-					</div>
-					<!-- /col-right -->
-
-					<div id="col-left">
-
-						<div class="col-wrap">
-							<?php esc_attr_e( 'Content Header', 'wp_admin_style' ); ?>
-							<div class="inside">
-								<p><?php esc_attr_e( 'Everything you see here, from the documentation to the code itself, was created by and for the community. WordPress is an Open Source project, which means there are hundreds of people all over the world working on it. (More than most commercial platforms.) It also means you are free to use it for anything from your cat’s home page to a Fortune 500 web site without paying anyone a license fee and a number of other important freedoms.', 'wp_admin_style' ); ?></p>
-							</div>
-						</div>
-						<!-- /col-wrap -->
-
-					</div>
-					<!-- /col-left -->
-
-				</div>
-				<!-- /col-container -->
-
 
 			</div> <!-- .wrap -->
 
@@ -783,7 +964,6 @@ Options page
 
 								</div><!--meta-box-sortables-->
 
-
 							    <table class="widefat">
 							    	<col width="200">
 							        <tr valign="top">
@@ -801,7 +981,7 @@ Options page
 				        	    					<?php $wk_hide_image = 'style="display: inline-block;"'; ?>
 				        		    			<?php endif; ?>
 				        			    		<div class="wk_option_image_uploader_container" <?php echo $wk_hide_image; ?>>
-				        		    				<img class="image_src" src="<?php echo get_option( 'wk_custom_login_logo' ); ?>">
+				        		    				<img width="200" class="image_src" src="<?php echo get_option( 'wk_custom_login_logo' ); ?>">
 				        			    			<span class="dashicons-before dashicons-dismiss remove-image"></span>
 				        			    		</div>
 				        						<div class="flex-item wk_option_image_uploader_action" <?php echo $wk_hide; ?>>
@@ -813,7 +993,7 @@ Options page
 								        </td>
 							        </tr>
 							        <tr valign="top" class="alternate">
-								        <th scope="row">Background</th>
+								        <td scope="row">Background</td>
 								        <td>
 								        	<div class="upload-img">
 				        		    			<?php if( ! get_option( 'wk_custom_login_background_image' ) ) : ?>
@@ -824,7 +1004,7 @@ Options page
 				        	    					<?php $wk_hide_image = 'style="display: inline-block;"'; ?>
 				        		    			<?php endif; ?>
 				        			    		<div class="wk_option_image_uploader_container" <?php echo $wk_hide_image; ?>>
-				        		    				<img class="image_src" height="150" src="<?php echo get_option( 'wk_custom_login_background_image' ); ?>">
+				        		    				<img width="200" class="image_src" height="150" src="<?php echo get_option( 'wk_custom_login_background_image' ); ?>">
 				        			    			<span class="dashicons-before dashicons-dismiss remove-image"></span>
 				        			    		</div>
 				        						<div class="flex-item wk_option_image_uploader_action" <?php echo $wk_hide; ?>>
@@ -836,18 +1016,18 @@ Options page
 								        </td>
 							        </tr>
 							        <tr valign="top">
-								        <th scope="row">
+								        <td scope="row">
 									        Color de fondo
-								        </th>
+								        </td>
 								        <td>
 								        	<input type="color" name="wk_custom_login_background_color" id="wk_custom_login_background_color" value="<?php echo esc_attr( get_option('wk_custom_login_background_color') ); ?>"/>
 								        	<p class="description">Callback: get_option('wk_custom_login_background_color')</p>
 								        </td>
 							        </tr>
 							        <tr valign="top">
-								        <th scope="row">
+								        <td scope="row">
 									        Color de texto
-								        </th>
+								        </td>
 								        <td>
 								        	<input type="color" name="wk_custom_login_color" id="wk_custom_login_color" value="<?php echo esc_attr( get_option('wk_custom_login_color') ); ?>"/>
 								        	<p class="description">Callback: get_option('wk_custom_login_color')</p>
@@ -1049,7 +1229,7 @@ Options page
 									        <p class="description">Aplicar un fondo obscuro en el logo del panel de administración.</p>
 								        </td>
 								        <td>
-								        	<input type="color" name="custom_admin_background" id="custom_admin_background" value="<?php echo esc_attr( get_option('custom_admin_background') ); ?>" class="regular-text"/>
+								        	<input type="color" name="custom_admin_background" id="custom_admin_background" value="<?php echo esc_attr( get_option('custom_admin_background') ); ?>"/>
 								        	
 								        </td>
 							        </tr>

@@ -89,21 +89,19 @@
 	 			<?php //echo get_search_form( 'true' ); ?>
 	 		</section>-->
 
- 			<table id="wk-today" style="clear: both;">
- 				<tr>
- 					<td>Today</td>
- 					<td><?php echo date(get_option('date_format')); ?></td>
- 				</tr>
+	 			<table id="wk-today" style="clear: both;">
+					<?php if ( get_option('wk_posts_by_you') ) : ?>
+		 				<tr>
+		 					<td>Hoy</td>
+		 					<td><?php echo date( 'D n' ); ?></td>
+		 				</tr>
 
- 				<?php //if ( get_option('posts_by_you') ) : ?>
-	 				<tr>
-	 					<td>Your posts: <span><?php echo count_user_posts( $current_user->ID ); ?></span></td>
-	 					<td style="text-align: right">All posts: <span><?php $published_posts = wp_count_posts()->publish; echo $published_posts; ?></span></td>
-	 				</tr>
-	 			<?php //endif; ?>
-
-
- 			</table>
+		 				<tr>
+		 					<td>Your posts: <span><?php echo count_user_posts( $current_user->ID ); ?></span></td>
+		 					<td style="text-align: right">All posts: <span><?php $published_posts = wp_count_posts()->publish; echo $published_posts; ?></span></td>
+		 				</tr>
+					<?php endif; ?>
+	 			</table>
 
 			<!--<span id="wk-logout-link"><?php wp_loginout(); ?></span>-->
 
