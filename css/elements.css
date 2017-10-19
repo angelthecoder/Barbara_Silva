@@ -28,7 +28,7 @@
     border-bottom: 1px solid black;
 	}
 
-	/* Botónes 
+	/* Botónes
 
 	3 Típos
 	1. .bs_button fondo blanco texto rosa
@@ -45,7 +45,7 @@
 		text-transform: uppercase;
 		font-size: 10px;
 		letter-spacing: 2px;
-		display: inline-block;			
+		display: inline-block;
 		}
 
 		.bs_button {
@@ -96,7 +96,7 @@
 	Posts
 
 ------------------------------------------------------------------------------------------------------*/
-		
+
 		/* Post */
 
 			.bs_post {
@@ -124,7 +124,7 @@
 				color: #fff;
 				}
 
-				
+
 				.bs_post_head_light .bs_post_title:after {
 				border-color: #fff;
 				}
@@ -141,7 +141,7 @@
 				margin: 10px 0px 20px;
 				position: relative;
 				}
-				
+
 				.bs_post_meta.bs_post_meta_topline {
 				display: inline-block;
 				padding-top: 6px;
@@ -161,7 +161,7 @@
 
 					.bs_post_reverse .bs_post_head {
 				   	text-align: right;					}
-					
+
 				}
 
 		/* Post content
@@ -172,12 +172,12 @@
 
 			/* Sección galería */
 
-				.bs_section_gallery > *, 
+				.bs_section_gallery > *,
 				.bs_section_gallery img {
 				width: 100%;
 				}
 
-				
+
 
 			/* Sección de texto */
 
@@ -225,9 +225,14 @@
 		/* What I Whore */
 
 		.bs_what_i_whore {
-		line-height: 2; 
+		line-height: 2;
 		}
 
+		@media ( min-width: 771px ) {
+		    .bs_post_thumb img {
+			max-height: 350px;
+		    }
+		}
 
 /*-----------------------------------------------------------------------------------------------------
 
@@ -263,7 +268,7 @@
 	Share post block
 
 ------------------------------------------------------------------------------------------------------*/
-		
+
 		.bs_share_post_block {
 		text-align: center;
 		display: flex;
@@ -429,7 +434,7 @@
 	align-items: center;
 	font-size: 22px;
 	}
-	
+
 	.bs_icon {
 	padding: 0 12px;
 	display: inline-block;
@@ -479,7 +484,7 @@
 
 /*-----------------------------------------------------------------------------------------------------
 
-	Instagram Feed 
+	Instagram Feed
 
 ------------------------------------------------------------------------------------------------------*/
 
@@ -490,7 +495,7 @@
 	@media ( min-width: 771px ) {
 		#instagram-footer {
 		height: 24vw;
-		}	
+		}
 
 		#instagram-footer .bs_instagram_feed_images {
 		height: 50%;
@@ -514,8 +519,8 @@
 		}
 
 
-	#instagram-footer .wk-cols, 
-	#instagram-footer .wk-col-2, 
+	#instagram-footer .wk-cols,
+	#instagram-footer .wk-col-2,
 	#instagram-footer .wk-col-1 {
 	height: 100%;
 	}
