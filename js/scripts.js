@@ -1,5 +1,5 @@
 jQuery(document).ready(function($){
-	
+
 
 	$('#off-canvas-icon').click(function(){
 		$('#off-canvas').toggleClass('is-active');
@@ -18,9 +18,9 @@ jQuery(document).ready(function($){
 		// asNavFor: '.da-slider-nav',
 		//autoplay: true,
 	});
-	
-	// Video icon play 
-	
+
+	// Video icon play
+
 // 	$('video').click(function(){
 // 		$(this).get(0).play();
 // 		$(this).siblings('.bs_icon_play').hide();
@@ -28,10 +28,10 @@ jQuery(document).ready(function($){
 // 			$(this).show();
 // 		}
 // 	});
-	
+
 	var $video = $("video");
 	var $icon = $(".bs_icon_play");
-	  
+
         mousedown = false;
 
     $icon.click(function(){
@@ -64,5 +64,20 @@ jQuery(document).ready(function($){
 
 
 
+
+});
+
+jQuery(window).load(function() {
+    if ($('body').hasClass('home')) {
+	var maxHeight = 0;
+	var articleList = $('.wk-section-wrap > article');
+	articleList.each(function() {
+	    var articleHeight = $(this).height();
+	    maxHeight = articleHeight > maxHeight ? articleHeight : maxHeight;
+	});
+	articleList.each(function() {
+	    $(this).height( maxHeight );
+	});
+    }
 });
 

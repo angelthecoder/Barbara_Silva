@@ -229,8 +229,8 @@
 		}
 
 		@media ( min-width: 771px ) {
-		    .bs_post_thumb img {
-			max-height: 350px;
+		    main article .wk-cols {
+			height: 100%;
 		    }
 		}
 
@@ -438,6 +438,10 @@
 	.bs_icon {
 	padding: 0 12px;
 	display: inline-block;
+	}
+
+	.page-work-with-me .bs_icon {
+	filter: contrast(100);
 	}
 
 	#main-header .bs_icons {
