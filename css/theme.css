@@ -9,7 +9,7 @@
     src:url('../fonts/pistilli/Pistilli.ttf.woff') format('woff'),
         url('../fonts/pistilli/Pistilli.ttf.svg#Pistilli') format('svg'),
         url('../fonts/pistilli/Pistilli.ttf.eot'),
-        url('../fonts/pistilli/Pistilli.ttf.eot?#iefix') format('embedded-opentype'); 
+        url('../fonts/pistilli/Pistilli.ttf.eot?#iefix') format('embedded-opentype');
         font-weight: normal;
         font-style: normal;
 }
@@ -35,8 +35,8 @@ background-color: #f3efef;
 	}
 
 	.bs_text_excerpt {
-	font-size: 18px;	
-	font-style: italic;	
+	font-size: 18px;
+	font-style: italic;
 	line-height: 22px;
 	}
 
@@ -47,18 +47,22 @@ background-color: #f3efef;
 	}
 
 	.category-editorial .bs_post_section {
-    background-color: #fff;		
+    background-color: #fff;
 	}
 
 	.category-fashion .bs_post_section {
     background-color: transparent;
 	}
 
+	.category-lifestyle main article {
+	    margin-bottom: 60px;
+	}
+
 	@media ( max-width: 770px ) {
 		.bs_section_mobil {
 	    padding-left: 30px !important;
-	    padding-right: 30px !important;	
-		}		
+	    padding-right: 30px !important;
+		}
 	}
 
 
@@ -92,7 +96,7 @@ background-color: #f3efef;
 		columns: 2;
 		column-gap: 40px;
 		-webkit-columns: 2;
-		-webkit-column-gap: 40px;		
+		-webkit-column-gap: 40px;
 		}
 	}
 
@@ -110,7 +114,7 @@ background-color: #f3efef;
 	.page .bs_section_text h5,
 	.page .bs_section_text h6 {
 	font-family: 'Pistilli', serif;
-	line-height: 1.2;	
+	line-height: 1.2;
 	/*Fix Chrome text rendering*/
   -webkit-font-smoothing : antialiased;
 	}
@@ -132,19 +136,19 @@ background-color: #f3efef;
 
 	/* Texto arriba del título principal del post en el feed */
 		body,
-		.bs_title_montserrat, 
+		.bs_title_montserrat,
 		.bs_title_montserrat_lower,
 		.bs_title_menu,
 		.bs_post_cat {
 		font-family: 'Montserrat';
 		}
 
-		.bs_title_montserrat, 
+		.bs_title_montserrat,
 		.bs_title_montserrat_lower,
 		.bs_title_menu,
 		.bs_post_cat {
-		font-weight: 300;	
-		letter-spacing: 2px;	
+		font-weight: 300;
+		letter-spacing: 2px;
 		line-height: 13px;
 		font-size: 10px;
 		}
@@ -154,7 +158,7 @@ background-color: #f3efef;
 
 		.bs_title_montserrat_upper,
 		.bs_post_cat {
-		text-transform: uppercase; 		
+		text-transform: uppercase;
 		}
 
 		.bs_post_cat {
@@ -168,8 +172,8 @@ background-color: #f3efef;
 
 /* Títulos Garamond */
 
-	.bs_title_garamond, 
-	.bs_title_garamond_mid, 
+	.bs_title_garamond,
+	.bs_title_garamond_mid,
 	.bs_title_garamond_bit,
 	.bs_post_meta,
 	.bs_post_excerpt,
@@ -182,13 +186,13 @@ background-color: #f3efef;
 	.single .bs_section_text h5,
 	.single .bs_section_text h6 {
 		font-family: 'EB Garamond', serif;
-		font-style: italic;	
+		font-style: italic;
 		line-height: 1;
 	}
 
 	.bs_title_garamond,
 	.bs_post_meta {
-	font-size: 11px;	
+	font-size: 11px;
 	}
 
 	.bs_title_garamond_mid,
@@ -199,7 +203,7 @@ background-color: #f3efef;
 	.bs_title_garamond_big,
 	.bs_what {
 	font-size: 22px;
-	}	
+	}
 
 	.page .bs_section_text h1,
 	.page .bs_section_text h2,
@@ -224,7 +228,7 @@ background-color: #f3efef;
 	.page .bs_section_text h6 {
 	margin: 40px 0;
 	}
-	
+
 	.single .bs_section_text h1,
 	.single .bs_section_text h2,
 	.single .bs_section_text h3,
@@ -253,7 +257,7 @@ background-color: #f3efef;
 		.bs_section_text h3:after,
 		.bs_section_text h4:after,
 		.bs_section_text h5:after,
-		.bs_section_text h6:after, 
+		.bs_section_text h6:after,
 		.bs_section_text h3:after {
 	    content: "";
 	    display: block;
