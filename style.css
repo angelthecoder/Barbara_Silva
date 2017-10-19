@@ -159,10 +159,22 @@ License: © Copyright Alumin.Agency All rights reserved
 	padding-right:1rem;
 	}
 
-	@media only screen and (min-width: 1024px) and (max-width: 1400px) {
+	@media only screen and (min-width: 1025px) and (max-width: 1401px) {
 		.home main {
 			margin-top: 60px;
 			margin-bottom: 60px;
+			padding:0;
+		}	
+	}
+
+	main {
+		padding-left:1rem;
+		padding-right:1rem;
+	}
+	
+	@media only screen and (min-width: 1025px) and (max-width: 1401px) {
+		main {
+			padding:0
 		}	
 	}
 

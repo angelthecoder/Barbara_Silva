@@ -45,6 +45,19 @@ Las especificaciones para escritorio contendrán el prefijo .wk-d-
 }
 
 /*========== Menu =========*/
+
+#main-header{
+  padding:0 1rem;
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1401px) {
+
+  #main-header{
+    padding:0;
+  }
+}
+
+
 .wk-section {
   width: 100%;
 }

@@ -166,8 +166,16 @@ background-color: #f3efef;
 		}
 
 		.bs_title_menu {
-		font-size: 14px;
+		font-size: 12px;
 		text-transform: uppercase;
+		}
+
+		@media only screen and (min-width: 1025px) and (max-width: 1401px) {
+
+			.bs_title_menu {
+				font-size: 14px;
+			}
+
 		}
 
 /* Títulos Garamond */
