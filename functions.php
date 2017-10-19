@@ -71,6 +71,8 @@ Partes de post */
 			?>
 
 				<div class="bs_post_head <?php if( has_term( 'fashion', 'category' ) and ( !is_home() ) ) : if( !get_field( 'bs_post_format_dark' ) ) : ?>bs_post_head_light<?php endif; endif; ?>">
+				<div class="bs_post_head <?php if( has_term( 'bloom', 'category' ) and ( !is_home() ) ) : if( !get_field( 'bs_post_format_dark' ) ) : ?>bs_post_head_light<?php endif; endif; ?>">
+
 					
 					<header class="bs_post_header">
 						<h4 class="bs_post_cat"><?php echo get_the_category_list( ' • ' ); ?></h4>
