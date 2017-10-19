@@ -19,7 +19,7 @@
 ------------------------------------------------------------------------------------------------------*/
 
 	.bs_divider {
-	width: 100%;
+	width: 00%;
 	margin-top: 12px;
 	margin-bottom: 12px;
 	margin-left: auto;
@@ -362,7 +362,7 @@
 			}
 
 				.bs_slide .bs_slide_content .bs_slide_content_container {
-				width: 50%;
+				width: 100%;
 				}
 
 			.bs_slide_readmore {
