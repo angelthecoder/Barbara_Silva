@@ -124,6 +124,10 @@ background-color: #f3efef;
 	font-size: 48px;
 	}
 
+	.bs_title_big{
+	font-size: 42px;
+	}
+
 	.bs_title_mid {
 	font-size: 36px;
 	}
@@ -170,14 +174,6 @@ background-color: #f3efef;
 		text-transform: uppercase;
 		}
 
-		@media only screen and (min-width: 1025px) and (max-width: 1401px) {
-
-			.bs_title_menu {
-				font-size: 14px;
-			}
-
-		}
-
 /* Títulos Garamond */
 
 	.bs_title_garamond,
@@ -206,6 +202,10 @@ background-color: #f3efef;
 	.bs_title_garamond_mid,
 	.sub-menu {
 	font-size: 18px;
+	}
+
+	.bs_slide_content .bs_title_garamond_mid{
+		display:none;
 	}
 
 	.bs_title_garamond_big,
