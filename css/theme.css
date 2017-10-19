@@ -110,7 +110,9 @@ background-color: #f3efef;
 	.page .bs_section_text h5,
 	.page .bs_section_text h6 {
 	font-family: 'Pistilli', serif;
-	line-height: 1;	
+	line-height: 1.2;	
+	/*Fix Chrome text rendering*/
+  -webkit-font-smoothing : antialiased;
 	}
 
 	.bs_title_big,
