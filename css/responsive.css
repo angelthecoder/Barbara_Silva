@@ -12,6 +12,21 @@
 
   /*=================== css/Theme.css ===================*/
 
+  /*======= Line 62 =======*/
+  .bs_section_mobil{
+    padding: 1rem;
+  }
+
+  .bs_section_mobil .wk-padding-h-40{
+    padding:0;
+  }
+
+  .bs_section_mobil .bs_post_head {
+    padding:0;
+    margin:0;
+  }
+  /*======= Line 62 =======*/
+
   /*======= Line 127 =======*/
   .bs_slide_content .bs_title_big{
     font-size: 24px;

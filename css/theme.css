@@ -58,12 +58,12 @@ background-color: #f3efef;
 	    margin-bottom: 60px;
 	}
 
-	@media ( max-width: 770px ) {
+	/* @media ( max-width: 770px ) {
 		.bs_section_mobil {
 	    padding-left: 30px !important;
 	    padding-right: 30px !important;
 		}
-	}
+	} */
 
 
 	.bs_post_section_no_padding {
