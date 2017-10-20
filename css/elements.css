@@ -119,7 +119,8 @@
 
 			.bs_post {
 				margin: 2.5rem 0;
-				height: initial!important;
+				/* TODO Ver que pex con esto, podriamos borrarlo para siempre */
+				/*height: initial!important;*/
 			}
 
 			.bs_post_white {

@@ -56,7 +56,7 @@ WPKit */
 /************************************************************************************************************************
 * Tamaños adicionales de imagen */
 
-		if ( function_exists( 'add_theme_support' ) ) {			
+		if ( function_exists( 'add_theme_support' ) ) {
 			add_image_size( 'Post feed Thumbnail', 450, 600 );
 		}
 
@@ -68,12 +68,26 @@ Partes de post */
 
 		function post_head() {
 
+			//$video_url = get_post_meta(get_the_ID(), 'bs_video', true);
+			//var_dump( $video_url );
+			//var_dump(
+				//(is_single() and has_term(['fashion', 'bloom'], 'category')) or
+				//(is_archive() and has_term('lifestyle', 'category')) and
+				//(! get_field('bs_post_format_dark'))
+			//);
+			$post_head_class = '';
+			if (
+				(is_archive() and has_term('lifestyle', 'category')) or
+				(is_single() and has_term(['fashion', 'bloom'], 'category')) and
+				(! get_field('bs_post_format_dark'))
+		       	) {
+				$post_head_class = 'bs_post_head_light';
+			}
 			?>
 
-				<div class="bs_post_head <?php if( has_term( 'fashion', 'category' ) and ( !is_home() ) ) : if( !get_field( 'bs_post_format_dark' ) ) : ?>bs_post_head_light<?php endif; endif; ?>">
-				<div class="bs_post_head <?php if( has_term( 'bloom', 'category' ) and ( !is_home() ) ) : if( !get_field( 'bs_post_format_dark' ) ) : ?>bs_post_head_light<?php endif; endif; ?>">
+				<div class="bs_post_head <?= $post_head_class ?>">
 
-					
+
 					<header class="bs_post_header">
 						<h4 class="bs_post_cat"><?php echo get_the_category_list( ' • ' ); ?></h4>
 						<h1 class="bs_post_title"><?php the_title(); ?></h1><span class="bs_remate"></span>
@@ -83,7 +97,7 @@ Partes de post */
 
 
 					<?php if( !is_single() || is_page() ) : ?>
-						
+
 						<section class="bs_post_excerpt">
 							<?php the_excerpt(); ?>
 						</section>
@@ -94,7 +108,7 @@ Partes de post */
 
 					<?php endif; ?>
 
-					
+
 				</div>
 
 			<?php
@@ -105,7 +119,7 @@ Partes de post */
 	// Post content
 
 		function post_content() {
-			
+
 			if( have_rows( 'bs_section' ) ) : $n=1; while( have_rows( 'bs_section' ) ) : $n++; the_row(); ?>
 
 				<?php if( get_row_layout() == texto ) : ?>
@@ -118,7 +132,7 @@ Partes de post */
 
 								<?php the_sub_field( 'bs_section_text' ); ?>
 
-							</div>	
+							</div>
 
 						</div>
 
@@ -134,33 +148,33 @@ Partes de post */
 
 								<div class="wk-col-2e wk-d-margin-r-20">
 
-									<?php if( get_sub_field( 'bs_section_left_type' ) == 'Imagen' ) : ?>					
+									<?php if( get_sub_field( 'bs_section_left_type' ) == 'Imagen' ) : ?>
 
-										<img src="<?php $image = get_sub_field( 'bs_section_left_image' ); echo $image['sizes']['Post feed Thumbnail']; ?>">						
+										<img src="<?php $image = get_sub_field( 'bs_section_left_image' ); echo $image['sizes']['Post feed Thumbnail']; ?>">
 
-									<?php elseif( get_sub_field( 'bs_section_left_type' ) == 'Texto' ) : ?>					
+									<?php elseif( get_sub_field( 'bs_section_left_type' ) == 'Texto' ) : ?>
 
 										<?php the_sub_field( 'bs_section_left_text' ); ?>
 
-									<?php endif; ?>		
+									<?php endif; ?>
 
 								</div>
 
 								<div class="wk-col-2e wk-d-margin-l-20">
 
-									<?php if( get_sub_field( 'bs_section_right_type' ) == 'Imagen' ) : ?>					
+									<?php if( get_sub_field( 'bs_section_right_type' ) == 'Imagen' ) : ?>
 
-										<img src="<?php $image = get_sub_field( 'bs_section_right_image' ); echo $image['sizes']['Post feed Thumbnail']; ?>">							
+										<img src="<?php $image = get_sub_field( 'bs_section_right_image' ); echo $image['sizes']['Post feed Thumbnail']; ?>">
 
-									<?php elseif( get_sub_field( 'bs_section_right_type' ) == 'Texto' ) : ?>					
+									<?php elseif( get_sub_field( 'bs_section_right_type' ) == 'Texto' ) : ?>
 
 										<?php the_sub_field( 'bs_section_right_text' ); ?>
 
-									<?php endif; ?>	
+									<?php endif; ?>
 
 								</div>
 
-							</div>		
+							</div>
 
 						</div>
 
@@ -171,25 +185,25 @@ Partes de post */
 					<section id="post-section-<?php echo $n; ?>" class="wk-section">
 
 						<div class="wk-section-wrap bs_post_section <?php if( !has_term( array( 'fashion', 'catwalk', 'fashion-week' ), 'category' ) ) : ?>bs_section_gallery<?php endif; ?>">
-							
+
 							<?php $gallery = get_sub_field( 'bs_section_gallery' ); ?>
-							
+
 							<?php if( has_term( array( 'fashion', 'catwalk', 'fashion-week' ), 'category' ) ) : ?>
-							
-								<div class="bs_post_section_wrap bs_section_gallery">									
-							
-							<?php endif; ?>							
+
+								<div class="bs_post_section_wrap bs_section_gallery">
+
+							<?php endif; ?>
 
 								<?php foreach( $gallery as $image ) : ?>
 
 									<span><img src="<?php echo $image[sizes][large] ?>"></span>
 
 								<?php endforeach; ?>
-							
-							<?php if( has_term( array( 'fashion', 'catwalk', 'fashion-week' ), 'category' ) ) : ?>							
-									
+
+							<?php if( has_term( array( 'fashion', 'catwalk', 'fashion-week' ), 'category' ) ) : ?>
+
 								</div>
-							
+
 							<?php endif; ?>
 
 						</div>
@@ -198,16 +212,16 @@ Partes de post */
 
 				<?php endif; ?>
 
-			<?php endwhile; endif; 
+			<?php endwhile; endif;
 
 		}
 
 		add_action( 'bs_post_content', 'post_content' );
 
-	// Related posts 
+	// Related posts
 
 		function related_posts() {
-			
+
 			?>
 
 				<?php if( has_term( 'editorial', 'category' ) ) : $bs_post_section_class = 'bs_post_section'; else : $bs_post_section_class = 'bs_post_section_wrap'; endif; ?>
@@ -216,36 +230,36 @@ Partes de post */
 
 					<h3 class="bs_title_small">Related posts</h3>
 
-					<?php 
+					<?php
 
 						$args = array(
-							'post_type'		  => 'post',
-							'category_name' => '',
-							'post_count'		=> 1,
+							'post_type'      => 'post',
+							'category_name'  => '',
+							'posts_per_page' => 4,
 						);
 
-						$wp_query = new WP_Query( $args ); 
+						$wp_query = new WP_Query( $args );
 
 					?>
 
-					<?php if( $wp_query->have_posts() ) : ?> 
+					<?php if( $wp_query->have_posts() ) : ?>
 
 						<div class="wk-cols">
 
 							<?php while( $wp_query->have_posts() ) : $wp_query->the_post(); ?>
 
 								<div class="wk-col">
-									
+
 									<a href="<?php the_permalink(); ?>">
-										
+
 										<div class="bs_related_post" style="background-image: url( <?php the_post_thumbnail_url( 'thumbnail' ) ?> );">
 
 											<h3 class="bs_title_garamond_mid"><?php the_title(); ?></h3>
 
 										</div>
-									
+
 									</a>
-									
+
 								</div>
 
 							<?php endwhile; ?>
@@ -256,8 +270,8 @@ Partes de post */
 
 				</div>
 
-			<?php 
-			
+			<?php
+
 		}
 
 		add_action( 'bs_related_posts', 'related_posts' );
@@ -272,7 +286,7 @@ Partes de post */
 			?>
 
 				<div class="bs_share_post_block">
-					
+
 					<div class="bs_title_menu bs_share_post_title">SHARE THIS ARTICLE</div>
 
 					<div class="bs_share_post_buttons">
@@ -282,10 +296,10 @@ Partes de post */
 						<a href="https://pinterest.com/pin/create/button/?url=&media=url(<?php the_post_thumbnail_url( 'thumbnail' ); ?>)&description=<?php echo get_the_excerpt(); ?>%0A" class="bs_button_share bs_button_pin" target="_blank"><i class="fa fa-pinterest"></i> Pin it</a>
 
 					</div>
-					
+
 				</div>
 
-			<?php 
+			<?php
 
 		}
 
@@ -305,11 +319,11 @@ What I wore shortcode */
 				<?php if( have_rows( 'bs_prendas' ) ) : while( have_rows( 'bs_prendas' ) ) : the_row(); ?>
 					<tr>
 						<td><?php the_sub_field( 'bs_prenda' ); ?> by <span class="bs_text_pink"><?php the_sub_field( 'bs_prenda_marca' ); ?></span></td>
-						
+
 					</tr>
 				<?php endwhile; endif; ?>
 			</table>
-			
+
 		</p>
 
 		<?php return ob_get_clean();
@@ -323,12 +337,12 @@ What I wore shortcode */
 /*******************************************************************************
 Snippets */
 
-	// Oculta el editor de texto en posts 
+	// Oculta el editor de texto en posts
 
 		function mvandemar_remove_post_type_support() {
 
 			remove_post_type_support( 'post', 'editor' );
-			
+
 		}
 
 		add_action( 'init', 'mvandemar_remove_post_type_support' );

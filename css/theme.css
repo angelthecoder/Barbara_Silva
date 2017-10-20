@@ -54,7 +54,8 @@ background-color: #f3efef;
     background-color: transparent;
 	}
 
-	.category-lifestyle main article {
+	/* TODO revisar esto que no aplica en subcategorias */
+	.category main article {
 	    margin-bottom: 60px;
 	}
 

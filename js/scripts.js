@@ -68,9 +68,14 @@ jQuery(document).ready(function($){
 });
 
 jQuery(window).load(function() {
-    if ($('body').hasClass('home')) {
+    if (
+	$('body').hasClass('home') ||
+	$('body').hasClass('category-fashion') ||
+	$('body').hasClass('category-bloom')
+    ) {
 	var maxHeight = 0;
-	var articleList = $('.wk-section-wrap > article');
+	var articleList = $('.wk-section-wrap article');
+	console.log(articleList);
 	articleList.each(function() {
 	    var articleHeight = $(this).height();
 	    maxHeight = articleHeight > maxHeight ? articleHeight : maxHeight;
